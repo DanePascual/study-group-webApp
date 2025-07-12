@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <title>Topic - Study Group</title>
+  <style>
+    :root {
+      --primary-color: #4caf50;
+      --primary-hover: #388e3c;
+      --primary-light: #e8f5e9;
+      --secondary-color: #2196f3;
+      --secondary-light: #e3f2fd;
+      --warning-color: #ff9800;
+      --danger-color: #f44336;
+      --dark-text: #333;
+      --medium-text: #666;
+      --light-text: #888;
+      --border-light: #e0e0e0;
+      --background-light: #f8f9fa;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-medium: rgba(0, 0, 0, 0.15);
+      --white: #ffffff;
+    }
+    
+    body {
+      font-family: "Arial", sans-serif;
+      background: var(--background-light);
+      overflow-x: hidden;
+      color: var(--dark-text);
+      transition: all 0.3s ease;
+    }
+    
+    /* Dark Mode Styles - Matching dashboard.html */
+    body.dark-mode {
+      --dark-text: #e0e0e0;
+      --medium-text: #bbb;
+      --light-text: #999;
+      --background-light: #1a1a1a;
+      --border-light: #333;
+      --shadow-light: rgba(0, 0, 0, 0.2);
+      --shadow-medium: rgba(0, 0, 0, 0.3);
+      --white: #2a2a2a;
+      background: #1a1a1a;
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .sidebar {
+      background: #2a2a2a;
+    }
+
+    body.dark-mode .top-nav {
+      background: #2a2a2a;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    body.dark-mode .page-title {
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .main-content { 
+      background: #1a1a1a;
+    }
+
+    body.dark-mode .menu-toggle:hover {
+      background: #333;
+    }
+
+    body.dark-mode .topic-header,
+    body.dark-mode .post-card,
+    body.dark-mode .empty-state,
+    body.dark-mode .modal-custom,
+    body.dark-mode .confirmation-dialog,
+    body.dark-mode .pagination-btn {
+      background: #2a2a2a;
+      color: var(--dark-text);
+      box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    }
+
+    body.dark-mode .topic-title,
+    body.dark-mode .post-title {
+      color: var(--primary-color);
+    }
+
+    body.dark-mode .topic-description,
+    body.dark-mode .post-preview {
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .topic-meta,
+    body.dark-mode .post-date {
+      color: var(--medium-text);
+    }
+
+    body.dark-mode .topic-tag {
+      background: #333;
+      color: var(--primary-color);
+    }
+
+    body.dark-mode .back-link {
+      color: var(--primary-color);
+    }
+
+    body.dark-mode .back-link:hover {
+      color: var(--primary-hover);
+    }
+
+    body.dark-mode .empty-state-icon {
+      color: #555;
+    }
+
+    body.dark-mode .empty-state-text {
+      color: var(--medium-text);
+    }
+
+    body.dark-mode .filter-dropdown,
+    body.dark-mode .modal-custom input,
+    body.dark-mode .modal-custom textarea {
+      background: #333;
+      color: var(--dark-text);
+      border-color: #444;
+    }
+
+    body.dark-mode .filter-dropdown:focus,
+    body.dark-mode .modal-custom input:focus,
+    body.dark-mode .modal-custom textarea:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(76,175,80,0.2);
+    }
+
+    body.dark-mode .modal-btn-cancel {
+      background: #333;
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .post-options-btn:hover,
+    body.dark-mode .post-dropdown-item:hover {
+      background-color: #333;
+    }
+
+    body.dark-mode .post-dropdown-menu {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+    }
+
+    body.dark-mode .post-dropdown-item {
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .pagination-btn {
+      border-color: #444;
+    }
+
+    body.dark-mode .pagination-btn.active {
+      background: var(--primary-color);
+    }
+
+    body.dark-mode .theme-toggle {
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .theme-toggle:hover {
+      background: #333;
+    }
+    
+    /* User info section in dark mode */
+    body.dark-mode .user-info {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Fix form inputs in dark mode */
+    body.dark-mode .form-input,
+    body.dark-mode .form-textarea {
+      background: #333;
+      border-color: #444;
+      color: var(--dark-text);
+    }
+
+    body.dark-mode .form-input::placeholder,
+    body.dark-mode .form-textarea::placeholder {
+      color: var(--light-text);
+    }
+
+    body.dark-mode .form-input:focus,
+    body.dark-mode .form-textarea:focus {
+      background: #3a3a3a;
+      border-color: var(--primary-color);
+    }
+
+    body.dark-mode .create-post-btn {
+      background: var(--primary-color);
+    }
+    
+    body.dark-mode .create-post-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    body.dark-mode .view-post-btn {
+      background: var(--primary-color);
+    }
+    
+    body.dark-mode .view-post-btn:hover {
+      background: var(--primary-hover);
+    }
+    
+    body.dark-mode .modal-title {
+      color: var(--primary-color);
+    }
+    
+    body.dark-mode .close-modal {
+      color: var(--medium-text);
+    }
+    
+    body.dark-mode .confirmation-dialog p {
+      color: var(--dark-text);
+    }
+    
+    body.dark-mode .form-label {
+      color: var(--dark-text);
+    }
+    
+    /* Rest of your styles */
+    .sidebar {
+      position: fixed;
+      left: -280px;
+      top: 0;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+    .sidebar.open { left: 0;}
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .sidebar-brand {
+      color: var(--primary-color);
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar-menu { padding: 20px 0;}
+    .sidebar-item {
+      display: block;
+      color: var(--dark-text);
+      text-decoration: none;
+      padding: 15px 20px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-item:hover,
+    .sidebar-item.active {
+      background: rgba(76, 175, 80, 0.1);
+      border-left-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    .sidebar-item i {
+      width: 20px;
+      margin-right: 10px;
+    }
+    .sidebar-footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      padding: 0 20px;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--dark-text);
+      background: rgba(0,0,0,0.05);
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .user-info:hover {
+      background: rgba(76, 175, 80, 0.15);
+      transform: translateY(-1px);
+    }
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    .main-content { 
+      margin-left: 0; 
+      transition: margin-left 0.3s ease; 
+      min-height: 100vh;
+    }
+    .main-content.shifted { margin-left: 280px;}
+    .top-nav {
+      background: white;
+      padding: 15px 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-left { display: flex; align-items: center; gap: 20px;}
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: var(--medium-text);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      background: var(--background-light);
+      transform: scale(1.1);
+    }
+    .menu-toggle { background: none; border: none; font-size: 20px; color: var(--medium-text); cursor: pointer; padding: 8px; border-radius: 5px; transition: all 0.3s ease;}
+    .menu-toggle:hover { background: var(--background-light);}
+    .page-title { font-size: 24px; font-weight: bold; color: var(--dark-text);}
+    
+    .topic-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .topic-header { 
+      margin: 35px 0 20px 0; 
+      background: white; 
+      border-radius: 15px; 
+      padding: 25px 30px; 
+      box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .back-link { 
+      font-size: 16px; 
+      color: #388e3c; 
+      background: none; 
+      border: none; 
+      text-decoration: none; 
+      cursor: pointer; 
+      padding: 0; 
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .back-link:hover {
+      color: #2e7d32;
+      text-decoration: underline;
+    }
+    .topic-title { 
+      font-size: 26px; 
+      font-weight: bold; 
+      color: #388e3c;
+      margin-bottom: 10px;
+    }
+    .topic-meta { 
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #666;
+    }
+    .topic-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .topic-description {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .topic-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #e8f5e9;
+      color: #388e3c;
+      border-radius: 15px;
+      font-size: 13px;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+    
+    .topic-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 25px 0 15px 0;
+    }
+    .create-post-btn { 
+      background: #4caf50; 
+      color: white; 
+      border: none; 
+      border-radius: 20px; 
+      padding: 10px 26px; 
+      font-size: 15px; 
+      font-weight: 500; 
+      box-shadow: 0 2px 8px rgba(76,175,80,0.15); 
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .create-post-btn:hover { 
+      background: #388e3c;
+      transform: translateY(-2px);
+    }
+    .create-post-btn:active {
+      transform: translateY(0);
+    }
+    
+    .filter-controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .filter-dropdown {
+      padding: 8px 15px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      background: white;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+    }
+    .filter-dropdown:focus {
+      outline: none;
+      border-color: #4caf50;
+    }
+    
+    .post-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .post-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      position: relative;
+    }
+    .post-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(76,175,80,0.12);
+    }
+    .post-card-content {
+      padding: 20px;
+    }
+    .post-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    .post-title-container {
+      flex: 1;
+    }
+    .post-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #388e3c;
+      margin-bottom: 6px;
+    }
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+    .author-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #e8f5e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #388e3c;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .post-options {
+      position: relative;
+    }
+    .post-options-btn {
+      background: none;
+      border: none;
+      color: #777;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+    }
+    .post-options-btn:hover {
+      background-color: #f5f5f5;
+    }
+    .post-dropdown-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+      width: 160px;
+      display: none;
+      z-index: 20;
+    }
+    .post-dropdown-menu.show {
+      display: block;
+    }
+    .post-dropdown-item {
+      padding: 10px 15px;
+      font-size: 14px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .post-dropdown-item:hover {
+      background-color: #f5f5f5;
+    }
+    .post-dropdown-item.delete {
+      color: #d32f2f;
+    }
+    .post-preview {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.5;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 15px;
+    }
+    .post-date {
+      font-size: 13px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .post-date .edited {
+      font-style: italic;
+      font-size: 12px;
+    }
+    .view-post-btn { 
+      background: #388e3c; 
+      color: white; 
+      border: none; 
+      border-radius: 20px; 
+      padding: 7px 18px; 
+      font-size: 14px; 
+      font-weight: 500; 
+      transition: all 0.2s; 
+      box-shadow: 0 2px 8px rgba(76,175,80,0.1);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .view-post-btn:hover { 
+      background: #2e7d32;
+      color: white;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    .empty-state-icon {
+      font-size: 50px;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    .empty-state-text {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    
+    .pagination-controls {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 30px;
+    }
+    .pagination-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 1px solid #ddd;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pagination-btn:hover {
+      border-color: #4caf50;
+      color: #388e3c;
+    }
+    .pagination-btn.active {
+      background: #4caf50;
+      color: white;
+      border-color: #4caf50;
+    }
+    .pagination-btn.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .modal-backdrop-custom { 
+      position: fixed; 
+      top:0; left:0; width:100vw; height:100vh; 
+      background: rgba(0,0,0,0.3); 
+      z-index: 2000; 
+      display:none; 
+      align-items:center; 
+      justify-content:center;
+    }
+    .modal-backdrop-custom.active { display: flex; }
+    .modal-custom { 
+      background: #fff; 
+      border-radius: 15px; 
+      padding: 35px 30px 25px 30px; 
+      width: 95%; 
+      max-width: 600px; 
+      box-shadow: 0 10px 40px rgba(76,175,80,0.10); 
+      position: relative; 
+      animation: fadeInTop 0.18s ease;
+    }
+    @keyframes fadeInTop { from {transform: translateY(-30px); opacity:0;} to {transform: translateY(0); opacity:1;}}
+    .modal-custom .close-modal { 
+      position: absolute; right: 15px; top: 15px; 
+      background: none; border:none; font-size: 22px; color: #555; cursor: pointer;
+    }
+    .modal-custom .modal-title { 
+      font-size: 20px; font-weight: bold; color: #388e3c; margin-bottom: 15px;
+    }
+    .modal-custom .modal-label {
+      display: block;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .modal-custom input, .modal-custom textarea { 
+      width: 100%; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      font-size: 15px; 
+      padding: 10px 12px; 
+      margin-bottom: 16px; 
+      transition: border 0.2s;
+    }
+    .modal-custom input:focus, .modal-custom textarea:focus { 
+      border-color: #4caf50; 
+      outline: none; 
+      box-shadow: 0 0 0 2px rgba(76,175,80,0.10);
+    }
+    .modal-custom textarea { 
+      min-height: 180px; 
+      resize: vertical;
+    }
+    .modal-custom .modal-actions { 
+      display:flex; gap:10px; justify-content: flex-end;
+    }
+    .modal-custom .modal-btn { 
+      padding: 8px 22px; 
+      border-radius: 8px; 
+      font-size: 15px; 
+      font-weight: 500; 
+      border: none; 
+      transition: background 0.2s; 
+      cursor: pointer;
+    }
+    .modal-btn-cancel { 
+      background: #f5f5f5; color: #666;
+    }
+    .modal-btn-save { 
+      background: #4caf50; color: white;
+    }
+    .modal-btn-save:hover { background: #388e3c;}
+    
+    .confirmation-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      z-index: 2100;
+      max-width: 400px;
+      width: 90%;
+      display: none;
+    }
+    .confirmation-dialog p {
+      margin-bottom: 20px;
+      font-size: 15px;
+      color: #333;
+    }
+    .confirmation-dialog-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    .confirmation-dialog-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+    .confirmation-dialog-btn-cancel {
+      background: #f5f5f5;
+      color: #666;
+    }
+    .confirmation-dialog-btn-confirm {
+      background: #d32f2f;
+      color: white;
+    }
+    .confirmation-dialog-btn-confirm:hover {
+      background: #b71c1c;
+    }
+    .confirmation-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      z-index: 2090;
+      display: none;
+    }
+    
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 20px;
+      background: #4caf50;
+      color: white;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      z-index: 2200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideIn 0.3s ease-out;
+    }
+    .notification.error {
+      background: #f44336;
+    }
+    @keyframes slideIn {
+      from {transform: translateX(100%);}
+      to {transform: translateX(0);}
+    }
+    
+    @media (max-width: 900px) {
+      .topic-header { padding: 18px 20px; }
+      .modal-custom { padding: 22px 20px; }
+      .topic-actions { flex-direction: column; align-items: stretch; gap: 15px; }
+      .filter-controls { order: -1; width: 100%; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .main-content.shifted { margin-left: 0;}
+      .topic-container { padding: 0 15px; }
+      .sidebar { left: -280px !important; }
+      .sidebar.open { left: 0 !important; }
+      .post-card-header { flex-direction: column; }
+      .post-options { position: absolute; top: 15px; right: 15px; }
+    }
+    @media (max-width: 500px) {
+      .topic-title { font-size: 20px; }
+      .topic-meta { flex-direction: column; gap: 8px; }
+      .create-post-btn { width: 100%; justify-content: center; }
+      .post-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .view-post-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-brand">
+        <i class="bi bi-book"></i>
+        StudyGroup
+      </div>
+    </div>
+    <nav class="sidebar-menu">
+      <a href="dashboard.html" class="sidebar-item"><i class="bi bi-house"></i>Dashboard</a>
+      <a href="profile.html" class="sidebar-item"><i class="bi bi-person"></i>Profile</a>
+      <a href="study-rooms.html" class="sidebar-item"><i class="bi bi-door-open"></i>Study Rooms</a>
+      <a href="resources.html" class="sidebar-item"><i class="bi bi-folder"></i>Resources</a>
+      <a href="discussion.html" class="sidebar-item active"><i class="bi bi-chat-dots"></i>Discussion Forum</a>
+      <a href="report.html" class="sidebar-item"><i class="bi bi-graph-up"></i>Report</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info" onclick="goToProfile()" style="cursor:pointer; transition:all 0.3s ease">
+        <div class="user-avatar">DP</div>
+        <div>
+          <div style="font-weight:bold; font-size:14px">DanePascual</div>
+          <div style="font-size:12px; opacity:0.8">Active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <div class="nav-left">
+        <button class="menu-toggle" id="menuToggle"><i class="bi bi-list"></i></button>
+        <h1 class="page-title">Topic</h1>
+      </div>
+      <div class="nav-right">
+        <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+          <i class="bi bi-moon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="topic-container">
+      <!-- Topic Header -->
+      <div class="topic-header" id="topicHeader">
+        <button class="back-link" onclick="goBackToForum()">
+          <i class="bi bi-arrow-left"></i> Back to Topics
+        </button>
+        <div class="topic-title" id="topicTitle">Topic Title</div>
+        <div class="topic-meta" id="topicMeta">
+          <div class="topic-meta-item"><i class="bi bi-person"></i> <span id="topicAuthor">Author</span></div>
+          <div class="topic-meta-item"><i class="bi bi-calendar3"></i> <span id="topicDate">Date</span></div>
+          <div class="topic-meta-item"><i class="bi bi-chat"></i> <span id="topicPostCount">0 posts</span></div>
+          <div class="topic-meta-item"><i class="bi bi-eye"></i> <span id="topicViews">0 views</span></div>
+          <div class="topic-meta-item"><i class="bi bi-tag"></i> <span id="topicCategory">Category</span></div>
+        </div>
+        <div class="topic-description" id="topicDescription">
+          Loading topic description...
+        </div>
+        <div id="topicTags">
+          <!-- Tags will be rendered here -->
+        </div>
+      </div>
+      
+      <!-- Topic Actions -->
+      <div class="topic-actions">
+        <button class="create-post-btn" id="createPostBtn">
+          <i class="bi bi-plus-circle"></i> Create New Post
+        </button>
+        <div class="filter-controls">
+          <select class="filter-dropdown" id="sortFilter">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="title">Title A-Z</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Posts Section -->
+      <div class="post-grid" id="postGrid">
+        <!-- Posts will be rendered here -->
+        <div class="text-center p-5"><i class="bi bi-hourglass-split"></i> Loading posts...</div>
+      </div>
+      
+      <div class="pagination-controls" id="paginationControls">
+        <!-- Pagination will be rendered here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Create/Edit Post Modal -->
+  <div class="modal-backdrop-custom" id="modalBackdrop">
+    <div class="modal-custom">
+      <button class="close-modal" id="closeModalBtn" aria-label="Close">&times;</button>
+      <div class="modal-title" id="modalTitle">Create New Post</div>
+      <form id="postForm" autocomplete="off">
+        <label class="modal-label">Post Title</label>
+        <input type="text" id="postTitle" placeholder="Enter a descriptive title" maxlength="100" required/>
+        
+        <label class="modal-label">Post Content</label>
+        <textarea id="postContent" placeholder="Share your thoughts, questions, or insights here..." maxlength="5000" required></textarea>
+        
+        <input type="hidden" id="postId" value="">
+        <input type="hidden" id="isEdit" value="false">
+        
+        <div class="modal-actions">
+          <button type="button" class="modal-btn modal-btn-cancel" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="modal-btn modal-btn-save" id="savePostBtn">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Delete Confirmation Dialog -->
+  <div class="confirmation-backdrop" id="confirmationBackdrop"></div>
+  <div class="confirmation-dialog" id="deleteConfirmation">
+    <p>Are you sure you want to delete this post? This action cannot be undone and all associated comments will be removed.</p>
+    <div class="confirmation-dialog-actions">
+      <button class="confirmation-dialog-btn confirmation-dialog-btn-cancel" id="cancelDeleteBtn">Cancel</button>
+      <button class="confirmation-dialog-btn confirmation-dialog-btn-confirm" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Current user and time information
+    const CURRENT_SESSION = {
+      utcTime: "2025-07-11 11:57:32", // Updated UTC time
+      user: "DanePascual",
+      timezone: "UTC"
+    };
+
+    // Current user ID (normally from auth system)
+    const CURRENT_USER_ID = "user_dane_pascual"; // Simulate the current user
+    
+    // ---- Backend-ready API simulation ----
+    // Each topic's posts are stored as 'posts_<topicId>' in localStorage
+    
+    // Simulate an API delay
+    function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+    // Format relative time
+    function formatRelativeTime(dateString) {
+      const date = new Date(dateString);
+      const now = new Date();
+      const diffMs = now - date;
+      const diffSec = Math.round(diffMs / 1000);
+      const diffMin = Math.round(diffSec / 60);
+      const diffHour = Math.round(diffMin / 60);
+      const diffDay = Math.round(diffHour / 24);
+      
+      if (diffSec < 60) return 'just now';
+      if (diffMin < 60) return `${diffMin} min${diffMin !== 1 ? 's' : ''} ago`;
+      if (diffHour < 24) return `${diffHour} hour${diffHour !== 1 ? 's' : ''} ago`;
+      if (diffDay < 7) return `${diffDay} day${diffDay !== 1 ? 's' : ''} ago`;
+      return date.toLocaleDateString();
+    }
+
+    // Show notification
+    function showNotification(message, isError = false) {
+      // Remove any existing notification
+      const existingNotification = document.querySelector('.notification');
+      if (existingNotification) existingNotification.remove();
+      
+      const notification = document.createElement('div');
+      notification.className = `notification ${isError ? 'error' : ''}`;
+      notification.innerHTML = `
+        <i class="bi bi-${isError ? 'exclamation-circle' : 'check-circle'}"></i>
+        ${message}
+      `;
+      document.body.appendChild(notification);
+      
+      // Auto remove after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+    
+    // Generate avatar from username
+    function getInitials(name) {
+      return name
+        .split(' ')
+        .map(part => part.charAt(0))
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+    }
+
+    // Get topic details
+    async function getTopicById(topicId) {
+      await delay(50);
+      const topics = JSON.parse(localStorage.getItem('topics') || '[]');
+      const topic = topics.find(t => t.id == topicId);
+      
+      if (topic) {
+        // Update view count
+        const idx = topics.findIndex(t => t.id == topicId);
+        if (idx !== -1) {
+          topics[idx].viewCount = (topics[idx].viewCount || 0) + 1;
+          localStorage.setItem('topics', JSON.stringify(topics));
+        }
+      }
+      
+      return topic;
+    }
+
+    // Get posts for a topic with pagination
+    async function getPosts(topicId, page = 1, limit = 5, sort = 'newest') {
+      await delay(50);
+      let posts = JSON.parse(localStorage.getItem('posts_' + topicId) || '[]');
+      
+      // Apply sorting
+      switch (sort) {
+        case 'newest':
+          posts.sort((a, b) => new Date(b.created) - new Date(a.created));
+          break;
+        case 'oldest':
+          posts.sort((a, b) => new Date(a.created) - new Date(b.created));
+          break;
+        case 'title':
+          posts.sort((a, b) => a.title.localeCompare(b.title));
+          break;
+      }
+      
+      // Calculate pagination
+      const total = posts.length;
+      const totalPages = Math.max(1, Math.ceil(total / limit));
+      const startIndex = (page - 1) * limit;
+      const endIndex = startIndex + limit;
+      const paginatedPosts = posts.slice(startIndex, endIndex);
+      
+      return {
+        posts: paginatedPosts,
+        pagination: {
+          page,
+          limit,
+          total,
+          totalPages
+        }
+      };
+    }
+
+    // Create a post
+    async function createPost(topicId, {title, content, author}) {
+      await delay(100);
+      const posts = JSON.parse(localStorage.getItem('posts_' + topicId) || '[]');
+      const now = new Date();
+      const post = {
+        id: Date.now().toString(),
+        title,
+        content,
+        author: author || CURRENT_SESSION.user,
+        authorId: CURRENT_USER_ID,
+        created: now.toISOString(),
+        lastEdited: null
+      };
+      posts.unshift(post);
+      localStorage.setItem('posts_' + topicId, JSON.stringify(posts));
+      
+      // Update topic with latest post info and count
+      let topics = JSON.parse(localStorage.getItem('topics') || '[]');
+      const idx = topics.findIndex(t => t.id == topicId);
+      if (idx !== -1) {
+        topics[idx].postCount = (topics[idx].postCount || 0) + 1;
+        topics[idx].latestPost = {
+          title: post.title,
+          author: post.author,
+          created: post.created
+        };
+        topics[idx].latestActivity = now.toISOString();
+        localStorage.setItem('topics', JSON.stringify(topics));
+      }
+      
+      return post;
+    }
+    
+    // Edit a post
+    async function editPost(topicId, postId, {title, content}) {
+      await delay(100);
+      const posts = JSON.parse(localStorage.getItem('posts_' + topicId) || '[]');
+      const idx = posts.findIndex(p => p.id === postId);
+      
+      if (idx === -1) {
+        throw new Error("Post not found");
+      }
+      
+      // Check if current user is the author
+      if (posts[idx].authorId !== CURRENT_USER_ID) {
+        throw new Error("You can only edit your own posts");
+      }
+      
+      // Update the post
+      posts[idx] = {
+        ...posts[idx],
+        title,
+        content,
+        lastEdited: new Date().toISOString()
+      };
+      
+      localStorage.setItem('posts_' + topicId, JSON.stringify(posts));
+      return posts[idx];
+    }
+    
+    // Delete a post
+    async function deletePost(topicId, postId) {
+      await delay(100);
+      let posts = JSON.parse(localStorage.getItem('posts_' + topicId) || '[]');
+      const idx = posts.findIndex(p => p.id === postId);
+      
+      if (idx === -1) {
+        throw new Error("Post not found");
+      }
+      
+      // Check if current user is the author
+      if (posts[idx].authorId !== CURRENT_USER_ID) {
+        throw new Error("You can only delete your own posts");
+      }
+      
+      // Remove the post
+      posts.splice(idx, 1);
+      localStorage.setItem('posts_' + topicId, JSON.stringify(posts));
+      
+      // Update topic post count
+      let topics = JSON.parse(localStorage.getItem('topics') || '[]');
+      const topicIdx = topics.findIndex(t => t.id == topicId);
+      if (topicIdx !== -1) {
+        topics[topicIdx].postCount = Math.max(0, (topics[topicIdx].postCount || 0) - 1);
+        
+        // If this was the last post, update latestPost to null
+        if (posts.length === 0) {
+          topics[topicIdx].latestPost = null;
+        } else {
+          // Otherwise update to the most recent post
+          const latestPost = posts.sort((a, b) => new Date(b.created) - new Date(a.created))[0];
+          topics[topicIdx].latestPost = {
+            title: latestPost.title,
+            author: latestPost.author,
+            created: latestPost.created
+          };
+        }
+        
+        localStorage.setItem('topics', JSON.stringify(topics));
+      }
+      
+      // Also delete all comments for this post
+      localStorage.removeItem('comments_' + topicId + '_' + postId);
+      
+      return true;
+    }
+
+    // UI/Navigation helpers
+    function goBackToForum() {
+      window.location.href = "discussion.html";
+    }
+
+    // ----- Main Page Logic -----
+    // Global state
+    let currentPage = 1;
+    let currentSort = 'newest';
+    
+    // Get topicId from URL (?id=123)
+    function getTopicIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // Render topic header
+    async function renderTopicHeader(topic) {
+      document.getElementById('topicTitle').textContent = topic.title;
+      document.getElementById('topicAuthor').textContent = topic.author || 'Anonymous';
+      document.getElementById('topicDate').textContent = formatRelativeTime(topic.created);
+      document.getElementById('topicPostCount').textContent = `${topic.postCount || 0} post${topic.postCount !== 1 ? 's' : ''}`;
+      document.getElementById('topicViews').textContent = `${topic.viewCount || 0} view${topic.viewCount !== 1 ? 's' : ''}`;
+      document.getElementById('topicCategory').textContent = topic.category || 'Discussion';
+      document.getElementById('topicDescription').textContent = topic.description || 'No description provided.';
+      
+      // Render tags
+      const tagsContainer = document.getElementById('topicTags');
+      if (topic.tags && topic.tags.length) {
+        tagsContainer.innerHTML = topic.tags.map(tag => `<span class="topic-tag">${tag}</span>`).join('');
+      } else {
+        tagsContainer.innerHTML = '';
+      }
+    }
+
+    // Render post grid
+    async function renderPosts() {
+      const topicId = getTopicIdFromUrl();
+      const postGrid = document.getElementById('postGrid');
+      
+      try {
+        const result = await getPosts(topicId, currentPage, 5, currentSort);
+        const { posts, pagination } = result;
+        
+        if (!posts || posts.length === 0) {
+          postGrid.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon"><i class="bi bi-file-earmark-text"></i></div>
+              <div class="empty-state-text">No posts yet. Use the "Create New Post" button above to start the discussion!</div>
+            </div>
+          `;
+        } else {
+          postGrid.innerHTML = posts.map(post => {
+            const isAuthor = post.authorId === CURRENT_USER_ID;
+            const initials = getInitials(post.author);
+            
+            return `
+              <div class="post-card">
+                <div class="post-card-content">
+                  <div class="post-card-header">
+                    <div class="post-title-container">
+                      <div class="post-title">${post.title}</div>
+                      <div class="post-author">
+                        <div class="author-avatar">${initials}</div>
+                        <span>${post.author}</span>
+                      </div>
+                    </div>
+                    
+                    ${isAuthor ? `
+                      <div class="post-options">
+                        <button class="post-options-btn" onclick="togglePostOptions(event, '${post.id}')">
+                          <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+                        <div class="post-dropdown-menu" id="dropdown-${post.id}">
+                          <div class="post-dropdown-item" onclick="showEditPostModal('${post.id}')">
+                            <i class="bi bi-pencil"></i> Edit
+                          </div>
+                          <div class="post-dropdown-item delete" onclick="showDeleteConfirmation('${post.id}')">
+                            <i class="bi bi-trash"></i> Delete
+                          </div>
+                        </div>
+                      </div>
+                    ` : ''}
+                  </div>
+                  
+                  <div class="post-preview">
+                    ${post.content.substring(0, 200)}${post.content.length > 200 ? '...' : ''}
+                  </div>
+                  
+                  <div class="post-meta">
+                    <div class="post-date">
+                      <i class="bi bi-clock"></i>
+                      ${formatRelativeTime(post.created)}
+                      ${post.lastEdited ? `<span class="edited">(edited)</span>` : ''}
+                    </div>
+                    <a href="post.html?topic=${topicId}&post=${post.id}" class="view-post-btn">
+                      <i class="bi bi-eye"></i>
+                      View Discussion
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+        
+        // Render pagination
+        renderPagination(pagination);
+      } catch (error) {
+        postGrid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon"><i class="bi bi-exclamation-triangle"></i></div>
+            <div class="empty-state-text">Error loading posts. Please try again.</div>
+          </div>
+        `;
+        console.error('Error rendering posts:', error);
+      }
+    }
+    
+    // Render pagination controls
+    function renderPagination(pagination) {
+      const paginationControls = document.getElementById('paginationControls');
+      const { page, totalPages } = pagination;
+      
+      if (totalPages <= 1) {
+        paginationControls.innerHTML = '';
+        return;
+      }
+      
+      let paginationHTML = `
+        <button class="pagination-btn ${page === 1 ? 'disabled' : ''}" ${page === 1 ? 'disabled' : ''} onclick="changePage(${page - 1})">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+      `;
+      
+      // Logic to show limited page numbers
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, page - 2);
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        paginationHTML += `
+          <button class="pagination-btn ${i === page ? 'active' : ''}" onclick="changePage(${i})">
+            ${i}
+          </button>
+        `;
+      }
+      
+      paginationHTML += `
+        <button class="pagination-btn ${page === totalPages ? 'disabled' : ''}" ${page === totalPages ? 'disabled' : ''} onclick="changePage(${page + 1})">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      `;
+      
+      paginationControls.innerHTML = paginationHTML;
+    }
+    
+    // Change page
+    window.changePage = function(page) {
+      currentPage = page;
+      renderPosts();
+      
+      // Scroll to top of posts
+      document.getElementById('postGrid').scrollIntoView({ behavior: 'smooth' });
+    };
+    
+    // Toggle post dropdown menu
+    window.togglePostOptions = function(event, postId) {
+      event.stopPropagation();
+      const dropdown = document.getElementById(`dropdown-${postId}`);
+      
+      // Close all other dropdowns first
+      document.querySelectorAll('.post-dropdown-menu.show').forEach(menu => {
+        if (menu.id !== `dropdown-${postId}`) {
+          menu.classList.remove('show');
+        }
+      });
+      
+      // Toggle the current dropdown
+      dropdown.classList.toggle('show');
+    };
+    
+    // Close dropdowns when clicking elsewhere
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.post-options-btn')) {
+        document.querySelectorAll('.post-dropdown-menu.show').forEach(menu => {
+          menu.classList.remove('show');
+        });
+      }
+    });
+    
+    // Show edit post modal
+    window.showEditPostModal = async function(postId) {
+      const topicId = getTopicIdFromUrl();
+      const posts = JSON.parse(localStorage.getItem('posts_' + topicId) || '[]');
+      const post = posts.find(p => p.id === postId);
+      
+      if (!post) {
+        showNotification('Post not found', true);
+        return;
+      }
+      
+      // Populate the modal with post data
+      document.getElementById('modalTitle').textContent = 'Edit Post';
+      document.getElementById('postTitle').value = post.title;
+      document.getElementById('postContent').value = post.content;
+      document.getElementById('postId').value = postId;
+      document.getElementById('isEdit').value = 'true';
+      document.getElementById('savePostBtn').textContent = 'Save Changes';
+      
+      // Show the modal
+      document.getElementById('modalBackdrop').classList.add('active');
+    };
+    
+    // Show delete confirmation
+    window.showDeleteConfirmation = function(postId) {
+      document.getElementById('confirmationBackdrop').style.display = 'block';
+      document.getElementById('deleteConfirmation').style.display = 'block';
+      
+      // Set up confirmation buttons
+      document.getElementById('cancelDeleteBtn').onclick = hideDeleteConfirmation;
+      document.getElementById('confirmDeleteBtn').onclick = async function() {
+        try {
+          const topicId = getTopicIdFromUrl();
+          await deletePost(topicId, postId);
+          hideDeleteConfirmation();
+          renderPosts();
+          showNotification('Post deleted successfully');
+          
+          // Reload topic to update stats
+          const topic = await getTopicById(topicId);
+          renderTopicHeader(topic);
+        } catch (error) {
+          hideDeleteConfirmation();
+          showNotification(error.message, true);
+        }
+      };
+    };
+    
+    // Hide delete confirmation
+    function hideDeleteConfirmation() {
+      document.getElementById('confirmationBackdrop').style.display = 'none';
+      document.getElementById('deleteConfirmation').style.display = 'none';
+    }
+
+    // Modal logic
+    const createPostBtn = document.getElementById('createPostBtn');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('cancelModalBtn');
+    const postForm = document.getElementById('postForm');
+    
+    createPostBtn.onclick = () => {
+      document.getElementById('modalTitle').textContent = 'Create New Post';
+      document.getElementById('postId').value = '';
+      document.getElementById('isEdit').value = 'false';
+      document.getElementById('savePostBtn').textContent = 'Post';
+      document.getElementById('postForm').reset();
+      modalBackdrop.classList.add('active');
+    };
+    
+    closeModalBtn.onclick = cancelModalBtn.onclick = () => {
+      modalBackdrop.classList.remove('active');
+      postForm.reset();
+    };
+    
+    modalBackdrop.onclick = (e) => {
+      if(e.target === modalBackdrop) {
+        modalBackdrop.classList.remove('active');
+        postForm.reset();
+      }
+    };
+
+    // Post form submit (for both Create and Edit)
+    postForm.onsubmit = async function(e) {
+      e.preventDefault();
+      const topicId = getTopicIdFromUrl();
+      const postTitle = document.getElementById('postTitle').value.trim();
+      const postContent = document.getElementById('postContent').value.trim();
+      const isEdit = document.getElementById('isEdit').value === 'true';
+      const postId = document.getElementById('postId').value;
+      
+      if (!postTitle || !postContent) {
+        showNotification('Title and content are required', true);
+        return;
+      }
+      
+      try {
+        if (isEdit) {
+          // Edit existing post
+          await editPost(topicId, postId, { title: postTitle, content: postContent });
+          showNotification('Post updated successfully');
+        } else {
+          // Create new post
+          await createPost(topicId, { title: postTitle, content: postContent, author: CURRENT_SESSION.user });
+          showNotification('Post created successfully');
+        }
+        
+        modalBackdrop.classList.remove('active');
+        postForm.reset();
+        
+        // Reload topic to update stats
+        const topic = await getTopicById(topicId);
+        renderTopicHeader(topic);
+        renderPosts();
+      } catch (error) {
+        showNotification(error.message, true);
+      }
+    };
+    
+    // Sort filter handler
+    document.getElementById('sortFilter').addEventListener('change', function(e) {
+      currentSort = e.target.value;
+      currentPage = 1; // Reset to first page when changing sort
+      renderPosts();
+    });
+
+    // Theme management
+    function initializeTheme() {
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      
+      // Load saved theme from localStorage
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+      }
+      
+      // Add toggle event
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        themeToggle.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    }
+
+    // Sidebar toggle functionality
+    function initializeSidebar() {
+      document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('mainContent').classList.toggle('shifted');
+      });
+    }
+
+    // Function to handle profile click
+    window.goToProfile = function() {
+      window.location.href = "profile.html";
+    };
+
+    // Initial page load
+    (async function(){
+      const topicId = getTopicIdFromUrl();
+      if(!topicId) {
+        showNotification("No topic ID provided", true);
+        return goBackToForum();
+      }
+      
+      const topic = await getTopicById(topicId);
+      if(!topic) {
+        showNotification("Topic not found", true);
+        return goBackToForum();
+      }
+      
+      renderTopicHeader(topic);
+      renderPosts();
+      
+      // Set user avatar in sidebar
+      document.querySelector('.user-avatar').textContent = "DP";
+
+      // Initialize theme and sidebar
+      initializeTheme();
+      initializeSidebar();
+
+      // Keep sidebar closed by default
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('mainContent').classList.remove('shifted');
+      
+      console.log(`Topic page loaded for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.utcTime} UTC`);
+    })();
+  </script>
+</body>
+</html>

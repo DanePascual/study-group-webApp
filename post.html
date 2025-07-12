@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <title>Post - Study Group</title>
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-hover: #388e3c;
+        --primary-light: #e8f5e9;
+        --secondary-color: #2196f3;
+        --secondary-light: #e3f2fd;
+        --warning-color: #ff9800;
+        --danger-color: #f44336;
+        --dark-text: #333;
+        --medium-text: #666;
+        --light-text: #888;
+        --border-light: #e0e0e0;
+        --background-light: #f8f9fa;
+        --shadow-light: rgba(0, 0, 0, 0.1);
+        --shadow-medium: rgba(0, 0, 0, 0.15);
+        --white: #ffffff;
+        --transition: all 0.3s ease;
+      }
+      
+      body {
+        font-family: "Arial", sans-serif;
+        background: var(--background-light);
+        overflow-x: hidden;
+        color: var(--dark-text);
+        transition: var(--transition);
+      }
+      
+      /* Dark Mode Styles */
+      body.dark-mode {
+        --dark-text: #e0e0e0;
+        --medium-text: #bbb;
+        --light-text: #999;
+        --background-light: #1a1a1a;
+        --border-light: #333;
+        --shadow-light: rgba(0, 0, 0, 0.2);
+        --shadow-medium: rgba(0, 0, 0, 0.3);
+        --white: #2a2a2a;
+        background: #1a1a1a;
+        color: var(--dark-text);
+      }
+
+      body.dark-mode .sidebar {
+        background: #2a2a2a;
+      }
+
+      body.dark-mode .sidebar-brand {
+        color: white;
+      }
+
+      body.dark-mode .sidebar-item {
+        color: #e0e0e0;
+      }
+
+      body.dark-mode .sidebar-item:hover,
+      body.dark-mode .sidebar-item.active {
+        background: rgba(76, 175, 80, 0.2);
+        color: #4caf50;
+      }
+
+      body.dark-mode .top-nav {
+        background: #2a2a2a;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      }
+
+      body.dark-mode .page-title {
+        color: var(--dark-text);
+      }
+
+      body.dark-mode .main-content { 
+        background: #1a1a1a;
+      }
+
+      body.dark-mode .menu-toggle {
+        color: var(--medium-text);
+      }
+
+      body.dark-mode .menu-toggle:hover {
+        background: #333;
+      }
+      
+      body.dark-mode .theme-toggle {
+        color: var(--dark-text);
+      }
+
+      body.dark-mode .theme-toggle:hover {
+        background: #333;
+      }
+      
+      body.dark-mode .breadcrumbs {
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .breadcrumbs a {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .back-link {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .back-link:hover {
+        color: var(--primary-hover);
+      }
+      
+      body.dark-mode .post-header,
+      body.dark-mode .comments-section {
+        background: #2a2a2a;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+      }
+      
+      body.dark-mode .post-title {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .post-meta,
+      body.dark-mode .sort-label {
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .post-content,
+      body.dark-mode .comment-content {
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .author-avatar,
+      body.dark-mode .comment-avatar {
+        background: #333;
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .comments-title {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .sort-dropdown {
+        background: #333;
+        color: var(--dark-text);
+        border-color: #444;
+      }
+      
+      body.dark-mode .sort-dropdown:focus {
+        border-color: var(--primary-color);
+      }
+      
+      body.dark-mode .comment {
+        border-color: #333;
+      }
+      
+      body.dark-mode .comment:hover {
+        background-color: #222;
+      }
+      
+      body.dark-mode .comment .comment {
+        border-left-color: #333;
+      }
+      
+      body.dark-mode .comment-author {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .comment-meta {
+        color: var(--light-text);
+      }
+      
+      body.dark-mode .comment-deleted {
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .reply-btn,
+      body.dark-mode .edit-btn,
+      body.dark-mode .delete-btn,
+      body.dark-mode .collapse-btn,
+      body.dark-mode .comment-options-btn {
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .reply-btn {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .reply-btn:hover,
+      body.dark-mode .edit-btn:hover,
+      body.dark-mode .collapse-btn:hover,
+      body.dark-mode .comment-options-btn:hover {
+        background-color: #333;
+      }
+      
+      body.dark-mode .delete-btn:hover {
+        background-color: rgba(211, 47, 47, 0.2);
+      }
+      
+      body.dark-mode .comment-dropdown-menu {
+        background: #2a2a2a;
+        border: 1px solid #444;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+      }
+      
+      body.dark-mode .comment-dropdown-item {
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .comment-dropdown-item:hover {
+        background-color: #333;
+      }
+      
+      body.dark-mode .quick-comment-input {
+        background: #333;
+        border-color: #444;
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .quick-comment-input::placeholder {
+        color: var(--light-text);
+      }
+      
+      body.dark-mode .quick-comment-input:focus {
+        background: #3a3a3a;
+        border-color: var(--primary-color);
+      }
+      
+      body.dark-mode .modal-custom {
+        background: #2a2a2a;
+      }
+      
+      body.dark-mode .modal-title,
+      body.dark-mode .modal-subtitle {
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .modal-custom input,
+      body.dark-mode .modal-custom textarea {
+        background: #333;
+        color: var(--dark-text);
+        border-color: #444;
+      }
+      
+      body.dark-mode .modal-custom input::placeholder,
+      body.dark-mode .modal-custom textarea::placeholder {
+        color: var(--light-text);
+      }
+      
+      body.dark-mode .modal-custom input:focus,
+      body.dark-mode .modal-custom textarea:focus {
+        background: #3a3a3a;
+        border-color: var(--primary-color);
+      }
+      
+      body.dark-mode .format-btn {
+        background: #333;
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .format-btn:hover,
+      body.dark-mode .format-btn.active {
+        background: #444;
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .modal-btn-cancel {
+        background: #333;
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .confirmation-dialog {
+        background: #2a2a2a;
+      }
+      
+      body.dark-mode .confirmation-dialog p {
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .confirmation-dialog-btn-cancel {
+        background: #333;
+        color: var(--dark-text);
+      }
+      
+      body.dark-mode .share-btn {
+        background: #333;
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .share-btn:hover {
+        background: #444;
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .reaction-btn {
+        background: #333;
+        border-color: #444;
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .reaction-btn:hover {
+        background: #3a3a3a;
+        color: var(--primary-color);
+      }
+      
+      body.dark-mode .reaction-btn.active {
+        background: #1e3b20;
+        color: var(--primary-color);
+        border-color: #388e3c;
+      }
+      
+      body.dark-mode .empty-comments .empty-icon {
+        color: #444;
+      }
+      
+      body.dark-mode .empty-comments .empty-text {
+        color: var(--medium-text);
+      }
+      
+      body.dark-mode .share-option:hover {
+        background: #333;
+      }
+      
+      body.dark-mode .share-link-input {
+        background: #333;
+        color: var(--dark-text);
+        border-color: #444;
+      }
+      
+      body.dark-mode .share-label {
+        color: var(--dark-text);
+      }
+      
+      /* Theme toggle button */
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: var(--medium-text);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .theme-toggle:hover {
+        background: var(--background-light);
+        transform: scale(1.1);
+      }
+      
+      .nav-right {
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Original CSS */
+      .sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        width: 280px;
+        height: 100vh;
+        background: white;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .sidebar.open {
+        left: 0;
+      }
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .sidebar-brand {
+        color: var(--primary-color);
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sidebar-menu {
+        padding: 20px 0;
+      }
+      .sidebar-item {
+        display: block;
+        color: var(--dark-text);
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+      }
+      .sidebar-item:hover,
+      .sidebar-item.active {
+        background: rgba(76, 175, 80, 0.1);
+        border-left-color: var(--primary-color);
+        color: var(--primary-color);
+      }
+      .sidebar-item i {
+        width: 20px;
+        margin-right: 10px;
+      }
+      .sidebar-footer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        padding: 0 20px;
+      }
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px;
+        border-radius: 10px;
+      }
+      .user-info:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: translateY(-1px);
+      }
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #4caf50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+      }
+
+      .main-content {
+        margin-left: 0;
+        transition: margin-left 0.3s ease;
+        min-height: 100vh;
+        background: var(--background-light);
+      }
+      .main-content.shifted {
+        margin-left: 280px;
+      }
+
+      .container-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px 40px 20px;
+      }
+
+      .top-nav {
+        background: white;
+        padding: 15px 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .menu-toggle {
+        background: none;
+        border: none;
+        font-size: 20px;
+        color: #666;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+      .menu-toggle:hover {
+        background: #f0f0f0;
+      }
+      .page-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .breadcrumbs {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #666;
+        margin: 20px 0 10px 0;
+        flex-wrap: wrap;
+      }
+      .breadcrumbs a {
+        color: #388e3c;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+      }
+      .breadcrumbs a:hover {
+        text-decoration: underline;
+      }
+      .breadcrumb-separator {
+        color: #999;
+        font-size: 12px;
+      }
+
+      .back-link {
+        font-size: 16px;
+        color: #388e3c;
+        background: none;
+        border: none;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 0;
+        margin-bottom: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s;
+      }
+      .back-link:hover {
+        color: #2e7d32;
+        text-decoration: underline;
+      }
+
+      .post-header {
+        margin: 15px 0 25px 0;
+        background: white;
+        border-radius: 15px;
+        padding: 25px 30px;
+        box-shadow: 0 3px 15px rgba(76, 175, 80, 0.1);
+        position: relative;
+      }
+      .post-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #388e3c;
+        margin-bottom: 15px;
+      }
+      .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #666;
+      }
+      .post-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .post-author {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .author-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #e8f5e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #388e3c;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .post-content {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 25px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+      }
+
+      .comments-section {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 2px 10px rgba(76, 175, 80, 0.08);
+        margin-bottom: 30px;
+        padding: 25px 30px;
+      }
+      .comments-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .comments-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #256029;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .comments-count {
+        color: #666;
+        font-weight: normal;
+        font-size: 14px;
+      }
+      .comments-sort {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .sort-label {
+        font-size: 14px;
+        color: #666;
+      }
+      .sort-dropdown {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        background: white;
+        font-size: 14px;
+        color: #333;
+        cursor: pointer;
+      }
+      .sort-dropdown:focus {
+        outline: none;
+        border-color: #4caf50;
+      }
+
+      .comment-list {
+        position: relative;
+      }
+      .comment {
+        border-bottom: 1px solid #f0f0f0;
+        padding: 18px 0;
+        margin-left: 0;
+        position: relative;
+        transition: all 0.2s;
+      }
+      .comment:last-child {
+        border-bottom: none;
+      }
+      .comment:hover {
+        background-color: #f9f9f9;
+      }
+      .comment .comment {
+        border-bottom: none;
+        border-left: 2px solid #e8f5e9;
+        margin-left: 50px;
+        padding: 15px 0 5px 20px;
+      }
+      .comment .comment .comment {
+        margin-left: 40px;
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+      .comment-author-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .comment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #e8f5e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #388e3c;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .comment-user {
+        display: flex;
+        flex-direction: column;
+      }
+      .comment-author {
+        font-weight: 600;
+        color: #388e3c;
+        font-size: 14px;
+        line-height: 1.2;
+      }
+      .comment-meta {
+        font-size: 12px;
+        color: #999;
+        display: flex;
+        align-items: center;
+      }
+      .comment-meta .edited-indicator {
+        margin-left: 5px;
+        font-style: italic;
+        font-size: 11px;
+      }
+
+      .comment-body {
+        padding-left: 42px;
+      }
+      .comment-content {
+        font-size: 15px;
+        color: #333;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+      .comment-deleted {
+        font-style: italic;
+        color: #999;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .reply-btn,
+      .edit-btn,
+      .delete-btn {
+        background: none;
+        border: none;
+        font-size: 13px;
+        cursor: pointer;
+        padding: 5px 8px;
+        border-radius: 4px;
+        color: #666;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s;
+      }
+      .reply-btn {
+        color: #388e3c;
+      }
+      .reply-btn:hover,
+      .edit-btn:hover {
+        background-color: #f0f0f0;
+        color: #2e7d32;
+      }
+      .delete-btn:hover {
+        background-color: #ffebee;
+        color: #d32f2f;
+      }
+
+      .collapse-btn {
+        background: none;
+        border: none;
+        color: #666;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 8px;
+        border-radius: 4px;
+        transition: all 0.2s;
+      }
+      .collapse-btn:hover {
+        background-color: #f0f0f0;
+        color: #388e3c;
+      }
+      .collapsed .comment-body {
+        display: none;
+      }
+      .collapsed .comment-actions {
+        display: none;
+      }
+      .collapsed .comment .comment {
+        display: none;
+      }
+
+      .comment-options-dropdown {
+        position: relative;
+      }
+      .comment-options-btn {
+        background: none;
+        border: none;
+        color: #777;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+      .comment-options-btn:hover {
+        background-color: #f0f0f0;
+      }
+      .comment-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        width: 160px;
+        display: none;
+        z-index: 20;
+        overflow: hidden;
+      }
+      .comment-dropdown-menu.show {
+        display: block;
+      }
+      .comment-dropdown-item {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .comment-dropdown-item:hover {
+        background-color: #f5f5f5;
+      }
+      .comment-dropdown-item.report {
+        color: #f57c00;
+      }
+      .comment-dropdown-item.delete {
+        color: #d32f2f;
+      }
+
+      .create-comment-container {
+        margin-top: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      .comment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #e8f5e9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #388e3c;
+        font-weight: bold;
+        font-size: 12px;
+      }
+      .quick-comment-form {
+        flex: 1;
+        position: relative;
+      }
+      .quick-comment-input {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 12px 15px;
+        font-size: 14px;
+        transition: all 0.2s;
+        background: #f9f9f9;
+        resize: none;
+        min-height: 48px;
+      }
+      .quick-comment-input:focus {
+        outline: none;
+        border-color: #4caf50;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+      }
+
+      .create-comment-btn {
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 24px;
+        font-size: 15px;
+        font-weight: 500;
+        margin-top: 18px;
+        margin-bottom: 8px;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .create-comment-btn:hover {
+        background: #388e3c;
+        transform: translateY(-1px);
+      }
+      .create-comment-btn:active {
+        transform: translateY(0);
+      }
+
+      .modal-backdrop-custom {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-backdrop-custom.active {
+        display: flex;
+      }
+      .modal-custom {
+        background: #fff;
+        border-radius: 15px;
+        padding: 35px 30px 25px 30px;
+        width: 95%;
+        max-width: 600px;
+        box-shadow: 0 10px 40px rgba(76, 175, 80, 0.1);
+        position: relative;
+        animation: fadeInTop 0.18s ease;
+      }
+      @keyframes fadeInTop {
+        from {
+          transform: translateY(-30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .modal-custom .close-modal {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        background: none;
+        border: none;
+        font-size: 22px;
+        color: #555;
+        cursor: pointer;
+      }
+      .modal-custom .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #388e3c;
+        margin-bottom: 15px;
+      }
+      .modal-custom .modal-subtitle {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+      }
+      .modal-custom input,
+      .modal-custom textarea {
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        padding: 12px 15px;
+        margin-bottom: 16px;
+        transition: all 0.2s;
+      }
+      .modal-custom input:focus,
+      .modal-custom textarea:focus {
+        border-color: #4caf50;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+      }
+      .modal-custom textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .modal-custom .modal-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      .modal-custom .modal-btn {
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 500;
+        border: none;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .modal-btn-cancel {
+        background: #f5f5f5;
+        color: #666;
+      }
+      .modal-btn-cancel:hover {
+        background: #eee;
+      }
+      .modal-btn-save {
+        background: #4caf50;
+        color: white;
+      }
+      .modal-btn-save:hover {
+        background: #388e3c;
+      }
+
+      .formatting-tools {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+      .format-btn {
+        background: #f5f5f5;
+        border: none;
+        border-radius: 4px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #555;
+      }
+      .format-btn:hover {
+        background: #e0e0e0;
+        color: #388e3c;
+      }
+
+      .thread-collapse {
+        cursor: pointer;
+        margin-right: 4px;
+        font-size: 13px;
+        color: #666;
+      }
+      .thread-collapsed .comment {
+        display: none;
+      }
+      .thread-collapsed > .comment:first-child {
+        display: block;
+      }
+
+      .confirmation-dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        z-index: 2100;
+        max-width: 400px;
+        width: 90%;
+        display: none;
+      }
+      .confirmation-dialog p {
+        margin-bottom: 20px;
+      }
+      .confirmation-dialog-actions {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+      .confirmation-dialog-btn {
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        border: none;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      .confirmation-dialog-btn-cancel {
+        background: #f1f1f1;
+        color: #333;
+      }
+      .confirmation-dialog-btn-confirm {
+        background: #d32f2f;
+        color: white;
+      }
+      .confirmation-dialog-btn-confirm:hover {
+        background: #b71c1c;
+      }
+      .confirmation-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2090;
+        display: none;
+      }
+
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        background: #4caf50;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        z-index: 2200;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: slideIn 0.3s ease-out;
+        max-width: 400px;
+      }
+      .notification.error {
+        background: #f44336;
+      }
+      .notification.warning {
+        background: #ff9800;
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .share-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #f5f5f5;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #555;
+        font-size: 16px;
+      }
+      .share-btn:hover {
+        background: #e0e0e0;
+        color: #388e3c;
+      }
+
+      .post-reactions {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+      .reaction-btn {
+        background: #f5f5f5;
+        border: 1px solid #eee;
+        border-radius: 20px;
+        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 14px;
+        color: #555;
+      }
+      .reaction-btn:hover {
+        background: #e8f5e9;
+        color: #388e3c;
+      }
+      .reaction-btn.active {
+        background: #e8f5e9;
+        color: #388e3c;
+        border-color: #a5d6a7;
+      }
+      .reaction-count {
+        font-weight: 500;
+      }
+
+      .empty-comments {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .empty-icon {
+        font-size: 40px;
+        color: #ccc;
+        margin-bottom: 15px;
+      }
+      .empty-text {
+        font-size: 16px;
+        color: #888;
+        margin-bottom: 20px;
+      }
+
+      .share-modal .share-options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      .share-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 15px 10px;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .share-option:hover {
+        background: #f5f5f5;
+      }
+      .share-icon {
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      .twitter-icon {
+        background: #1da1f2;
+      }
+      .facebook-icon {
+        background: #4267b2;
+      }
+      .whatsapp-icon {
+        background: #25d366;
+      }
+      .telegram-icon {
+        background: #0088cc;
+      }
+      .email-icon {
+        background: #ea4335;
+      }
+      .copy-icon {
+        background: #6c757d;
+      }
+      .share-label {
+        font-size: 14px;
+        color: #333;
+        text-align: center;
+      }
+      .share-link-input {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      .copy-link-btn {
+        width: 100%;
+        padding: 10px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+      .copy-link-btn:hover {
+        background: #388e3c;
+      }
+
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+      .loader-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(76, 175, 80, 0.3);
+        border-radius: 50%;
+        border-top-color: #4caf50;
+        animation: spin 1s linear infinite;
+      }
+
+      .format-btn.active {
+        background-color: #e0e0e0;
+        color: #388e3c;
+        transform: translateY(1px);
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .post-header {
+          padding: 20px;
+        }
+        .comments-section {
+          padding: 20px;
+        }
+        .modal-custom {
+          padding: 25px 20px;
+        }
+        .share-modal .share-options {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .main-content.shifted {
+          margin-left: 0;
+        }
+        .sidebar {
+          left: -280px !important;
+        }
+        .sidebar.open {
+          left: 0 !important;
+        }
+        .post-title {
+          font-size: 20px;
+        }
+        .post-meta {
+          flex-direction: column;
+          gap: 8px;
+        }
+        .comments-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .comment-author-info {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+        }
+        .comment-body {
+          padding-left: 0;
+          margin-top: 10px;
+        }
+      }
+      @media (max-width: 500px) {
+        .post-title {
+          font-size: 18px;
+        }
+        .comments-title {
+          font-size: 16px;
+        }
+        .create-comment-btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .comment-actions {
+          flex-wrap: wrap;
+        }
+        .container-wrapper {
+          padding: 0 15px 30px 15px;
+        }
+        .create-comment-container {
+          flex-direction: column;
+        }
+        .quick-comment-input {
+          min-height: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <i class="bi bi-book"></i>
+          StudyGroup
+        </div>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="sidebar-item"
+          ><i class="bi bi-house"></i>Dashboard</a
+        >
+        <a href="profile.html" class="sidebar-item"
+          ><i class="bi bi-person"></i>Profile</a
+        >
+        <a href="study-rooms.html" class="sidebar-item"
+          ><i class="bi bi-door-open"></i>Study Rooms</a
+        >
+        <a href="resources.html" class="sidebar-item"
+          ><i class="bi bi-folder"></i>Resources</a
+        >
+        <a href="discussion.html" class="sidebar-item active"
+          ><i class="bi bi-chat-dots"></i>Discussion Forum</a
+        >
+        <a href="report.html" class="sidebar-item"
+          ><i class="bi bi-graph-up"></i>Report</a
+        >
+      </nav>
+      <div class="sidebar-footer">
+        <div
+          class="user-info"
+          onclick="goToProfile()"
+          style="cursor: pointer; transition: all 0.3s ease"
+        >
+          <div class="user-avatar" id="sidebarUserAvatar">DP</div>
+          <div>
+            <div
+              style="font-weight: bold; font-size: 14px"
+              id="sidebarUsername"
+            >
+              DanePascual
+            </div>
+            <div style="font-size: 12px; opacity: 0.8">Active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <div class="nav-left">
+          <button class="menu-toggle" id="menuToggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <h1 class="page-title">Discussion</h1>
+        </div>
+        <div class="nav-right">
+          <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+            <i class="bi bi-moon"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="container-wrapper">
+        <!-- Breadcrumbs -->
+        <div class="breadcrumbs" id="breadcrumbs">
+          <a href="discussion.html"
+            ><i class="bi bi-house-door"></i> Forum</a
+          >
+          <span class="breadcrumb-separator"
+            ><i class="bi bi-chevron-right"></i
+          ></span>
+          <a href="#" id="topicBreadcrumb">Topic</a>
+          <span class="breadcrumb-separator"
+            ><i class="bi bi-chevron-right"></i
+          ></span>
+          <span id="postBreadcrumb">Post</span>
+        </div>
+
+        <!-- Post Header -->
+        <div class="post-header" id="postHeader">
+          <button class="back-link" id="backToTopic">
+            <i class="bi bi-arrow-left"></i> Back to Topic
+          </button>
+          <div class="post-title" id="postTitle">Post Title</div>
+          <div class="post-meta">
+            <div class="post-author" id="postAuthor">
+              <div class="author-avatar" id="postAuthorAvatar">A</div>
+              <span id="postAuthorName">Anonymous</span>
+            </div>
+            <div class="post-meta-item">
+              <i class="bi bi-clock"></i>
+              <span id="postTime">July 1, 2023</span>
+            </div>
+            <div
+              class="post-meta-item"
+              id="postEditedContainer"
+              style="display: none"
+            >
+              <i class="bi bi-pencil"></i>
+              <span>Edited</span>
+            </div>
+          </div>
+          <div class="post-content" id="postContent">Loading content...</div>
+
+          <div class="post-reactions">
+            <button class="reaction-btn" id="likeBtn">
+              <i class="bi bi-hand-thumbs-up"></i>
+              <span class="reaction-count" id="likeCount">0</span>
+            </button>
+            <button class="reaction-btn" id="bookmarkBtn">
+              <i class="bi bi-bookmark"></i>
+              <span id="bookmarkText">Save</span>
+            </button>
+          </div>
+
+          <button class="share-btn" id="shareBtn" title="Share this post">
+            <i class="bi bi-share"></i>
+          </button>
+        </div>
+
+        <!-- Comments Section -->
+        <div class="comments-section" id="commentsSection">
+          <div class="comments-header">
+            <h2 class="comments-title">
+              <i class="bi bi-chat-square-text"></i>
+              Comments <span class="comments-count" id="commentsCount"></span>
+            </h2>
+            <div class="comments-sort">
+              <span class="sort-label">Sort by:</span>
+              <select class="sort-dropdown" id="commentSortDropdown">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+                <option value="popular">Most Popular</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="commentsList" class="comment-list">
+            <!-- Comments will be rendered here -->
+            <div class="loader">
+              <div class="loader-spinner"></div>
+            </div>
+          </div>
+
+          <div class="create-comment-container">
+            <div class="comment-avatar" id="currentUserAvatar">DP</div>
+            <div class="quick-comment-form">
+              <textarea
+                class="quick-comment-input"
+                id="quickCommentInput"
+                placeholder="Write a comment..."
+                rows="1"
+              ></textarea>
+            </div>
+          </div>
+
+          <button class="create-comment-btn" id="createCommentBtn">
+            <i class="bi bi-send"></i> Post Comment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment Modal (Create/Edit) -->
+    <div class="modal-backdrop-custom" id="modalBackdrop">
+      <div class="modal-custom">
+        <button class="close-modal" id="closeModalBtn" aria-label="Close">
+          &times;
+        </button>
+        <div class="modal-title" id="modalTitle">Add Comment</div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+
+        <div class="formatting-tools">
+          <button
+            type="button"
+            class="format-btn"
+            title="Bold"
+            data-format="bold"
+          >
+            <i class="bi bi-type-bold"></i>
+          </button>
+          <button
+            type="button"
+            class="format-btn"
+            title="Italic"
+            data-format="italic"
+          >
+            <i class="bi bi-type-italic"></i>
+          </button>
+          <button
+            type="button"
+            class="format-btn"
+            title="Code"
+            data-format="code"
+          >
+            <i class="bi bi-code"></i>
+          </button>
+          <button
+            type="button"
+            class="format-btn"
+            title="Link"
+            data-format="link"
+          >
+            <i class="bi bi-link"></i>
+          </button>
+          <button
+            type="button"
+            class="format-btn"
+            title="Bullet List"
+            data-format="bullet"
+          >
+            <i class="bi bi-list-ul"></i>
+          </button>
+          <button
+            type="button"
+            class="format-btn"
+            title="Numbered List"
+            data-format="number"
+          >
+            <i class="bi bi-list-ol"></i>
+          </button>
+        </div>
+
+        <form id="commentForm" autocomplete="off">
+          <textarea
+            id="commentContent"
+            placeholder="Write your comment here..."
+            maxlength="2000"
+            required
+          ></textarea>
+          <input type="hidden" id="commentParentId" value="" />
+          <input type="hidden" id="commentId" value="" />
+          <input type="hidden" id="isEdit" value="false" />
+          <div class="modal-actions">
+            <button
+              type="button"
+              class="modal-btn modal-btn-cancel"
+              id="cancelModalBtn"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="modal-btn modal-btn-save"
+              id="saveCommentBtn"
+            >
+              Post
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Delete Confirmation Dialog -->
+    <div id="deleteConfirmationDialog" style="display: none">
+      <div class="confirmation-backdrop"></div>
+      <div class="confirmation-dialog">
+        <p>
+          Are you sure you want to delete this comment? This action cannot be
+          undone.
+        </p>
+        <div class="confirmation-dialog-actions">
+          <button
+            class="confirmation-dialog-btn confirmation-dialog-btn-cancel"
+            id="cancelDeleteBtn"
+          >
+            Cancel
+          </button>
+          <button
+            class="confirmation-dialog-btn confirmation-dialog-btn-confirm"
+            id="confirmDeleteBtn"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal-backdrop-custom" id="shareModalBackdrop">
+      <div class="modal-custom share-modal">
+        <button class="close-modal" id="closeShareModalBtn" aria-label="Close">
+          &times;
+        </button>
+        <div class="modal-title">Share This Post</div>
+        <div class="share-options">
+          <div class="share-option" id="shareTwitter">
+            <div class="share-icon twitter-icon">
+              <i class="bi bi-twitter"></i>
+            </div>
+            <div class="share-label">Twitter</div>
+          </div>
+          <div class="share-option" id="shareFacebook">
+            <div class="share-icon facebook-icon">
+              <i class="bi bi-facebook"></i>
+            </div>
+            <div class="share-label">Facebook</div>
+          </div>
+          <div class="share-option" id="shareWhatsapp">
+            <div class="share-icon whatsapp-icon">
+              <i class="bi bi-whatsapp"></i>
+            </div>
+            <div class="share-label">WhatsApp</div>
+          </div>
+          <div class="share-option" id="shareTelegram">
+            <div class="share-icon telegram-icon">
+              <i class="bi bi-telegram"></i>
+            </div>
+            <div class="share-label">Telegram</div>
+          </div>
+          <div class="share-option" id="shareEmail">
+            <div class="share-icon email-icon">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="share-label">Email</div>
+          </div>
+          <div class="share-option" id="copyLink">
+            <div class="share-icon copy-icon">
+              <i class="bi bi-link-45deg"></i>
+            </div>
+            <div class="share-label">Copy Link</div>
+          </div>
+        </div>
+        <input
+          type="text"
+          class="share-link-input"
+          id="shareLinkInput"
+          readonly
+        />
+        <button class="copy-link-btn" id="copyLinkBtn">Copy Link</button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Current session information
+      const CURRENT_SESSION = {
+        utcTime: "2025-07-11 17:29:45", // Updated UTC time
+        user: "DanePascual",
+        timezone: "UTC"
+      };
+
+      // Current user ID (normally from auth system)
+      const CURRENT_USER_ID = "user_dane_pascual"; // Fixed user ID for consistency
+      const CURRENT_USER_NAME = CURRENT_SESSION.user;
+      const CURRENT_USER_INITIALS = "DP";
+
+      // Theme management
+      function initializeTheme() {
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+          body.classList.add('dark-mode');
+          themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+        }
+        
+        // Add toggle event
+        themeToggle.addEventListener('click', () => {
+          body.classList.toggle('dark-mode');
+          const isDark = body.classList.contains('dark-mode');
+          themeToggle.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>';
+          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+      }
+
+      // Sidebar Toggle
+      const menuToggle = document.getElementById("menuToggle");
+      const sidebar = document.getElementById("sidebar");
+      const mainContent = document.getElementById("mainContent");
+      menuToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("open");
+        mainContent.classList.toggle("shifted");
+      });
+      document.addEventListener("click", function (event) {
+        if (window.innerWidth <= 768) {
+          if (
+            !sidebar.contains(event.target) &&
+            !menuToggle.contains(event.target)
+          ) {
+            sidebar.classList.remove("open");
+            mainContent.classList.remove("shifted");
+          }
+        }
+      });
+      function goToProfile() {
+        alert(
+          "🔄 Redirecting to Profile page...\n\nThis will be connected once the Profile page is ready!"
+        );
+      }
+
+      // --- Utility functions ---
+      function getIdsFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          topicId: params.get("topic"),
+          postId: params.get("post"),
+        };
+      }
+
+      function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      // Format relative time
+      function formatRelativeTime(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diffMs = now - date;
+        const diffSec = Math.round(diffMs / 1000);
+        const diffMin = Math.round(diffSec / 60);
+        const diffHour = Math.round(diffMin / 60);
+        const diffDay = Math.round(diffHour / 24);
+
+        if (diffSec < 60) return "just now";
+        if (diffMin < 60)
+          return `${diffMin} min${diffMin !== 1 ? "s" : ""} ago`;
+        if (diffHour < 24)
+          return `${diffHour} hour${diffHour !== 1 ? "s" : ""} ago`;
+        if (diffDay < 7) return `${diffDay} day${diffDay !== 1 ? "s" : ""} ago`;
+
+        // If older than a week, show date
+        const options = { year: "numeric", month: "short", day: "numeric" };
+        return date.toLocaleDateString(undefined, options);
+      }
+
+      // Generate initials from username
+      function getInitials(name) {
+        if (!name) return "?";
+        return name
+          .split(" ")
+          .map((part) => part.charAt(0))
+          .join("")
+          .toUpperCase()
+          .substring(0, 2);
+      }
+
+      // Show notification
+      function showNotification(message, type = "success") {
+        // Remove any existing notification
+        const existingNotification = document.querySelector(".notification");
+        if (existingNotification) existingNotification.remove();
+
+        const notification = document.createElement("div");
+        notification.className = `notification ${
+          type === "error" ? "error" : type === "warning" ? "warning" : ""
+        }`;
+        notification.innerHTML = `
+        <i class="bi bi-${
+          type === "error"
+            ? "exclamation-circle"
+            : type === "warning"
+            ? "exclamation-triangle"
+            : "check-circle"
+        }"></i>
+        ${message}
+      `;
+        document.body.appendChild(notification);
+
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          notification.style.transform = "translateX(100%)";
+          setTimeout(() => notification.remove(), 300);
+        }, 4000);
+      }
+
+      // Format text with basic markdown
+      function formatTextWithMarkdown(text) {
+        if (!text) return "";
+
+        // Escape HTML first to prevent XSS
+        const escaped = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+
+        // Format bold text
+        let formatted = escaped.replace(
+          /\*\*(.*?)\*\*/g,
+          "<strong>$1</strong>"
+        );
+
+        // Format italic text
+        formatted = formatted.replace(/_(.*?)_/g, "<em>$1</em>");
+
+        // Format code blocks
+        formatted = formatted.replace(/`(.*?)`/g, "<code>$1</code>");
+
+        // Convert URLs to links
+        formatted = formatted.replace(
+          /(https?:\/\/[^\s]+)/g,
+          '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>'
+        );
+
+        return formatted;
+      }
+
+      // --- Backend-ready API simulation ---
+
+      // Get topic info for breadcrumbs
+      async function getTopic(topicId) {
+        await delay(50);
+        const topics = JSON.parse(localStorage.getItem("topics") || "[]");
+        return topics.find((t) => t.id == topicId);
+      }
+
+      // Get post by id
+      async function getPost(topicId, postId) {
+        await delay(50);
+        const posts = JSON.parse(
+          localStorage.getItem("posts_" + topicId) || "[]"
+        );
+
+        // Update view count for this post
+        const postIndex = posts.findIndex((p) => p.id == postId);
+        if (postIndex !== -1) {
+          posts[postIndex].viewCount = (posts[postIndex].viewCount || 0) + 1;
+          localStorage.setItem("posts_" + topicId, JSON.stringify(posts));
+        }
+
+        return posts.find((p) => p.id == postId);
+      }
+
+      // Get all comments (threaded, flat array)
+      async function getComments(topicId, postId, sort = "newest") {
+        await delay(50);
+        let comments = JSON.parse(
+          localStorage.getItem("comments_" + topicId + "_" + postId) || "[]"
+        );
+
+        // Apply sorting
+        switch (sort) {
+          case "newest":
+            comments.sort((a, b) => new Date(b.created) - new Date(a.created));
+            break;
+          case "oldest":
+            comments.sort((a, b) => new Date(a.created) - new Date(b.created));
+            break;
+          case "popular":
+            // Sort by likes count if present, otherwise default to newest
+            comments.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+            break;
+        }
+
+        return comments;
+      }
+
+      // Create a comment
+      async function createComment(
+        topicId,
+        postId,
+        { content, author, parentId }
+      ) {
+        await delay(100);
+        const commentsKey = "comments_" + topicId + "_" + postId;
+        const comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
+        const now = new Date();
+        const comment = {
+          id: Date.now().toString(),
+          content,
+          author: author || CURRENT_USER_NAME,
+          created: now.toISOString(),
+          lastEdited: null,
+          parentId: parentId || null,
+                    userId: CURRENT_USER_ID,
+          likes: 0,
+          liked_by: [],
+        };
+        comments.push(comment);
+        localStorage.setItem(commentsKey, JSON.stringify(comments));
+
+        // Update comment count in the post
+        const posts = JSON.parse(
+          localStorage.getItem("posts_" + topicId) || "[]"
+        );
+        const postIndex = posts.findIndex((p) => p.id == postId);
+        if (postIndex !== -1) {
+          posts[postIndex].commentCount =
+            (posts[postIndex].commentCount || 0) + 1;
+          localStorage.setItem("posts_" + topicId, JSON.stringify(posts));
+        }
+
+        return comment;
+      }
+
+      // Edit a comment
+      async function editComment(topicId, postId, commentId, newContent) {
+        await delay(100);
+        const commentsKey = "comments_" + topicId + "_" + postId;
+        const comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
+        const comment = comments.find((c) => c.id === commentId);
+
+        if (!comment) return null;
+        if (comment.userId !== CURRENT_USER_ID) {
+          showNotification("You can only edit your own comments", "error");
+          return null;
+        }
+
+        comment.content = newContent;
+        comment.lastEdited = new Date().toISOString();
+        localStorage.setItem(commentsKey, JSON.stringify(comments));
+        return comment;
+      }
+
+      // Delete a comment
+      async function deleteComment(topicId, postId, commentId) {
+        await delay(100);
+        const commentsKey = "comments_" + topicId + "_" + postId;
+        let comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
+        const comment = comments.find((c) => c.id === commentId);
+
+        if (!comment) return false;
+        if (comment.userId !== CURRENT_USER_ID) {
+          showNotification("You can only delete your own comments", "error");
+          return false;
+        }
+
+        // Check if comment has replies
+        const hasReplies = comments.some((c) => c.parentId === commentId);
+
+        if (hasReplies) {
+          // Instead of deleting, mark it as deleted but keep the structure
+          comment.content = "[Comment deleted]";
+          comment.isDeleted = true;
+        } else {
+          // If no replies, remove completely
+          comments = comments.filter((c) => c.id !== commentId);
+
+          // Update comment count in the post
+          const posts = JSON.parse(
+            localStorage.getItem("posts_" + topicId) || "[]"
+          );
+          const postIndex = posts.findIndex((p) => p.id == postId);
+          if (postIndex !== -1 && posts[postIndex].commentCount > 0) {
+            posts[postIndex].commentCount--;
+            localStorage.setItem("posts_" + topicId, JSON.stringify(posts));
+          }
+        }
+
+        localStorage.setItem(commentsKey, JSON.stringify(comments));
+        return true;
+      }
+
+      // Like a post
+      async function likePost(topicId, postId) {
+        await delay(50);
+        const posts = JSON.parse(
+          localStorage.getItem("posts_" + topicId) || "[]"
+        );
+        const postIndex = posts.findIndex((p) => p.id == postId);
+
+        if (postIndex === -1) return null;
+
+        if (!posts[postIndex].likes) {
+          posts[postIndex].likes = 0;
+          posts[postIndex].likedBy = [];
+        }
+
+        const alreadyLiked = posts[postIndex].likedBy.includes(CURRENT_USER_ID);
+
+        if (alreadyLiked) {
+          // Unlike
+          posts[postIndex].likes--;
+          posts[postIndex].likedBy = posts[postIndex].likedBy.filter(
+            (id) => id !== CURRENT_USER_ID
+          );
+        } else {
+          // Like
+          posts[postIndex].likes++;
+          posts[postIndex].likedBy.push(CURRENT_USER_ID);
+        }
+
+        localStorage.setItem("posts_" + topicId, JSON.stringify(posts));
+        return {
+          likes: posts[postIndex].likes,
+          liked: !alreadyLiked,
+        };
+      }
+
+      // Bookmark a post
+      async function bookmarkPost(topicId, postId) {
+        await delay(50);
+        // Get user bookmarks
+        const bookmarksKey = "user_bookmarks_" + CURRENT_USER_ID;
+        const bookmarks = JSON.parse(
+          localStorage.getItem(bookmarksKey) || "[]"
+        );
+
+        const bookmarkIndex = bookmarks.findIndex(
+          (b) => b.topicId == topicId && b.postId == postId
+        );
+        let isBookmarked;
+
+        if (bookmarkIndex === -1) {
+          // Add bookmark
+          bookmarks.push({
+            topicId,
+            postId,
+            addedAt: new Date().toISOString(),
+          });
+          isBookmarked = true;
+        } else {
+          // Remove bookmark
+          bookmarks.splice(bookmarkIndex, 1);
+          isBookmarked = false;
+        }
+
+        localStorage.setItem(bookmarksKey, JSON.stringify(bookmarks));
+        return isBookmarked;
+      }
+
+      // Check if post is bookmarked
+      async function isPostBookmarked(topicId, postId) {
+        await delay(30);
+        const bookmarksKey = "user_bookmarks_" + CURRENT_USER_ID;
+        const bookmarks = JSON.parse(
+          localStorage.getItem(bookmarksKey) || "[]"
+        );
+
+        return bookmarks.some(
+          (b) => b.topicId == topicId && b.postId == postId
+        );
+      }
+
+      // Render post
+      async function renderPost(topicId, postId) {
+        const post = await getPost(topicId, postId);
+        if (!post) {
+          showNotification("Post not found!", "error");
+          window.location.href = "topic.html?id=" + topicId;
+          return;
+        }
+
+        // Set title and metadata
+        document.getElementById("postTitle").textContent = post.title;
+        document.getElementById("postAuthorName").textContent =
+          post.author || "Anonymous";
+        document.getElementById("postAuthorAvatar").textContent = getInitials(
+          post.author
+        );
+        document.getElementById("postTime").textContent = formatRelativeTime(
+          post.created
+        );
+
+        // Set post content with formatting
+        document.getElementById("postContent").innerHTML =
+          formatTextWithMarkdown(post.content);
+
+        // Show edit indicator if needed
+        if (post.lastEdited) {
+          document.getElementById("postEditedContainer").style.display = "flex";
+        }
+
+        // Set likes count
+        document.getElementById("likeCount").textContent = post.likes || 0;
+
+        // Check if user already liked this post
+        if (post.likedBy && post.likedBy.includes(CURRENT_USER_ID)) {
+          document.getElementById("likeBtn").classList.add("active");
+        }
+
+        // Check if post is bookmarked
+        const isBookmarked = await isPostBookmarked(topicId, postId);
+        const bookmarkBtn = document.getElementById("bookmarkBtn");
+        if (isBookmarked) {
+          bookmarkBtn.classList.add("active");
+          document.getElementById("bookmarkText").textContent = "Saved";
+        }
+
+        // Update breadcrumbs
+        const topic = await getTopic(topicId);
+        if (topic) {
+          document.getElementById("topicBreadcrumb").textContent = topic.title;
+          document.getElementById(
+            "topicBreadcrumb"
+          ).href = `topic.html?id=${topicId}`;
+        }
+        document.getElementById("postBreadcrumb").textContent = post.title;
+      }
+
+      // Render comments recursively
+      function renderCommentTree(comments, parentId = null) {
+        let html = "";
+        // Use loose equality for comparing with null and proper string comparison
+        const filteredComments = comments.filter((c) => {
+          if (parentId === null) return c.parentId == null;
+          return c.parentId == parentId;
+        });
+
+        if (filteredComments.length === 0) return "";
+
+        filteredComments.forEach((comment) => {
+          const hasReplies = comments.some((c) => c.parentId === comment.id);
+          const isOwnComment = comment.userId === CURRENT_USER_ID;
+          const isDeleted = comment.isDeleted;
+          const relativeTime = formatRelativeTime(comment.created);
+          const commentInitials = getInitials(comment.author);
+
+          html += `
+          <div class="comment" data-comment-id="${comment.id}">
+            <div class="comment-header">
+              <div class="comment-author-info">
+                <div class="comment-avatar">${commentInitials}</div>
+                <div class="comment-user">
+                  <div class="comment-author">${comment.author}</div>
+                  <div class="comment-meta">
+                    ${relativeTime}
+                    ${
+                      comment.lastEdited
+                        ? `<span class="edited-indicator">(edited)</span>`
+                        : ""
+                    }
+                  </div>
+                </div>
+              </div>
+              
+              <div class="comment-options-dropdown">
+                <button class="comment-options-btn" onclick="toggleCommentOptions(event, '${
+                  comment.id
+                }')" aria-label="Comment options">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <div class="comment-dropdown-menu" id="dropdown-${comment.id}">
+                  ${
+                    isOwnComment
+                      ? `
+                    <div class="comment-dropdown-item" onclick="showEditModal('${comment.id}')">
+                      <i class="bi bi-pencil"></i> Edit
+                    </div>
+                    <div class="comment-dropdown-item delete" onclick="confirmDeleteComment('${comment.id}')">
+                      <i class="bi bi-trash"></i> Delete
+                    </div>
+                  `
+                      : `
+                    <div class="comment-dropdown-item report" onclick="reportComment('${comment.id}')">
+                      <i class="bi bi-flag"></i> Report
+                    </div>
+                  `
+                  }
+                  <div class="comment-dropdown-item" onclick="copyCommentLink('${
+                    comment.id
+                  }')">
+                    <i class="bi bi-link-45deg"></i> Copy Link
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="comment-body">
+              <div class="comment-content ${
+                isDeleted ? "comment-deleted" : ""
+              }">
+                ${
+                  isDeleted
+                    ? comment.content
+                    : formatTextWithMarkdown(comment.content)
+                }
+              </div>
+              
+              ${
+                !isDeleted
+                  ? `
+                <div class="comment-actions">
+                  <button class="reply-btn" onclick="showReplyModal('${
+                    comment.id
+                  }', '${comment.author.replace(/'/g, "&#39;")}')">
+                    <i class="bi bi-reply"></i> Reply
+                  </button>
+                  
+                  ${
+                    hasReplies
+                      ? `
+                    <button class="collapse-btn" onclick="toggleReplies('${comment.id}')">
+                      <i class="bi bi-chevron-down toggle-icon"></i>
+                      <span class="toggle-text">Show replies</span>
+                    </button>
+                  `
+                      : ""
+                  }
+                </div>
+              `
+                  : ""
+              }
+              
+              ${
+                hasReplies
+                  ? `<div class="comment-replies" id="replies-${
+                      comment.id
+                    }">${renderCommentTree(comments, comment.id)}</div>`
+                  : ""
+              }
+            </div>
+          </div>
+        `;
+        });
+
+        return html;
+      }
+
+      // Toggle comment dropdown menu
+      window.toggleCommentOptions = function (event, commentId) {
+        event.stopPropagation();
+        const dropdown = document.getElementById(`dropdown-${commentId}`);
+
+        // Close all other dropdowns first
+        document
+          .querySelectorAll(".comment-dropdown-menu.show")
+          .forEach((menu) => {
+            if (menu.id !== `dropdown-${commentId}`) {
+              menu.classList.remove("show");
+            }
+          });
+
+        // Toggle current dropdown
+        dropdown.classList.toggle("show");
+      };
+
+      // Close dropdowns when clicking elsewhere
+      document.addEventListener("click", function (event) {
+        if (!event.target.closest(".comment-options-btn")) {
+          document
+            .querySelectorAll(".comment-dropdown-menu.show")
+            .forEach((menu) => {
+              menu.classList.remove("show");
+            });
+        }
+      });
+
+      // Toggle comment replies
+      window.toggleReplies = function (commentId) {
+        const repliesContainer = document.getElementById(
+          `replies-${commentId}`
+        );
+        const commentElement = repliesContainer.closest(".comment");
+        const toggleBtn = commentElement.querySelector(".collapse-btn");
+        const toggleIcon = toggleBtn.querySelector(".toggle-icon");
+        const toggleText = toggleBtn.querySelector(".toggle-text");
+
+        repliesContainer.style.display =
+          repliesContainer.style.display === "none" ? "block" : "none";
+
+        if (repliesContainer.style.display === "none") {
+          toggleIcon.classList.remove("bi-chevron-up");
+          toggleIcon.classList.add("bi-chevron-down");
+          toggleText.textContent = "Show replies";
+        } else {
+          toggleIcon.classList.remove("bi-chevron-down");
+          toggleIcon.classList.add("bi-chevron-up");
+          toggleText.textContent = "Hide replies";
+        }
+      };
+
+      // Copy comment link
+      window.copyCommentLink = function (commentId) {
+        const { topicId, postId } = getIdsFromUrl();
+        const commentLink = `${window.location.origin}${window.location.pathname}?topic=${topicId}&post=${postId}&comment=${commentId}`;
+
+        navigator.clipboard
+          .writeText(commentLink)
+          .then(() => {
+            showNotification("Comment link copied to clipboard!");
+          })
+          .catch(() => {
+            showNotification("Failed to copy link. Please try again.", "error");
+          });
+      };
+
+      // Report comment
+      window.reportComment = function (commentId) {
+        showNotification(
+          "Report submitted. Thank you for helping keep our community safe!"
+        );
+      };
+
+      // This is a global so reply buttons can access
+      window.showReplyModal = function (parentId, author) {
+        document.getElementById("modalBackdrop").classList.add("active");
+        document.getElementById(
+          "modalTitle"
+        ).textContent = `Reply to @${author}`;
+        document.getElementById(
+          "modalSubtitle"
+        ).textContent = `Your reply will be added to the discussion thread.`;
+        document.getElementById("commentParentId").value = parentId;
+        document.getElementById("commentId").value = "";
+        document.getElementById("isEdit").value = "false";
+        document.getElementById("commentContent").value = `@${author} `;
+        document.getElementById("saveCommentBtn").textContent = "Post Reply";
+        document.getElementById("commentContent").focus();
+      };
+
+      // Show edit modal
+      window.showEditModal = function (commentId) {
+        const { topicId, postId } = getIdsFromUrl();
+        const commentsKey = "comments_" + topicId + "_" + postId;
+        const comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
+        const comment = comments.find((c) => c.id === commentId);
+
+        if (!comment) return;
+
+        document.getElementById("modalBackdrop").classList.add("active");
+        document.getElementById("modalTitle").textContent = "Edit Comment";
+        document.getElementById("modalSubtitle").textContent =
+          "Make changes to your comment.";
+        document.getElementById("commentId").value = commentId;
+        document.getElementById("commentParentId").value =
+          comment.parentId || "";
+        document.getElementById("isEdit").value = "true";
+        document.getElementById("commentContent").value = comment.content;
+        document.getElementById("saveCommentBtn").textContent = "Save Changes";
+        document.getElementById("commentContent").focus();
+      };
+
+      // Text formatting functions for the editor
+      document.querySelectorAll(".format-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const format = this.getAttribute("data-format");
+          this.classList.add("active");
+          setTimeout(() => this.classList.remove("active"), 200);
+          const textarea = document.getElementById("commentContent");
+          const start = textarea.selectionStart;
+          const end = textarea.selectionEnd;
+          const selectedText = textarea.value.substring(start, end);
+          let formattedText = "";
+
+          switch (format) {
+            case "bold":
+              formattedText = `**${selectedText}**`;
+              break;
+            case "italic":
+              formattedText = `_${selectedText}_`;
+              break;
+            case "code":
+              formattedText = `\`${selectedText}\``;
+              break;
+            case "link":
+              if (selectedText) {
+                const url = prompt("Enter URL:", "https://");
+                formattedText = url
+                  ? `[${selectedText}](${url})`
+                  : selectedText;
+              } else {
+                const url = prompt("Enter URL:", "https://");
+                const text = prompt("Enter link text:");
+                formattedText = url && text ? `[${text}](${url})` : "";
+              }
+              break;
+            case "bullet":
+              formattedText = selectedText
+                .split("\n")
+                .map((line) => `- ${line}`)
+                .join("\n");
+              break;
+            case "number":
+              formattedText = selectedText
+                .split("\n")
+                .map((line, i) => `${i + 1}. ${line}`)
+                .join("\n");
+              break;
+          }
+
+          if (formattedText) {
+            textarea.focus();
+            if (format !== "link" || selectedText) {
+              textarea.setRangeText(formattedText, start, end, "select");
+            } else {
+              const cursorPos = textarea.selectionStart;
+              textarea.setRangeText(formattedText, cursorPos, cursorPos, "end");
+            }
+          }
+        });
+      });
+
+      // Show delete confirmation
+      window.confirmDeleteComment = function (commentId) {
+        document.getElementById("deleteConfirmationDialog").style.display =
+          "block";
+
+        // Set up button click handlers
+        document.getElementById("cancelDeleteBtn").onclick = function () {
+          document.getElementById("deleteConfirmationDialog").style.display =
+            "none";
+        };
+
+        document.getElementById("confirmDeleteBtn").onclick =
+          async function () {
+            const { topicId, postId } = getIdsFromUrl();
+            const deleted = await deleteComment(topicId, postId, commentId);
+
+            if (deleted) {
+              showNotification("Comment deleted successfully");
+              await renderComments(topicId, postId);
+            }
+
+            document.getElementById("deleteConfirmationDialog").style.display =
+              "none";
+          };
+      };
+
+      // Quick comment functionality
+      document
+        .getElementById("quickCommentInput")
+        .addEventListener("focus", function () {
+          document.getElementById("createCommentBtn").style.display =
+            "inline-flex";
+        });
+
+      document
+        .getElementById("quickCommentInput")
+        .addEventListener("keydown", function (e) {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            document.getElementById("createCommentBtn").click();
+          }
+        });
+
+      // Main add comment button
+      document.getElementById("createCommentBtn").onclick = async function () {
+        const quickComment = document
+          .getElementById("quickCommentInput")
+          .value.trim();
+
+        if (quickComment) {
+          // Post the quick comment
+          const { topicId, postId } = getIdsFromUrl();
+          await createComment(topicId, postId, {
+            content: quickComment,
+            author: CURRENT_USER_NAME,
+          });
+
+          document.getElementById("quickCommentInput").value = "";
+          showNotification("Comment posted successfully");
+          await renderComments(topicId, postId);
+        } else {
+          // Open full comment modal if quick comment is empty
+          document.getElementById("modalBackdrop").classList.add("active");
+          document.getElementById("modalTitle").textContent = "Add Comment";
+          document.getElementById("modalSubtitle").textContent =
+            "Share your thoughts on this post.";
+          document.getElementById("commentParentId").value = "";
+          document.getElementById("commentId").value = "";
+          document.getElementById("isEdit").value = "false";
+          document.getElementById("commentContent").value = "";
+          document.getElementById("saveCommentBtn").textContent =
+            "Post Comment";
+          document.getElementById("commentContent").focus();
+        }
+      };
+
+      // Modal logic
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const cancelModalBtn = document.getElementById("cancelModalBtn");
+      const commentForm = document.getElementById("commentForm");
+
+      closeModalBtn.onclick = cancelModalBtn.onclick = () => {
+        modalBackdrop.classList.remove("active");
+        commentForm.reset();
+      };
+
+      modalBackdrop.onclick = (e) => {
+        if (e.target === modalBackdrop) {
+          modalBackdrop.classList.remove("active");
+          commentForm.reset();
+        }
+      };
+
+      // Comment form submit (for both Create and Edit)
+      commentForm.onsubmit = async function (e) {
+        e.preventDefault();
+        const { topicId, postId } = getIdsFromUrl();
+        const commentContent = document
+          .getElementById("commentContent")
+          .value.trim();
+        const parentId =
+          document.getElementById("commentParentId").value || null;
+        const isEdit = document.getElementById("isEdit").value === "true";
+        const commentId = document.getElementById("commentId").value;
+
+        if (!commentContent) {
+          showNotification("Comment content required!", "warning");
+          return;
+        }
+
+        if (isEdit) {
+          // Edit existing comment
+          await editComment(topicId, postId, commentId, commentContent);
+          showNotification("Comment updated successfully");
+        } else {
+          // Create new comment
+          await createComment(topicId, postId, {
+            content: commentContent,
+            author: CURRENT_USER_NAME,
+            parentId,
+          });
+          showNotification("Comment posted successfully");
+        }
+
+        modalBackdrop.classList.remove("active");
+        commentForm.reset();
+        await renderComments(topicId, postId);
+      };
+
+      // Render all comments
+      async function renderComments(topicId, postId) {
+        const commentsSort = document.getElementById(
+          "commentSortDropdown"
+        ).value;
+        const comments = await getComments(topicId, postId, commentsSort);
+        const commentsList = document.getElementById("commentsList");
+        const commentsCount = document.getElementById("commentsCount");
+
+        if (!comments || comments.length === 0) {
+          commentsList.innerHTML = `
+      <div class="empty-comments">
+        <div class="empty-icon"><i class="bi bi-chat-square"></i></div>
+        <div class="empty-text">No comments yet. Be the first to comment!</div>
+      </div>
+    `;
+          commentsCount.textContent = "";
+        } else {
+          commentsList.innerHTML = renderCommentTree(comments);
+          commentsCount.textContent = `(${comments.length})`;
+
+          // Initialize all reply threads to be collapsed if they have many replies
+          const replyThreads = document.querySelectorAll(".comment-replies");
+          replyThreads.forEach((thread) => {
+            const replies = thread.querySelectorAll(".comment");
+            if (replies.length > 2) {
+              thread.style.display = "none";
+            }
+          });
+        }
+      }
+
+      // Handle comment sorting
+      document
+        .getElementById("commentSortDropdown")
+        .addEventListener("change", async function () {
+          const { topicId, postId } = getIdsFromUrl();
+          await renderComments(topicId, postId);
+        });
+
+      // Handle likes
+      document
+        .getElementById("likeBtn")
+        .addEventListener("click", async function () {
+          const { topicId, postId } = getIdsFromUrl();
+          const result = await likePost(topicId, postId);
+
+          if (result) {
+            document.getElementById("likeCount").textContent = result.likes;
+            if (result.liked) {
+              this.classList.add("active");
+            } else {
+              this.classList.remove("active");
+            }
+          }
+        });
+
+      // Handle bookmarks
+      document
+        .getElementById("bookmarkBtn")
+        .addEventListener("click", async function () {
+          const { topicId, postId } = getIdsFromUrl();
+          const isBookmarked = await bookmarkPost(topicId, postId);
+
+          if (isBookmarked) {
+            this.classList.add("active");
+            document.getElementById("bookmarkText").textContent = "Saved";
+            showNotification("Post saved to bookmarks");
+          } else {
+            this.classList.remove("active");
+            document.getElementById("bookmarkText").textContent = "Save";
+            showNotification("Post removed from bookmarks");
+          }
+        });
+
+      // Share functionality
+      const shareModalBackdrop = document.getElementById("shareModalBackdrop");
+      const closeShareModalBtn = document.getElementById("closeShareModalBtn");
+      const copyLinkBtn = document.getElementById("copyLinkBtn");
+
+      document
+        .getElementById("shareBtn")
+        .addEventListener("click", function () {
+          // Set the share link
+          const currentUrl = window.location.href;
+          document.getElementById("shareLinkInput").value = currentUrl;
+
+          // Show the modal
+          shareModalBackdrop.classList.add("active");
+        });
+
+      closeShareModalBtn.onclick = () => {
+        shareModalBackdrop.classList.remove("active");
+      };
+
+      shareModalBackdrop.onclick = (e) => {
+        if (e.target === shareModalBackdrop) {
+          shareModalBackdrop.classList.remove("active");
+        }
+      };
+
+      // Copy link functionality
+      copyLinkBtn.addEventListener("click", function () {
+        const linkInput = document.getElementById("shareLinkInput");
+        linkInput.select();
+        document.execCommand("copy");
+
+        this.textContent = "Copied!";
+        setTimeout(() => {
+          this.textContent = "Copy Link";
+        }, 2000);
+      });
+
+      // Social share buttons
+      document
+        .getElementById("shareTwitter")
+        .addEventListener("click", function () {
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(
+            document.getElementById("postTitle").textContent
+          );
+          window.open(
+            `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
+            "_blank"
+          );
+        });
+
+      document
+        .getElementById("shareFacebook")
+        .addEventListener("click", function () {
+          const url = encodeURIComponent(window.location.href);
+          window.open(
+            `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+            "_blank"
+          );
+        });
+
+      document
+        .getElementById("shareWhatsapp")
+        .addEventListener("click", function () {
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(
+            document.getElementById("postTitle").textContent
+          );
+          window.open(`https://wa.me/?text=${title} ${url}`, "_blank");
+        });
+
+      document
+        .getElementById("shareTelegram")
+        .addEventListener("click", function () {
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(
+            document.getElementById("postTitle").textContent
+          );
+          window.open(
+            `https://t.me/share/url?url=${url}&text=${title}`,
+            "_blank"
+          );
+        });
+
+      document
+        .getElementById("shareEmail")
+        .addEventListener("click", function () {
+          const url = window.location.href;
+          const title = document.getElementById("postTitle").textContent;
+          window.location.href = `mailto:?subject=${title}&body=Check out this post: ${url}`;
+        });
+
+      document
+        .getElementById("copyLink")
+        .addEventListener("click", function () {
+          copyLinkBtn.click();
+        });
+
+      // Back to topic link
+      document.getElementById("backToTopic").onclick = async function () {
+        const { topicId } = getIdsFromUrl();
+        window.location.href = "topic.html?id=" + topicId;
+      };
+
+      // Helper function - for debugging
+      window.checkComments = function () {
+        const { topicId, postId } = getIdsFromUrl();
+        const comments = JSON.parse(
+          localStorage.getItem("comments_" + topicId + "_" + postId) || "[]"
+        );
+        console.table(comments);
+      };
+
+      // Initial page load
+      (async function () {
+        // Initialize theme system
+        initializeTheme();
+      
+        const { topicId, postId } = getIdsFromUrl();
+        if (!topicId || !postId) {
+          showNotification("Invalid URL!", "error");
+          window.location.href = "discussion.html";
+          return;
+        }
+
+        // Set user information in the sidebar and comment form
+        document.getElementById("sidebarUsername").textContent =
+          CURRENT_USER_NAME;
+        document.getElementById("sidebarUserAvatar").textContent =
+          CURRENT_USER_INITIALS;
+        document.getElementById("currentUserAvatar").textContent =
+          CURRENT_USER_INITIALS;
+
+        // Render post content
+        await renderPost(topicId, postId);
+
+        // Render comments
+        await renderComments(topicId, postId);
+
+        // Check if there's a comment ID in the URL to highlight
+        const urlParams = new URLSearchParams(window.location.search);
+        const highlightCommentId = urlParams.get("comment");
+
+        if (highlightCommentId) {
+          setTimeout(() => {
+            const commentElement = document.querySelector(
+              `.comment[data-comment-id="${highlightCommentId}"]`
+            );
+            if (commentElement) {
+              commentElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              commentElement.style.backgroundColor = "#e8f5e9";
+              setTimeout(() => {
+                commentElement.style.backgroundColor = "";
+                commentElement.style.transition = "background-color 1s ease";
+              }, 100);
+            }
+          }, 500);
+        }
+        
+        console.log(`Post view loaded for ${CURRENT_USER_NAME} at ${CURRENT_SESSION.utcTime}`);
+      })();
+    </script>
+  </body>
+</html>

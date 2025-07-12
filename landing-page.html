@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="StudyGroup - Connect, collaborate, and succeed together. Join the best online study platform for students." />
+    <meta name="keywords" content="study group, online learning, collaboration, students, education" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>StudyGroup - Connect, Collaborate, Succeed</title>
+    <style>
+      :root {
+        --primary-color: #4caf50;
+        --primary-hover: #388e3c;
+        --primary-light: #e8f5e8;
+        --secondary-color: #2196f3;
+        --secondary-light: #e3f2fd;
+        --accent-color: #ff9800;
+        --success-color: #4caf50;
+        --warning-color: #ff9800;
+        --danger-color: #f44336;
+        --dark-text: #1a1a1a;
+        --medium-text: #666;
+        --light-text: #888;
+        --border-light: #e0e0e0;
+        --background-light: #f8f9fa;
+        --white: #ffffff;
+        --shadow-light: rgba(0, 0, 0, 0.1);
+        --shadow-medium: rgba(0, 0, 0, 0.15);
+        --shadow-heavy: rgba(0, 0, 0, 0.25);
+        --border-radius: 12px;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        line-height: 1.6;
+        color: var(--dark-text);
+        overflow-x: hidden;
+      }
+
+      /* Enhanced Dark mode styles */
+      body.dark-mode {
+        --dark-text: #e0e0e0;
+        --medium-text: #bbb;
+        --light-text: #999;
+        --background-light: #1a1a1a;
+        --border-light: #333;
+        --white: #2a2a2a;
+        background: #1a1a1a;
+        color: var(--dark-text);
+      }
+
+      body.dark-mode .navbar {
+        background: rgba(26, 26, 26, 0.95) !important;
+        border-bottom: 1px solid #333;
+      }
+
+      body.dark-mode .hero-section {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      }
+
+      body.dark-mode .feature-card {
+        background: #2a2a2a;
+        border-color: #333;
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Navigation */
+      .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-light);
+        transition: var(--transition);
+        padding: 15px 0;
+      }
+
+      .navbar.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 2px 20px var(--shadow-light);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 24px;
+        color: var(--primary-color);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .navbar-brand:hover {
+        color: var(--primary-hover);
+      }
+
+      .navbar-nav .nav-link {
+        font-weight: 500;
+        color: var(--dark-text);
+        margin: 0 10px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: var(--transition);
+      }
+
+      .navbar-nav .nav-link:hover {
+        color: var(--primary-color);
+        background: var(--primary-light);
+      }
+
+      .btn-login {
+        background: transparent;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        margin-left: 10px;
+      }
+
+      .btn-login:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .btn-signup {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        margin-left: 10px;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+      }
+
+      .btn-signup:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        color: white;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: none;
+        font-size: 18px;
+        color: var(--medium-text);
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: var(--transition);
+        margin-left: 15px;
+      }
+
+      .theme-toggle:hover {
+        background: var(--background-light);
+        transform: scale(1.1);
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+        padding: 120px 0 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23e0e0e0" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        opacity: 0.5;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--primary-color);
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--medium-text);
+        margin-bottom: 30px;
+        max-width: 600px;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .btn-primary-large {
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-primary-large:hover {
+        background: var(--primary-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        color: white;
+      }
+
+      .btn-secondary-large {
+        background: transparent;
+        color: var(--dark-text);
+        border: 2px solid var(--border-light);
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .btn-secondary-large:hover {
+        background: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+        transform: translateY(-3px);
+      }
+
+      .hero-image {
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      .hero-dashboard {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+        transition: var(--transition);
+      }
+
+      .hero-dashboard:hover {
+        transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 80px 0;
+        background: var(--background-light);
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--dark-text);
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: var(--medium-text);
+        margin-bottom: 60px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 40px 30px;
+        border-radius: var(--border-radius);
+        box-shadow: 0 5px 20px var(--shadow-light);
+        transition: var(--transition);
+        text-align: center;
+        border: 1px solid var(--border-light);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px var(--shadow-medium);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .feature-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark-text);
+      }
+
+      .feature-description {
+        color: var(--medium-text);
+        line-height: 1.6;
+      }
+
+      /* How it Works Section */
+      .how-it-works {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .step-card {
+        text-align: center;
+        position: relative;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+      }
+
+      .step-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--dark-text);
+      }
+
+      .step-description {
+        color: var(--medium-text);
+        line-height: 1.6;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-5px);
+        }
+        60% {
+          transform: translateY(-3px);
+        }
+      }
+
+      .bounce {
+        animation: bounce 2s infinite;
+      }
+
+      /* Scroll animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+      }
+
+      .scroll-animate.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 80px 0 60px;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          justify-content: center;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .navbar-nav {
+          text-align: center;
+          margin-top: 20px;
+        }
+
+        .hero-dashboard {
+          transform: none;
+        }
+      }
+
+      /* Loading Animation */
+      .loading {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+
+      /* Notification Styles */
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--primary-color);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        font-size: 14px;
+        max-width: 350px;
+        animation: slideInRight 0.3s ease-out;
+      }
+
+      @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+
+      @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+      }
+
+      /* Accessibility */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      *:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top" id="navbar">
+      <div class="container">
+        <div class="row w-100 align-items-center">
+          <div class="col-auto">
+            <a href="#" class="navbar-brand">
+              <i class="bi bi-book"></i>
+              StudyGroup
+            </a>
+          </div>
+          <div class="col">
+            <div class="navbar-nav d-none d-lg-flex flex-row justify-content-center">
+              <a class="nav-link" href="#home">Home</a>
+              <a class="nav-link" href="#features">Features</a>
+              <a class="nav-link" href="#how-it-works">How it Works</a>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="d-flex align-items-center">
+              <a href="login.html" class="btn-login d-none d-sm-inline-block">Login</a>
+              <a href="dashboard.html" class="btn-signup">Get Started</a>
+              <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="bi bi-moon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="hero-content">
+              <h1 class="hero-title">Connect, Collaborate, Succeed Together</h1>
+              <p class="hero-subtitle">
+                Join thousands of students in interactive study groups, share resources, 
+                and achieve your academic goals with collaborative learning.
+              </p>
+              <div class="hero-buttons">
+                <a href="dashboard.html" class="btn-primary-large">
+                  <i class="bi bi-rocket"></i>
+                  Start Studying Now
+                </a>
+                <a href="#how-it-works" class="btn-secondary-large">
+                  <i class="bi bi-play-circle"></i>
+                  How it Works
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-image">
+              <div class="hero-dashboard">
+                <div style="height: 300px; background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2rem;">
+                  <div class="text-center">
+                    <i class="bi bi-people-fill" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 15px;"></i>
+                    <div>StudyGroup Dashboard Preview</div>
+                    <small>Interactive Learning Environment</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <h2 class="section-title scroll-animate">Powerful Features for Better Learning</h2>
+        <p class="section-subtitle scroll-animate">
+          Everything you need to enhance your study experience and connect with like-minded learners.
+        </p>
+        
+        <div class="features-grid">
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-people-fill"></i>
+            </div>
+            <h3 class="feature-title">Interactive Study Rooms</h3>
+            <p class="feature-description">
+              Join virtual study rooms with real-time collaboration, video chat, 
+              and shared whiteboards for interactive learning sessions.
+            </p>
+          </div>
+
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-folder-fill"></i>
+            </div>
+            <h3 class="feature-title">Resource Sharing</h3>
+            <p class="feature-description">
+              Share and access a vast library of study materials, notes, and resources 
+              contributed by students and educators worldwide.
+            </p>
+          </div>
+
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-chat-dots-fill"></i>
+            </div>
+            <h3 class="feature-title">Discussion Forums</h3>
+            <p class="feature-description">
+              Engage in meaningful discussions, ask questions, and get answers 
+              from a community of learners and subject experts.
+            </p>
+          </div>
+
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-calendar-check"></i>
+            </div>
+            <h3 class="feature-title">Study Scheduling</h3>
+            <p class="feature-description">
+              Organize your study sessions with smart scheduling tools, 
+              reminders, and progress tracking to stay on top of your goals.
+            </p>
+          </div>
+
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <h3 class="feature-title">Progress Analytics</h3>
+            <p class="feature-description">
+              Track your learning progress with detailed analytics, 
+              performance insights, and personalized recommendations.
+            </p>
+          </div>
+
+          <div class="feature-card scroll-animate">
+            <div class="feature-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h3 class="feature-title">Safe Environment</h3>
+            <p class="feature-description">
+              Study in a secure, moderated environment with comprehensive 
+              reporting tools and community guidelines to ensure safety.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works Section -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title scroll-animate">How StudyGroup Works</h2>
+        <p class="section-subtitle scroll-animate">
+          Get started in minutes and transform your learning experience with our simple process.
+        </p>
+
+        <div class="steps-grid">
+          <div class="step-card scroll-animate">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Create Your Account</h3>
+            <p class="step-description">
+              Sign up with your email and set up your profile. Choose your subjects 
+              of interest and academic goals to get personalized recommendations.
+            </p>
+          </div>
+
+          <div class="step-card scroll-animate">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Join Study Groups</h3>
+            <p class="step-description">
+              Browse and join study groups that match your subjects and schedule. 
+              Connect with students who share your academic interests and goals.
+            </p>
+          </div>
+
+          <div class="step-card scroll-animate">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Start Collaborating</h3>
+            <p class="step-description">
+              Participate in study sessions, share resources, ask questions, 
+              and help others. Track your progress and achieve better results together.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Current Session Info - 2025-07-05 21:39:05 Philippines Time (UTC+8)
+      const CURRENT_SESSION = {
+        utcTime: "2025-07-05 13:39:05", // UTC time
+        philippinesTime: "2025-07-05 21:39:05", // Philippines time (UTC+8)
+        user: "DanePascual", // Current user
+        timezone: "Asia/Manila"
+      };
+
+      // Theme management
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      
+      // Load saved theme
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+      }
+      
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        themeToggle.innerHTML = isDark ? '<i class="bi bi-sun"></i>' : '<i class="bi bi-moon"></i>';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        
+        showNotification(`Theme switched to ${isDark ? 'dark' : 'light'} mode!`);
+      });
+
+      // Navbar scroll effect
+      window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all scroll-animate elements
+      document.querySelectorAll('.scroll-animate').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Notification system
+      function showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(n => n.remove());
+        
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+          notification.style.animation = 'slideOutRight 0.3s ease-in';
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.remove();
+            }
+          }, 300);
+        }, 3000);
+      }
+
+      // User session validation
+      function validateUserSession() {
+        // Store current user session
+        localStorage.setItem('currentUser', CURRENT_SESSION.user);
+        localStorage.setItem('landingPageVisit', JSON.stringify({
+          user: CURRENT_SESSION.user,
+          timestamp: CURRENT_SESSION.philippinesTime,
+          timezone: CURRENT_SESSION.timezone
+        }));
+        
+        console.log(`👋 Landing page visited by ${CURRENT_SESSION.user} at ${CURRENT_SESSION.philippinesTime} Philippines Time`);
+      }
+
+      // Handle CTA button clicks
+      function handleGetStarted() {
+        showNotification(`Welcome back, ${CURRENT_SESSION.user}! Redirecting to dashboard...`);
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 1500);
+      }
+
+      // Add click handlers to CTA buttons
+      document.addEventListener('DOMContentLoaded', function() {
+        // Validate user session
+        validateUserSession();
+        
+        // Add click handlers to all "Get Started" and "Start" buttons
+        const ctaButtons = document.querySelectorAll('[href="dashboard.html"]');
+        ctaButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleGetStarted();
+          });
+        });
+
+        // Show welcome message
+        setTimeout(() => {
+          showNotification(`Welcome to StudyGroup, ${CURRENT_SESSION.user}! Ready to start your learning journey?`);
+        }, 2000);
+
+        // Log page initialization
+        console.log(`🏠 Landing page initialized for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.philippinesTime} Philippines Time`);
+        console.log(`🌏 Timezone: ${CURRENT_SESSION.timezone} (UTC+8)`);
+        console.log(`📱 User Agent: ${navigator.userAgent.split(' ').pop()}`);
+        console.log(`🔧 Landing page version: v4.0.0 - Minimal Capstone Edition`);
+      });
+
+      // Handle online/offline status
+      window.addEventListener('online', () => {
+        showNotification('📶 You\'re back online!');
+      });
+
+      window.addEventListener('offline', () => {
+        showNotification('📴 You\'re offline. Some features may be limited.');
+      });
+
+      // Performance monitoring
+      window.addEventListener('load', () => {
+        const loadTime = performance.now();
+        console.log(`⚡ Landing page loaded in ${loadTime.toFixed(2)}ms for ${CURRENT_SESSION.user}`);
+        
+        if (loadTime > 3000) {
+          console.warn('⚠️ Landing page loading slowly. Consider optimization.');
+        }
+      });
+
+      // Export for debugging
+      window.LandingPage = {
+        showNotification,
+        handleGetStarted,
+        validateUserSession,
+        currentUser: CURRENT_SESSION.user,
+        currentSession: CURRENT_SESSION.philippinesTime
+      };
+
+      // Final initialization log
+      console.log(`🎉 Landing page ready for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.philippinesTime} Philippines Time`);
+      console.log(`🌙 Evening visit - perfect time to start studying!`);
+      console.log(`🎓 Minimal Capstone Project Version - Academic Use`);
+    </script>
+  </body>
+</html>
