@@ -62,10 +62,8 @@
       }
 
       body.dark-mode .top-nav,
-      body.dark-mode .quick-actions,
       body.dark-mode .study-rooms,
-      body.dark-mode .todo-section,
-      body.dark-mode .stat-card {
+      body.dark-mode .todo-section {
         background: #2a2a2a;
         color: var(--dark-text);
       }
@@ -150,14 +148,6 @@
         color: var(--medium-text);
       }
 
-      body.dark-mode .stat-label {
-        color: var(--medium-text);
-      }
-
-      body.dark-mode .stat-change {
-        color: var(--primary-color);
-      }
-
       /* Sidebar Styles */
       .sidebar {
         position: fixed;
@@ -225,7 +215,7 @@
         background: rgba(255, 255, 255, 0.1);
         border-left-color: white;
         color: white;
-        transform: translateX(5px);
+        
       }
 
       .sidebar-item i {
@@ -417,21 +407,7 @@
         max-width: 400px;
       }
 
-      /* Quick Study Actions */
-      .quick-actions {
-        background: white;
-        border-radius: var(--border-radius);
-        padding: 25px;
-        box-shadow: 0 5px 20px var(--shadow-light);
-        margin-bottom: 30px;
-        transition: var(--transition);
-      }
-
-      .quick-actions:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px var(--shadow-medium);
-      }
-
+      /* Fix section title size */
       .section-title {
         font-size: 20px;
         font-weight: 600;
@@ -442,91 +418,6 @@
         gap: 10px;
       }
 
-      .action-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-      }
-
-      .action-card {
-        background: linear-gradient(
-          135deg,
-          var(--primary-color) 0%,
-          #66bb6a 100%
-        );
-        color: white;
-        padding: 20px;
-        border-radius: var(--border-radius);
-        text-align: center;
-        cursor: pointer;
-        transition: var(--transition);
-        border: none;
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .action-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: left 0.5s;
-      }
-
-      .action-card:hover::before {
-        left: 100%;
-      }
-
-      .action-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
-        color: white;
-      }
-
-      .action-card i {
-        font-size: 32px;
-        margin-bottom: 12px;
-        display: block;
-        animation: bounce 2s infinite;
-      }
-
-      @keyframes bounce {
-        0%,
-        20%,
-        50%,
-        80%,
-        100% {
-          transform: translateY(0);
-        }
-        40% {
-          transform: translateY(-5px);
-        }
-        60% {
-          transform: translateY(-3px);
-        }
-      }
-
-      .action-card h4 {
-        font-size: 16px;
-        margin-bottom: 8px;
-        font-weight: 600;
-      }
-
-      .action-card p {
-        font-size: 13px;
-        opacity: 0.9;
-        margin: 0;
-      }
-
       /* Study Rooms Section */
       .study-rooms {
         background: white;
@@ -534,6 +425,7 @@
         padding: 25px;
         box-shadow: 0 5px 20px var(--shadow-light);
         transition: var(--transition);
+        margin-bottom: 30px;
       }
 
       .study-rooms:hover {
@@ -785,73 +677,165 @@
         transform: scale(1.1);
       }
 
-      /* Stats Cards */
-      .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 15px;
-      }
-
-      .stat-card {
-        background: white;
-        padding: 20px;
-        border-radius: var(--border-radius);
-        text-align: center;
-        box-shadow: 0 5px 15px var(--shadow-light);
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .stat-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(
-          90deg,
-          var(--primary-color),
-          var(--secondary-color)
-        );
-      }
-
-      .stat-card:hover {
-        transform: translateY(-5px) scale(1.02);
-        box-shadow: 0 10px 25px var(--shadow-medium);
-      }
-
-      .stat-number {
-        font-size: 28px;
-        font-weight: 700;
-        color: var(--primary-color);
-        margin-bottom: 5px;
-        animation: countUp 1s ease-out;
-      }
-
-      @keyframes countUp {
-        from {
-          transform: scale(0.5);
-          opacity: 0;
+      /* Responsive Design - Improved Search Bar */
+      /* Large screens */
+      @media (min-width: 1200px) {
+        .search-input {
+          width: 300px;
         }
-        to {
-          transform: scale(1);
+        .search-input:focus {
+          width: 350px;
+        }
+      }
+      
+      /* Medium screens */
+      @media (max-width: 1199px) and (min-width: 992px) {
+        .search-input {
+          width: 250px;
+        }
+        .search-input:focus {
+          width: 280px;
+        }
+      }
+      
+      /* Small screens */
+      @media (max-width: 991px) and (min-width: 768px) {
+        .search-input {
+          width: 200px;
+        }
+        .search-input:focus {
+          width: 220px;
+        }
+      }
+      
+      /* Extra small screens */
+      @media (max-width: 767px) {
+        .search-input {
+          width: 150px;
+        }
+        .search-input:focus {
+          width: 170px;
+        }
+        .page-title {
+          font-size: 20px;
+        }
+      }
+      
+      /* Very small screens */
+      @media (max-width: 480px) {
+        .search-input {
+          width: 120px;
+          padding: 8px 30px 8px 12px;
+          font-size: 13px;
+        }
+        .search-input:focus {
+          width: 140px;
+        }
+        .search-icon {
+          right: 10px;
+        }
+        .page-title {
+          font-size: 18px;
+        }
+        .top-nav {
+          padding: 12px 15px;
+        }
+        .nav-right {
+          gap: 8px;
+        }
+      }
+      
+      /* Extremely small screens - enhance mobile view */
+      @media (max-width: 360px) {
+        .search-input {
+          width: 100px;
+          padding: 6px 25px 6px 10px;
+          font-size: 12px;
+        }
+        .search-input:focus {
+          width: 110px;
+        }
+        .search-icon {
+          right: 8px;
+          font-size: 12px;
+        }
+        .page-title {
+          font-size: 16px;
+        }
+        .nav-left {
+          gap: 10px;
+        }
+        .menu-toggle {
+          padding: 5px;
+        }
+        .top-nav {
+          padding: 10px 12px;
+        }
+        .nav-right {
+          gap: 5px;
+        }
+        .theme-toggle {
+          padding: 5px;
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main-content.shifted {
+          margin-left: 0;
+        }
+
+        .content-row {
+          flex-direction: column;
+        }
+
+        .room-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-content {
+          padding: 20px;
+        }
+
+        .nav-right {
+          gap: 10px;
+        }
+      }
+
+      /* Loading animations */
+      .loading {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
           opacity: 1;
         }
       }
 
-      .stat-label {
-        font-size: 12px;
-        color: var(--medium-text);
-        font-weight: 500;
+      /* Accessibility improvements */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
 
-      .stat-change {
-        font-size: 10px;
-        color: var(--primary-color);
-        margin-top: 3px;
-        font-weight: 500;
+      /* Focus styles for better accessibility */
+      *:focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 2px;
       }
 
       /* Modal Styles */
@@ -991,77 +975,6 @@
       .modal-btn-save:hover {
         background: var(--primary-hover);
       }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .main-content.shifted {
-          margin-left: 0;
-        }
-
-        .content-row {
-          flex-direction: column;
-        }
-
-        .search-input {
-          width: 200px;
-        }
-
-        .search-input:focus {
-          width: 220px;
-        }
-
-        .action-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .room-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .dashboard-content {
-          padding: 20px;
-        }
-
-        .nav-right {
-          gap: 10px;
-        }
-      }
-
-      /* Loading animations */
-      .loading {
-        animation: pulse 2s infinite;
-      }
-
-      @keyframes pulse {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-
-      /* Accessibility improvements */
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      /* Focus styles for better accessibility */
-      *:focus-visible {
-        outline: 2px solid var(--primary-color);
-        outline-offset: 2px;
-      }
     </style>
   </head>
   <body>
@@ -1105,20 +1018,17 @@
         </a>
       </nav>
 
+      <!-- FIXED: Changed the sidebar-footer to use a proper direct link -->
       <div class="sidebar-footer">
-        <div
-          class="user-info"
-          onclick="goToProfile()"
-          role="button"
-          tabindex="0"
-          aria-label="Go to profile - DanePascual"
-        >
-          <div class="user-avatar">DP</div>
-          <div>
-            <div style="font-weight: bold; font-size: 14px">DanePascual</div>
-            <div style="font-size: 12px; opacity: 0.8">BSIT</div>
+        <a href="profile.html" style="text-decoration: none; display: block; width: 100%;">
+          <div class="user-info" id="profileLink">
+            <div class="user-avatar">DP</div>
+            <div>
+              <div style="font-weight: bold; font-size: 14px">DanePascual</div>
+              <div style="font-size: 12px; opacity: 0.8">BSIT</div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -1142,7 +1052,7 @@
             <input
               type="text"
               class="search-input"
-              placeholder="Search rooms, users..."
+              placeholder="Search..."
               aria-label="Search"
             />
             <i class="bi bi-search search-icon"></i>
@@ -1162,52 +1072,6 @@
         <div class="content-row">
           <!-- Main Section -->
           <div class="main-section">
-            <!-- Quick Study Actions -->
-            <div class="quick-actions">
-              <h2 class="section-title">
-                <i class="bi bi-lightning"></i>
-                Quick Study Actions
-              </h2>
-              <div class="action-grid">
-                <button
-                  class="action-card"
-                  onclick="startFocusSession()"
-                  aria-label="Start focus session"
-                >
-                  <i class="bi bi-stopwatch"></i>
-                  <h4>Start Focus Session</h4>
-                  <p>25-minute focused study</p>
-                </button>
-                <button
-                  class="action-card"
-                  onclick="joinPopularRoom()"
-                  aria-label="Join popular room"
-                >
-                  <i class="bi bi-people"></i>
-                  <h4>Join Popular Room</h4>
-                  <p>Most active study room</p>
-                </button>
-                <button
-                  class="action-card"
-                  onclick="createStudyGroup()"
-                  aria-label="Create study group"
-                >
-                  <i class="bi bi-plus-circle"></i>
-                  <h4>Create Study Group</h4>
-                  <p>Start your own session</p>
-                </button>
-                <button
-                  class="action-card"
-                  onclick="browseResources()"
-                  aria-label="Browse resources"
-                >
-                  <i class="bi bi-folder2-open"></i>
-                  <h4>Browse Resources</h4>
-                  <p>Study materials & notes</p>
-                </button>
-              </div>
-            </div>
-
             <!-- Active Study Rooms -->
             <div class="study-rooms">
               <h2 class="section-title">
@@ -1310,30 +1174,6 @@
                 <!-- Todo items will be rendered here -->
               </div>
             </div>
-
-            <!-- Study Stats -->
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-number" data-target="15">0</div>
-                <div class="stat-label">Active Rooms</div>
-                <div class="stat-change">+3 today</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" data-target="8">0</div>
-                <div class="stat-label">Study Groups</div>
-                <div class="stat-change">3 subjects</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" data-target="42">0</div>
-                <div class="stat-label">Resources</div>
-                <div class="stat-change">+12 this week</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" data-target="28">0</div>
-                <div class="stat-label">Study Hours</div>
-                <div class="stat-change">This week</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1395,81 +1235,41 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Current Session Info - 2025-07-05 21:04:57 Philippines Time (UTC+8)
-const CURRENT_SESSION = {
-  utcTime: "2025-07-05 13:04:57", // UTC time
-  philippinesTime: "2025-07-05 21:04:57", // Philippines time (UTC+8)
-  datetime: "2025-07-05 21:04:57", // Local Philippines time for compatibility
-  user: "DanePascual",
-  userAvatar: "DP",
-  userProgram: "BSIT",
-  timezone: "Asia/Manila"
-};
-
-// Theme management
-const themeToggle = document.getElementById("themeToggle");
-const body = document.body;
-
-// Load saved theme
-const savedTheme = localStorage.getItem("theme") || "light";
-if (savedTheme === "dark") {
-  body.classList.add("dark-mode");
-  themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
-}
-
-themeToggle.addEventListener("click", () => {
-  body.classList.toggle("dark-mode");
-  const isDark = body.classList.contains("dark-mode");
-  themeToggle.innerHTML = isDark
-    ? '<i class="bi bi-sun"></i>'
-    : '<i class="bi bi-moon"></i>';
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-
-  console.log(
-    `🎨 Theme switched to ${isDark ? "dark" : "light"} mode by ${
-      CURRENT_SESSION.user
-    } at ${CURRENT_SESSION.philippinesTime} Philippines Time (UTC+8)`
-  );
-});
-
-      // Animated counter for stats
-      function animateCounter(element) {
-        const target = parseInt(element.getAttribute("data-target"));
-        let current = 0;
-        const increment = target / 30; // 30 frames for smooth animation
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-          } else {
-            element.textContent = Math.floor(current);
-          }
-        }, 50);
-      }
-
-      // Intersection Observer for stats animation
-      const observerOptions = {
-        threshold: 0.5,
-        rootMargin: "0px 0px -100px 0px",
+      // UPDATED: Current Session Info with latest timestamp
+      const CURRENT_SESSION = {
+        utcTime: "2025-08-29 16:00:02", // UTC time
+        philippinesTime: "2025-08-30 00:00:02", // Philippines time (UTC+8)
+        datetime: "2025-08-30 00:00:02", // Local Philippines time for compatibility
+        user: "DanePascual",
+        userAvatar: "DP",
+        userProgram: "BSIT",
+        timezone: "Asia/Manila"
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll(
-              ".stat-number[data-target]"
-            );
-            statNumbers.forEach(animateCounter);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
+      // Theme management
+      const themeToggle = document.getElementById("themeToggle");
+      const body = document.body;
 
-      // Observe stats grid
-      document.addEventListener("DOMContentLoaded", () => {
-        const statsGrid = document.querySelector(".stats-grid");
-        if (statsGrid) observer.observe(statsGrid);
+      // Load saved theme
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") {
+        body.classList.add("dark-mode");
+        themeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+      }
+
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        const isDark = body.classList.contains("dark-mode");
+        themeToggle.innerHTML = isDark
+          ? '<i class="bi bi-sun"></i>'
+          : '<i class="bi bi-moon"></i>';
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+
+        console.log(
+          `Theme switched to ${isDark ? "dark" : "light"} mode by ${
+            CURRENT_SESSION.user
+          }`
+        );
       });
 
       // Enhanced sidebar functionality
@@ -1492,6 +1292,12 @@ themeToggle.addEventListener("click", () => {
           sidebar.classList.add("open");
           mainContent.classList.add("shifted");
         }
+        
+        // ADDED: Force the profile link to use direct navigation
+        document.getElementById("profileLink").addEventListener("click", function(e) {
+          console.log("Profile link clicked - ensuring navigation to profile.html");
+          window.location.href = "profile.html";
+        });
       });
 
       // Close sidebar when clicking outside on mobile
@@ -1546,66 +1352,9 @@ themeToggle.addEventListener("click", () => {
         );
 
         console.log("Search results for:", query, filtered);
-        // TODO: Display search suggestions dropdown
       }
 
-      // Enhanced Quick Study Actions
-      function startFocusSession() {
-        const actionCard = event.target.closest(".action-card");
-        actionCard.classList.add("loading");
-
-        setTimeout(() => {
-          actionCard.classList.remove("loading");
-          showNotification(
-            "🎯 Focus session started! 25 minutes of productive study time.",
-            "success"
-          );
-        }, 1000);
-      }
-
-      function joinPopularRoom() {
-        // Find room with highest participant count
-        const participantCounts = {
-          cs: parseInt(document.getElementById("cs-count").textContent),
-          "web-dev": parseInt(
-            document.getElementById("web-dev-count").textContent
-          ),
-          database: parseInt(
-            document.getElementById("database-count").textContent
-          ),
-        };
-
-        const popularRoom = Object.keys(participantCounts).reduce((a, b) =>
-          participantCounts[a] > participantCounts[b] ? a : b
-        );
-
-        joinRoom(popularRoom);
-      }
-
-      function createStudyGroup() {
-        showNotification("🚀 Redirecting to create study group...", "info");
-        setTimeout(() => {
-          window.location.href = "study-rooms.html?action=create";
-        }, 1000);
-      }
-
-      function browseResources() {
-        showNotification("📚 Opening study resources...", "info");
-        setTimeout(() => {
-          window.location.href = "resources.html";
-        }, 1000);
-      }
-
-      function goToProfile() {
-        showNotification(
-          `👤 Opening ${CURRENT_SESSION.user}'s profile...`,
-          "info"
-        );
-        setTimeout(() => {
-          window.location.href = "profile.html";
-        }, 1000);
-      }
-
+      // Function for joining rooms
       function joinRoom(roomType) {
         const rooms = {
           cs: "CS Study Room",
@@ -1613,74 +1362,16 @@ themeToggle.addEventListener("click", () => {
           database: "Database Design",
         };
 
-        const roomName = rooms[roomType] || "Unknown Room";
-        showNotification(`🚪 Joining ${roomName}...`, "info");
-
         // Simulate joining
         setTimeout(() => {
           window.location.href = `study-room-inside.html?room=${roomType}`;
-        }, 1500);
+        }, 500);
       }
 
-      // Enhanced notification system
+      // Modified to not show notifications
       function showNotification(message, type = "info") {
-        // Remove existing notifications
-        const existingNotifications =
-          document.querySelectorAll(".notification");
-        existingNotifications.forEach((n) => n.remove());
-
-        const notification = document.createElement("div");
-        notification.className = `notification notification-${type}`;
-        notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: ${
-            type === "success"
-              ? "#4caf50"
-              : type === "error"
-              ? "#f44336"
-              : "#2196f3"
-          };
-          color: white;
-          padding: 15px 20px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          z-index: 10000;
-          animation: slideInRight 0.3s ease-out;
-          max-width: 300px;
-          font-size: 14px;
-        `;
-
-        // Add animation keyframes if not exists
-        if (!document.querySelector("#notification-styles")) {
-          const style = document.createElement("style");
-          style.id = "notification-styles";
-          style.textContent = `
-            @keyframes slideInRight {
-              from { transform: translateX(100%); opacity: 0; }
-              to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-              from { transform: translateX(0); opacity: 1; }
-              to { transform: translateX(100%); opacity: 0; }
-            }
-          `;
-          document.head.appendChild(style);
-        }
-
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        // Auto remove after 4 seconds
-        setTimeout(() => {
-          notification.style.animation = "slideOutRight 0.3s ease-in";
-          setTimeout(() => {
-            if (notification.parentNode) {
-              notification.remove();
-            }
-          }, 300);
-        }, 4000);
+        // Log to console instead
+        console.log(`${type}: ${message}`);
       }
 
       // Enhanced Todo Management
@@ -1710,7 +1401,7 @@ themeToggle.addEventListener("click", () => {
             id: Date.now() - 3000,
             text: "Prepare for algorithms quiz on Friday",
             completed: false,
-            reminder: "2025-07-08T14:00",
+            reminder: "2025-08-31T14:00",
             created: new Date().toISOString(),
             priority: "high",
           },
@@ -1765,10 +1456,6 @@ themeToggle.addEventListener("click", () => {
         localStorage.setItem("studyTasks", JSON.stringify(todos));
         renderTodos();
         closeTodoModal();
-
-        if (reminder) {
-          scheduleNotification(todo);
-        }
       }
 
       function renderTodos() {
@@ -1888,32 +1575,6 @@ themeToggle.addEventListener("click", () => {
         }
       }
 
-      function scheduleNotification(todo) {
-        if (!todo.reminder) return;
-
-        const reminderTime = new Date(todo.reminder);
-        const now = new Date();
-        const timeDiff = reminderTime.getTime() - now.getTime();
-
-        if (timeDiff > 0) {
-          if (Notification.permission === "granted") {
-            setTimeout(() => {
-              const notification = new Notification("📚 Study Reminder!", {
-                body: todo.text,
-                icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%234caf50"/><text x="50" y="60" text-anchor="middle" fill="white" font-size="30">📚</text></svg>',
-                tag: "study-reminder",
-              });
-
-              notification.onclick = function () {
-                window.focus();
-                notification.close();
-                showNotification(`Reminder: ${todo.text}`, "info");
-              };
-            }, timeDiff);
-          }
-        }
-      }
-
       // Todo Form Submit
       document
         .getElementById("todoForm")
@@ -1973,11 +1634,7 @@ themeToggle.addEventListener("click", () => {
       function validateUserSession() {
         localStorage.setItem("currentUser", CURRENT_SESSION.user);
         localStorage.setItem("currentSession", JSON.stringify(CURRENT_SESSION));
-
-        console.log(
-          `✅ Dashboard session validated for ${CURRENT_SESSION.user}`
-        );
-        console.log(`📅 Current session time: ${CURRENT_SESSION.datetime} UTC`);
+        console.log(`Dashboard session validated for ${CURRENT_SESSION.user}`);
       }
 
       // Initialize dashboard
@@ -1988,62 +1645,8 @@ themeToggle.addEventListener("click", () => {
         // Render todos
         renderTodos();
 
-        // Check for pending notifications
-        todos.forEach((todo) => {
-          if (todo.reminder && !todo.completed) {
-            scheduleNotification(todo);
-          }
-        });
-
-        // Request notification permission
-        if (Notification.permission === "default") {
-          setTimeout(() => {
-            if (
-              confirm(
-                "📚 StudyGroup would like to send you study reminders.\n\nAllow notifications to get reminded about your study tasks?"
-              )
-            ) {
-              Notification.requestPermission().then((permission) => {
-                if (permission === "granted") {
-                  showNotification(
-                    "Notifications enabled! You'll get reminders for your tasks.",
-                    "success"
-                  );
-                }
-              });
-            }
-          }, 3000);
-        }
-
-        // Show welcome message for DanePascual (without time display)
-        setTimeout(() => {
-          showNotification(
-            `Welcome back to your dashboard, ${CURRENT_SESSION.user}! Ready to start studying?`,
-            "info"
-          );
-        }, 2000);
-
-        // Initialize keyboard shortcut hints
-        if (!localStorage.getItem("hasSeenShortcuts")) {
-          setTimeout(() => {
-            if (
-              confirm(
-                "💡 Quick Tip: Learn keyboard shortcuts?\n\n• Ctrl+N: Add new task\n• Ctrl+K: Search\n• Ctrl+T: Toggle theme\n• Esc: Close modals\n\nWould you like to see more tips?"
-              )
-            ) {
-              showNotification(
-                "💡 Pro tip: Hover over buttons to see tooltips with more shortcuts!",
-                "info"
-              );
-            }
-            localStorage.setItem("hasSeenShortcuts", "true");
-          }, 5000);
-        }
-
         // Animate elements on load
-        const animatedElements = document.querySelectorAll(
-          ".action-card, .room-card, .stat-card"
-        );
+        const animatedElements = document.querySelectorAll(".room-card");
         animatedElements.forEach((element, index) => {
           element.style.opacity = "0";
           element.style.transform = "translateY(20px)";
@@ -2055,206 +1658,35 @@ themeToggle.addEventListener("click", () => {
           }, index * 100);
         });
 
-        console.log(
-          `🎉 Dashboard ready for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.datetime} UTC`
-        );
-      });
-
-      // Auto-save todos every 30 seconds
-      setInterval(() => {
-        if (todos.length > 0) {
-          localStorage.setItem("studyTasks", JSON.stringify(todos));
-        }
-      }, 30000);
-
-      // Performance monitoring
-      window.addEventListener("load", () => {
-        const loadTime = performance.now();
-        console.log(
-          `Dashboard loaded in ${loadTime.toFixed(2)}ms for ${
-            CURRENT_SESSION.user
-          }`
-        );
-
-        if (loadTime > 2000) {
-          console.warn("Dashboard loading slowly. Consider optimization.");
-        }
-      });
-
-      // Handle online/offline status
-      window.addEventListener("online", () => {
-        showNotification("📶 You're back online!", "success");
-      });
-
-      window.addEventListener("offline", () => {
-        showNotification(
-          "📴 You're offline. Changes will sync when reconnected.",
-          "info"
-        );
-      });
-
-      // Session activity tracking
-      let lastActivity = Date.now();
-
-      function updateLastActivity() {
-        lastActivity = Date.now();
-      }
-
-      // Track user activity
-      ["mousedown", "mousemove", "keypress", "scroll", "touchstart"].forEach(
-        (event) => {
-          document.addEventListener(event, updateLastActivity, true);
-        }
-      );
-
-      // Check for session timeout (30 minutes of inactivity)
-      setInterval(() => {
-        const timeSinceLastActivity = Date.now() - lastActivity;
-        const thirtyMinutes = 30 * 60 * 1000;
-
-        if (timeSinceLastActivity > thirtyMinutes) {
-          showNotification(
-            "⚠️ Session timeout warning. Click here to stay logged in.",
-            "info"
-          );
-          lastActivity = Date.now(); // Reset after warning
-        }
-      }, 5 * 60 * 1000); // Check every 5 minutes
-
-      // Real-time study progress tracking
-      function updateStudyProgress() {
-        const completedTasks = todos.filter((todo) => todo.completed).length;
-        const totalTasks = todos.length;
-        const progressPercent =
-          totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
-
-        // Store progress for analytics
-        localStorage.setItem(
-          "dailyProgress",
-          JSON.stringify({
-            date: "2025-07-05",
-            completed: completedTasks,
-            total: totalTasks,
-            percent: progressPercent,
-            user: CURRENT_SESSION.user,
-          })
-        );
-      }
-
-      // Update progress whenever todos change
-      const originalRenderTodos = renderTodos;
-      renderTodos = function () {
-        originalRenderTodos();
-        updateStudyProgress();
-      };
-
-      // Study streak tracking
-      function updateStudyStreak() {
-        const today = "2025-07-05";
-        const streakData = JSON.parse(
-          localStorage.getItem("studyStreak") ||
-            '{"current": 0, "lastDate": null, "best": 0}'
-        );
-
-        const todayTasks = todos.filter((todo) => {
-          const taskDate = new Date(todo.created).toISOString().split("T")[0];
-          return taskDate === today && todo.completed;
-        });
-
-        if (todayTasks.length > 0 && streakData.lastDate !== today) {
-          const yesterday = new Date("2025-07-04").toISOString().split("T")[0];
-
-          if (streakData.lastDate === yesterday) {
-            streakData.current += 1;
+        // Update search placeholder for mobile
+        function updateSearchPlaceholder() {
+          const width = window.innerWidth;
+          if (width <= 360) {
+            searchInput.placeholder = "Search...";
+          } else if (width <= 480) {
+            searchInput.placeholder = "Search...";
           } else {
-            streakData.current = 1;
-          }
-
-          streakData.lastDate = today;
-          streakData.best = Math.max(streakData.best, streakData.current);
-
-          localStorage.setItem("studyStreak", JSON.stringify(streakData));
-
-          if (streakData.current > 1) {
-            showNotification(
-              `🔥 Study streak: ${streakData.current} days! Keep it up!`,
-              "success"
-            );
+            searchInput.placeholder = "Search dashboard...";
           }
         }
-      }
+        
+        // Initial call and setup resize listener
+        updateSearchPlaceholder();
+        window.addEventListener('resize', updateSearchPlaceholder);
 
-      // Time-based productivity insights (updated for 2025-07-05 12:54:12 UTC)
-      function getProductivityInsight() {
-        const hour = 12; // Current UTC hour: 12:54:12
-        let insight = "";
-
-        if (hour >= 6 && hour < 9) {
-          insight =
-            "🌅 Morning productivity time! Your brain is fresh for complex tasks.";
-        } else if (hour >= 9 && hour < 12) {
-          insight =
-            "⚡ Peak focus hours! Great time for challenging study sessions.";
-        } else if (hour >= 12 && hour < 14) {
-          insight =
-            "🍽️ Midday energy! Perfect time for active learning and collaboration.";
-        } else if (hour >= 14 && hour < 17) {
-          insight =
-            "📚 Afternoon study time. Good for reviewing and practice problems.";
-        } else if (hour >= 17 && hour < 20) {
-          insight =
-            "🌆 Evening hours. Perfect for reviewing today's learnings.";
-        } else {
-          insight =
-            "🌙 Late hours. Consider light reading or planning tomorrow.";
-        }
-
-        return insight;
-      }
-
-      // Show productivity insight for current time
-      setTimeout(() => {
-        const insight = getProductivityInsight();
-        showNotification(insight, "info");
-      }, 8000);
+        console.log(`Dashboard ready for ${CURRENT_SESSION.user}`);
+      });
 
       // Export functions for potential use by other scripts
       window.StudyDashboard = {
         showNotification,
         openTodoModal,
         closeTodoModal,
-        startFocusSession,
         joinRoom,
         validateUserSession,
-        updateStudyProgress,
-        updateStudyStreak,
-        getProductivityInsight,
         currentUser: CURRENT_SESSION.user,
         currentSession: CURRENT_SESSION.datetime,
       };
-
-      // Final initialization log with current timestamp
-      console.log("✅ Dashboard fully initialized for DanePascual");
-      console.log("📅 Current UTC session: 2025-07-05 12:54:12 UTC");
-      console.log("🎯 All features loaded successfully");
-      console.log("⏰ Session start time logged for user activity tracking");
-
-      // Log system info for debugging
-      console.log("💻 Browser:", navigator.userAgent.split(" ").pop());
-      console.log(
-        "🌐 Online status:",
-        navigator.onLine ? "Connected" : "Offline"
-      );
-      console.log("📱 Screen resolution:", `${screen.width}x${screen.height}`);
-      console.log("🔧 Dashboard version: v2.2.0 - Enhanced UX (No Clock)");
-
-      // Update study streak on initialization
-      updateStudyStreak();
-
-      // Log successful dashboard load for DanePascual with current time
-      console.log(
-        `🎉 Dashboard ready for ${CURRENT_SESSION.user} at 2025-07-05 12:54:12 UTC`
-      );
     </script>
   </body>
 </html>

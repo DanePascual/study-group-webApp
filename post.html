@@ -54,8 +54,9 @@
         color: var(--dark-text);
       }
 
+      /* Updated dark mode sidebar styles */
       body.dark-mode .sidebar {
-        background: #2a2a2a;
+        background: linear-gradient(135deg, #2e5d31 0%, #4a7c4f 100%);
       }
 
       body.dark-mode .sidebar-brand {
@@ -63,13 +64,14 @@
       }
 
       body.dark-mode .sidebar-item {
-        color: #e0e0e0;
+        color: white;
       }
 
       body.dark-mode .sidebar-item:hover,
       body.dark-mode .sidebar-item.active {
-        background: rgba(76, 175, 80, 0.2);
-        color: #4caf50;
+        background: rgba(255, 255, 255, 0.1);
+        border-left-color: white;
+        color: white;
       }
 
       body.dark-mode .top-nav {
@@ -184,8 +186,7 @@
       body.dark-mode .reply-btn,
       body.dark-mode .edit-btn,
       body.dark-mode .delete-btn,
-      body.dark-mode .collapse-btn,
-      body.dark-mode .comment-options-btn {
+      body.dark-mode .collapse-btn {
         color: var(--medium-text);
       }
       
@@ -194,9 +195,7 @@
       }
       
       body.dark-mode .reply-btn:hover,
-      body.dark-mode .edit-btn:hover,
-      body.dark-mode .collapse-btn:hover,
-      body.dark-mode .comment-options-btn:hover {
+      body.dark-mode .edit-btn:hover {
         background-color: #333;
       }
       
@@ -204,138 +203,36 @@
         background-color: rgba(211, 47, 47, 0.2);
       }
       
-      body.dark-mode .comment-dropdown-menu {
-        background: #2a2a2a;
-        border: 1px solid #444;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.3);
-      }
-      
-      body.dark-mode .comment-dropdown-item {
+      body.dark-mode .quick-comment-input,
+      body.dark-mode .reply-input {
+        background: #333;
+        border-color: #444;
         color: var(--dark-text);
       }
       
-      body.dark-mode .comment-dropdown-item:hover {
+      body.dark-mode .quick-comment-input::placeholder,
+      body.dark-mode .reply-input::placeholder {
+        color: var(--light-text);
+      }
+      
+      body.dark-mode .quick-comment-input:focus,
+      body.dark-mode .reply-input:focus {
+        background: #3a3a3a;
+        border-color: var(--primary-color);
+      }
+
+      body.dark-mode .reply-form {
+        background: #2a2a2a;
+        border-color: #444;
+      }
+
+      body.dark-mode .nesting-indicator {
+        border-color: #444;
+      }
+      
+      body.dark-mode .reply-path {
         background-color: #333;
-      }
-      
-      body.dark-mode .quick-comment-input {
-        background: #333;
-        border-color: #444;
-        color: var(--dark-text);
-      }
-      
-      body.dark-mode .quick-comment-input::placeholder {
-        color: var(--light-text);
-      }
-      
-      body.dark-mode .quick-comment-input:focus {
-        background: #3a3a3a;
-        border-color: var(--primary-color);
-      }
-      
-      body.dark-mode .modal-custom {
-        background: #2a2a2a;
-      }
-      
-      body.dark-mode .modal-title,
-      body.dark-mode .modal-subtitle {
-        color: var(--primary-color);
-      }
-      
-      body.dark-mode .modal-custom input,
-      body.dark-mode .modal-custom textarea {
-        background: #333;
-        color: var(--dark-text);
-        border-color: #444;
-      }
-      
-      body.dark-mode .modal-custom input::placeholder,
-      body.dark-mode .modal-custom textarea::placeholder {
-        color: var(--light-text);
-      }
-      
-      body.dark-mode .modal-custom input:focus,
-      body.dark-mode .modal-custom textarea:focus {
-        background: #3a3a3a;
-        border-color: var(--primary-color);
-      }
-      
-      body.dark-mode .format-btn {
-        background: #333;
-        color: var(--medium-text);
-      }
-      
-      body.dark-mode .format-btn:hover,
-      body.dark-mode .format-btn.active {
-        background: #444;
-        color: var(--primary-color);
-      }
-      
-      body.dark-mode .modal-btn-cancel {
-        background: #333;
-        color: var(--dark-text);
-      }
-      
-      body.dark-mode .confirmation-dialog {
-        background: #2a2a2a;
-      }
-      
-      body.dark-mode .confirmation-dialog p {
-        color: var(--dark-text);
-      }
-      
-      body.dark-mode .confirmation-dialog-btn-cancel {
-        background: #333;
-        color: var(--dark-text);
-      }
-      
-      body.dark-mode .share-btn {
-        background: #333;
-        color: var(--medium-text);
-      }
-      
-      body.dark-mode .share-btn:hover {
-        background: #444;
-        color: var(--primary-color);
-      }
-      
-      body.dark-mode .reaction-btn {
-        background: #333;
-        border-color: #444;
-        color: var(--medium-text);
-      }
-      
-      body.dark-mode .reaction-btn:hover {
-        background: #3a3a3a;
-        color: var(--primary-color);
-      }
-      
-      body.dark-mode .reaction-btn.active {
-        background: #1e3b20;
-        color: var(--primary-color);
-        border-color: #388e3c;
-      }
-      
-      body.dark-mode .empty-comments .empty-icon {
-        color: #444;
-      }
-      
-      body.dark-mode .empty-comments .empty-text {
-        color: var(--medium-text);
-      }
-      
-      body.dark-mode .share-option:hover {
-        background: #333;
-      }
-      
-      body.dark-mode .share-link-input {
-        background: #333;
-        color: var(--dark-text);
-        border-color: #444;
-      }
-      
-      body.dark-mode .share-label {
-        color: var(--dark-text);
+        color: #aaa;
       }
       
       /* Theme toggle button */
@@ -359,17 +256,17 @@
         align-items: center;
       }
       
-      /* Original CSS */
+      /* Updated sidebar CSS */
       .sidebar {
         position: fixed;
         left: -280px;
         top: 0;
         width: 280px;
         height: 100vh;
-        background: white;
+        background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
         transition: left 0.3s ease;
         z-index: 1000;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
       }
       .sidebar.open {
         left: 0;
@@ -379,7 +276,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
       .sidebar-brand {
-        color: var(--primary-color);
+        color: white;
         font-size: 18px;
         font-weight: bold;
         display: flex;
@@ -391,7 +288,7 @@
       }
       .sidebar-item {
         display: block;
-        color: var(--dark-text);
+        color: white;
         text-decoration: none;
         padding: 15px 20px;
         transition: all 0.3s ease;
@@ -399,9 +296,9 @@
       }
       .sidebar-item:hover,
       .sidebar-item.active {
-        background: rgba(76, 175, 80, 0.1);
-        border-left-color: var(--primary-color);
-        color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.1);
+        border-left-color: white;
+        color: white;
       }
       .sidebar-item i {
         width: 20px;
@@ -421,16 +318,18 @@
         background: rgba(255, 255, 255, 0.1);
         padding: 15px;
         border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
       }
       .user-info:hover {
-        background: rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.2);
         transform: translateY(-1px);
       }
       .user-avatar {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: #4caf50;
+        background: var(--primary-color);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -451,7 +350,7 @@
       .container-wrapper {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px 40px 20px;
+        padding: 0 20px 20px 20px;
       }
 
       .top-nav {
@@ -495,7 +394,7 @@
         gap: 8px;
         font-size: 14px;
         color: #666;
-        margin: 20px 0 10px 0;
+        margin: 15px 0 5px 0;
         flex-wrap: wrap;
       }
       .breadcrumbs a {
@@ -520,7 +419,7 @@
         text-decoration: none;
         cursor: pointer;
         padding: 0;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -532,24 +431,24 @@
       }
 
       .post-header {
-        margin: 15px 0 25px 0;
+        margin: 10px 0 15px 0;
         background: white;
         border-radius: 15px;
-        padding: 25px 30px;
-        box-shadow: 0 3px 15px rgba(76, 175, 80, 0.1);
+        padding: 20px 25px;
+        box-shadow: 0 2px 10px rgba(76, 175, 80, 0.1);
         position: relative;
       }
       .post-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
         color: #388e3c;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       .post-meta {
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         font-size: 14px;
         color: #666;
       }
@@ -564,8 +463,8 @@
         gap: 10px;
       }
       .author-avatar {
-        width: 36px;
-        height: 36px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         background: #e8f5e9;
         display: flex;
@@ -578,26 +477,27 @@
       .post-content {
         font-size: 16px;
         color: #333;
-        margin-bottom: 25px;
-        line-height: 1.6;
+        margin-bottom: 15px;
+        line-height: 1.5;
         white-space: pre-wrap;
       }
 
+      /* Simplified comments section */
       .comments-section {
         background: white;
         border-radius: 15px;
-        box-shadow: 0 2px 10px rgba(76, 175, 80, 0.08);
-        margin-bottom: 30px;
-        padding: 25px 30px;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.08);
+        margin-bottom: 20px;
+        padding: 15px 20px;
       }
       .comments-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
       }
       .comments-title {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         color: #256029;
         margin: 0;
@@ -620,7 +520,7 @@
         color: #666;
       }
       .sort-dropdown {
-        padding: 6px 12px;
+        padding: 5px 12px;
         border: 1px solid #ddd;
         border-radius: 20px;
         background: white;
@@ -633,12 +533,13 @@
         border-color: #4caf50;
       }
 
+      /* Improved comment styling with better nesting indicators */
       .comment-list {
         position: relative;
       }
       .comment {
         border-bottom: 1px solid #f0f0f0;
-        padding: 18px 0;
+        padding: 10px 0;
         margin-left: 0;
         position: relative;
         transition: all 0.2s;
@@ -649,30 +550,47 @@
       .comment:hover {
         background-color: #f9f9f9;
       }
+
+      /* Comment threading styles */
       .comment .comment {
         border-bottom: none;
         border-left: 2px solid #e8f5e9;
-        margin-left: 50px;
-        padding: 15px 0 5px 20px;
+        margin-left: 20px;
+        padding: 8px 0 3px 12px;
       }
+      
+      /* Better visual indicators for nesting levels */
       .comment .comment .comment {
-        margin-left: 40px;
+        margin-left: 15px;
+        border-left-color: #a5d6a7; /* Darker green */
+      }
+      
+      .comment .comment .comment .comment {
+        margin-left: 12px;
+        border-left-color: #66bb6a; /* Even darker green */
+      }
+      
+      /* After level 4, keep same indentation but use dotted line */
+      .comment .comment .comment .comment .comment {
+        margin-left: 10px;
+        border-left-style: dotted;
+        border-left-color: #4caf50;
       }
 
       .comment-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
       .comment-author-info {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
       }
       .comment-avatar {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
         border-radius: 50%;
         background: #e8f5e9;
         display: flex;
@@ -685,33 +603,31 @@
       .comment-user {
         display: flex;
         flex-direction: column;
+        line-height: 1.2;
       }
       .comment-author {
         font-weight: 600;
         color: #388e3c;
-        font-size: 14px;
-        line-height: 1.2;
+        font-size: 13px;
       }
       .comment-meta {
-        font-size: 12px;
+        font-size: 11px;
         color: #999;
-        display: flex;
-        align-items: center;
       }
       .comment-meta .edited-indicator {
-        margin-left: 5px;
+        margin-left: 4px;
         font-style: italic;
-        font-size: 11px;
+        font-size: 10px;
       }
 
       .comment-body {
-        padding-left: 42px;
+        padding-left: 36px;
       }
       .comment-content {
-        font-size: 15px;
+        font-size: 14px;
         color: #333;
-        margin-bottom: 10px;
-        line-height: 1.5;
+        margin-bottom: 5px;
+        line-height: 1.4;
         white-space: pre-wrap;
       }
       .comment-deleted {
@@ -721,22 +637,22 @@
 
       .comment-actions {
         display: flex;
-        gap: 12px;
-        margin-top: 8px;
+        gap: 10px;
+        margin-top: 3px;
       }
       .reply-btn,
       .edit-btn,
       .delete-btn {
         background: none;
         border: none;
-        font-size: 13px;
+        font-size: 12px;
         cursor: pointer;
-        padding: 5px 8px;
-        border-radius: 4px;
+        padding: 2px 5px;
+        border-radius: 3px;
         color: #666;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 3px;
         transition: all 0.2s;
       }
       .reply-btn {
@@ -756,13 +672,13 @@
         background: none;
         border: none;
         color: #666;
-        font-size: 14px;
+        font-size: 12px;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        padding: 5px 8px;
-        border-radius: 4px;
+        gap: 3px;
+        padding: 2px 5px;
+        border-radius: 3px;
         transition: all 0.2s;
       }
       .collapse-btn:hover {
@@ -779,77 +695,74 @@
         display: none;
       }
 
-      .comment-options-dropdown {
-        position: relative;
-      }
-      .comment-options-btn {
-        background: none;
-        border: none;
-        color: #777;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        transition: all 0.2s;
-      }
-      .comment-options-btn:hover {
-        background-color: #f0f0f0;
-      }
-      .comment-dropdown-menu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-        width: 160px;
-        display: none;
-        z-index: 20;
-        overflow: hidden;
-      }
-      .comment-dropdown-menu.show {
-        display: block;
-      }
-      .comment-dropdown-item {
-        padding: 10px 15px;
-        font-size: 14px;
-        color: #333;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      .comment-dropdown-item:hover {
-        background-color: #f5f5f5;
-      }
-      .comment-dropdown-item.report {
-        color: #f57c00;
-      }
-      .comment-dropdown-item.delete {
-        color: #d32f2f;
-      }
-
-      .create-comment-container {
-        margin-top: 20px;
+      /* Improved inline reply form with larger textarea */
+      .reply-form {
+        margin: 10px 0 12px 36px;
         display: flex;
         align-items: flex-start;
-        gap: 15px;
+        gap: 10px;
+        background: #f9f9f9;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        display: none;
       }
-      .comment-avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #e8f5e9;
+      .reply-form.active {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #388e3c;
-        font-weight: bold;
-        font-size: 12px;
+      }
+      .reply-input {
+        flex: 1;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 14px;
+        background: white;
+        resize: none;
+        min-height: 80px; /* Much taller textarea */
+        width: 100%;
+        line-height: 1.5;
+      }
+      .reply-input:focus {
+        outline: none;
+        border-color: #4caf50;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+      }
+      .reply-btn-group {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+        justify-content: flex-end;
+      }
+      .reply-submit,
+      .reply-cancel {
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .reply-submit {
+        background: #4caf50;
+        color: white;
+      }
+      .reply-submit:hover {
+        background: #388e3c;
+      }
+      .reply-cancel {
+        background: #f1f1f1;
+        color: #666;
+      }
+      .reply-cancel:hover {
+        background: #e0e0e0;
+      }
+      
+      /* Main comment form */
+      .create-comment-container {
+        margin-top: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
       }
       .quick-comment-form {
         flex: 1;
@@ -859,18 +772,17 @@
         width: 100%;
         border: 1px solid #ddd;
         border-radius: 20px;
-        padding: 12px 15px;
+        padding: 8px 12px;
         font-size: 14px;
         transition: all 0.2s;
         background: #f9f9f9;
         resize: none;
-        min-height: 48px;
+        min-height: 40px;
       }
       .quick-comment-input:focus {
         outline: none;
         border-color: #4caf50;
         background: white;
-        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
       }
 
       .create-comment-btn {
@@ -878,11 +790,10 @@
         color: white;
         border: none;
         border-radius: 20px;
-        padding: 10px 24px;
-        font-size: 15px;
+        padding: 8px 16px;
+        font-size: 14px;
         font-weight: 500;
-        margin-top: 18px;
-        margin-bottom: 8px;
+        margin-top: 10px;
         transition: all 0.3s;
         display: inline-flex;
         align-items: center;
@@ -890,265 +801,13 @@
       }
       .create-comment-btn:hover {
         background: #388e3c;
-        transform: translateY(-1px);
-      }
-      .create-comment-btn:active {
-        transform: translateY(0);
-      }
-
-      .modal-backdrop-custom {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 2000;
-        display: none;
-        align-items: center;
-        justify-content: center;
-      }
-      .modal-backdrop-custom.active {
-        display: flex;
-      }
-      .modal-custom {
-        background: #fff;
-        border-radius: 15px;
-        padding: 35px 30px 25px 30px;
-        width: 95%;
-        max-width: 600px;
-        box-shadow: 0 10px 40px rgba(76, 175, 80, 0.1);
-        position: relative;
-        animation: fadeInTop 0.18s ease;
-      }
-      @keyframes fadeInTop {
-        from {
-          transform: translateY(-30px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-      .modal-custom .close-modal {
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        background: none;
-        border: none;
-        font-size: 22px;
-        color: #555;
-        cursor: pointer;
-      }
-      .modal-custom .modal-title {
-        font-size: 20px;
-        font-weight: bold;
-        color: #388e3c;
-        margin-bottom: 15px;
-      }
-      .modal-custom .modal-subtitle {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 20px;
-      }
-      .modal-custom input,
-      .modal-custom textarea {
-        width: 100%;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 15px;
-        padding: 12px 15px;
-        margin-bottom: 16px;
-        transition: all 0.2s;
-      }
-      .modal-custom input:focus,
-      .modal-custom textarea:focus {
-        border-color: #4caf50;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
-      }
-      .modal-custom textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-      .modal-custom .modal-actions {
-        display: flex;
-        gap: 10px;
-        justify-content: flex-end;
-      }
-      .modal-custom .modal-btn {
-        padding: 10px 24px;
-        border-radius: 8px;
-        font-size: 15px;
-        font-weight: 500;
-        border: none;
-        transition: all 0.2s;
-        cursor: pointer;
-      }
-      .modal-btn-cancel {
-        background: #f5f5f5;
-        color: #666;
-      }
-      .modal-btn-cancel:hover {
-        background: #eee;
-      }
-      .modal-btn-save {
-        background: #4caf50;
-        color: white;
-      }
-      .modal-btn-save:hover {
-        background: #388e3c;
-      }
-
-      .formatting-tools {
-        display: flex;
-        gap: 8px;
-        margin-bottom: 10px;
-        flex-wrap: wrap;
-      }
-      .format-btn {
-        background: #f5f5f5;
-        border: none;
-        border-radius: 4px;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s;
-        color: #555;
-      }
-      .format-btn:hover {
-        background: #e0e0e0;
-        color: #388e3c;
-      }
-
-      .thread-collapse {
-        cursor: pointer;
-        margin-right: 4px;
-        font-size: 13px;
-        color: #666;
-      }
-      .thread-collapsed .comment {
-        display: none;
-      }
-      .thread-collapsed > .comment:first-child {
-        display: block;
-      }
-
-      .confirmation-dialog {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-        z-index: 2100;
-        max-width: 400px;
-        width: 90%;
-        display: none;
-      }
-      .confirmation-dialog p {
-        margin-bottom: 20px;
-      }
-      .confirmation-dialog-actions {
-        display: flex;
-        gap: 10px;
-        justify-content: flex-end;
-      }
-      .confirmation-dialog-btn {
-        padding: 8px 16px;
-        border-radius: 6px;
-        font-size: 14px;
-        font-weight: 500;
-        border: none;
-        transition: all 0.2s;
-        cursor: pointer;
-      }
-      .confirmation-dialog-btn-cancel {
-        background: #f1f1f1;
-        color: #333;
-      }
-      .confirmation-dialog-btn-confirm {
-        background: #d32f2f;
-        color: white;
-      }
-      .confirmation-dialog-btn-confirm:hover {
-        background: #b71c1c;
-      }
-      .confirmation-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 2090;
-        display: none;
-      }
-
-      .notification {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        background: #4caf50;
-        color: white;
-        border-radius: 8px;
-        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-        z-index: 2200;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        animation: slideIn 0.3s ease-out;
-        max-width: 400px;
-      }
-      .notification.error {
-        background: #f44336;
-      }
-      .notification.warning {
-        background: #ff9800;
-      }
-      @keyframes slideIn {
-        from {
-          transform: translateX(100%);
-        }
-        to {
-          transform: translateX(0);
-        }
-      }
-
-      .share-btn {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: #f5f5f5;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s;
-        color: #555;
-        font-size: 16px;
-      }
-      .share-btn:hover {
-        background: #e0e0e0;
-        color: #388e3c;
       }
 
       .post-reactions {
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
       .reaction-btn {
         background: #f5f5f5;
@@ -1178,92 +837,16 @@
 
       .empty-comments {
         text-align: center;
-        padding: 40px 20px;
+        padding: 20px;
       }
       .empty-icon {
-        font-size: 40px;
+        font-size: 32px;
         color: #ccc;
-        margin-bottom: 15px;
-      }
-      .empty-text {
-        font-size: 16px;
-        color: #888;
-        margin-bottom: 20px;
-      }
-
-      .share-modal .share-options {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-      .share-option {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        padding: 15px 10px;
-        border-radius: 8px;
-        transition: all 0.2s;
-      }
-      .share-option:hover {
-        background: #f5f5f5;
-      }
-      .share-icon {
-        font-size: 24px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-      }
-      .twitter-icon {
-        background: #1da1f2;
-      }
-      .facebook-icon {
-        background: #4267b2;
-      }
-      .whatsapp-icon {
-        background: #25d366;
-      }
-      .telegram-icon {
-        background: #0088cc;
-      }
-      .email-icon {
-        background: #ea4335;
-      }
-      .copy-icon {
-        background: #6c757d;
-      }
-      .share-label {
-        font-size: 14px;
-        color: #333;
-        text-align: center;
-      }
-      .share-link-input {
-        padding: 12px 15px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        font-size: 14px;
-        width: 100%;
         margin-bottom: 10px;
       }
-      .copy-link-btn {
-        width: 100%;
-        padding: 10px;
-        background: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: all 0.2s;
-      }
-      .copy-link-btn:hover {
-        background: #388e3c;
+      .empty-text {
+        font-size: 15px;
+        color: #888;
       }
 
       .loader {
@@ -1273,18 +856,12 @@
         padding: 20px;
       }
       .loader-spinner {
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(76, 175, 80, 0.3);
+        width: 30px;
+        height: 30px;
+        border: 2px solid rgba(76, 175, 80, 0.3);
         border-radius: 50%;
         border-top-color: #4caf50;
         animation: spin 1s linear infinite;
-      }
-
-      .format-btn.active {
-        background-color: #e0e0e0;
-        color: #388e3c;
-        transform: translateY(1px);
       }
       @keyframes spin {
         0% {
@@ -1295,18 +872,40 @@
         }
       }
 
+      /* Improved reply indicators */
+      .replying-to {
+        font-size: 12px;
+        color: #388e3c;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      
+      /* New reply path indicator for deep nesting */
+      .reply-path {
+        margin-bottom: 5px;
+        font-size: 11px;
+        color: #777;
+        background-color: #f5f5f5;
+        padding: 3px 8px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+      }
+      
+      .reply-path i {
+        font-size: 10px;
+        color: #999;
+      }
+
       @media (max-width: 900px) {
         .post-header {
-          padding: 20px;
+          padding: 15px;
         }
         .comments-section {
-          padding: 20px;
-        }
-        .modal-custom {
-          padding: 25px 20px;
-        }
-        .share-modal .share-options {
-          grid-template-columns: repeat(2, 1fr);
+          padding: 15px;
         }
       }
       @media (max-width: 768px) {
@@ -1320,7 +919,7 @@
           left: 0 !important;
         }
         .post-title {
-          font-size: 20px;
+          font-size: 18px;
         }
         .post-meta {
           flex-direction: column;
@@ -1331,19 +930,17 @@
           align-items: flex-start;
           gap: 10px;
         }
-        .comment-author-info {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 5px;
-        }
         .comment-body {
           padding-left: 0;
-          margin-top: 10px;
+          margin-top: 5px;
+        }
+        .reply-form {
+          margin-left: 10px;
         }
       }
       @media (max-width: 500px) {
         .post-title {
-          font-size: 18px;
+          font-size: 16px;
         }
         .comments-title {
           font-size: 16px;
@@ -1356,13 +953,7 @@
           flex-wrap: wrap;
         }
         .container-wrapper {
-          padding: 0 15px 30px 15px;
-        }
-        .create-comment-container {
-          flex-direction: column;
-        }
-        .quick-comment-input {
-          min-height: 100px;
+          padding: 0 10px 15px 10px;
         }
       }
     </style>
@@ -1410,7 +1001,7 @@
             >
               DanePascual
             </div>
-            <div style="font-size: 12px; opacity: 0.8">Active</div>
+            <div style="font-size: 12px; opacity: 0.8">BSIT</div>
           </div>
         </div>
       </div>
@@ -1479,15 +1070,7 @@
               <i class="bi bi-hand-thumbs-up"></i>
               <span class="reaction-count" id="likeCount">0</span>
             </button>
-            <button class="reaction-btn" id="bookmarkBtn">
-              <i class="bi bi-bookmark"></i>
-              <span id="bookmarkText">Save</span>
-            </button>
           </div>
-
-          <button class="share-btn" id="shareBtn" title="Share this post">
-            <i class="bi bi-share"></i>
-          </button>
         </div>
 
         <!-- Comments Section -->
@@ -1502,7 +1085,7 @@
               <select class="sort-dropdown" id="commentSortDropdown">
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
-                <option value="popular">Most Popular</option>
+                <option value="popular">Popular</option>
               </select>
             </div>
           </div>
@@ -1533,189 +1116,28 @@
       </div>
     </div>
 
-    <!-- Comment Modal (Create/Edit) -->
-    <div class="modal-backdrop-custom" id="modalBackdrop">
-      <div class="modal-custom">
-        <button class="close-modal" id="closeModalBtn" aria-label="Close">
-          &times;
-        </button>
-        <div class="modal-title" id="modalTitle">Add Comment</div>
-        <div class="modal-subtitle" id="modalSubtitle"></div>
-
-        <div class="formatting-tools">
-          <button
-            type="button"
-            class="format-btn"
-            title="Bold"
-            data-format="bold"
-          >
-            <i class="bi bi-type-bold"></i>
-          </button>
-          <button
-            type="button"
-            class="format-btn"
-            title="Italic"
-            data-format="italic"
-          >
-            <i class="bi bi-type-italic"></i>
-          </button>
-          <button
-            type="button"
-            class="format-btn"
-            title="Code"
-            data-format="code"
-          >
-            <i class="bi bi-code"></i>
-          </button>
-          <button
-            type="button"
-            class="format-btn"
-            title="Link"
-            data-format="link"
-          >
-            <i class="bi bi-link"></i>
-          </button>
-          <button
-            type="button"
-            class="format-btn"
-            title="Bullet List"
-            data-format="bullet"
-          >
-            <i class="bi bi-list-ul"></i>
-          </button>
-          <button
-            type="button"
-            class="format-btn"
-            title="Numbered List"
-            data-format="number"
-          >
-            <i class="bi bi-list-ol"></i>
-          </button>
-        </div>
-
-        <form id="commentForm" autocomplete="off">
-          <textarea
-            id="commentContent"
-            placeholder="Write your comment here..."
-            maxlength="2000"
-            required
-          ></textarea>
-          <input type="hidden" id="commentParentId" value="" />
-          <input type="hidden" id="commentId" value="" />
-          <input type="hidden" id="isEdit" value="false" />
-          <div class="modal-actions">
-            <button
-              type="button"
-              class="modal-btn modal-btn-cancel"
-              id="cancelModalBtn"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="modal-btn modal-btn-save"
-              id="saveCommentBtn"
-            >
-              Post
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Delete Confirmation Dialog -->
-    <div id="deleteConfirmationDialog" style="display: none">
-      <div class="confirmation-backdrop"></div>
-      <div class="confirmation-dialog">
-        <p>
-          Are you sure you want to delete this comment? This action cannot be
-          undone.
-        </p>
-        <div class="confirmation-dialog-actions">
-          <button
-            class="confirmation-dialog-btn confirmation-dialog-btn-cancel"
-            id="cancelDeleteBtn"
-          >
-            Cancel
-          </button>
-          <button
-            class="confirmation-dialog-btn confirmation-dialog-btn-confirm"
-            id="confirmDeleteBtn"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Share Modal -->
-    <div class="modal-backdrop-custom" id="shareModalBackdrop">
-      <div class="modal-custom share-modal">
-        <button class="close-modal" id="closeShareModalBtn" aria-label="Close">
-          &times;
-        </button>
-        <div class="modal-title">Share This Post</div>
-        <div class="share-options">
-          <div class="share-option" id="shareTwitter">
-            <div class="share-icon twitter-icon">
-              <i class="bi bi-twitter"></i>
-            </div>
-            <div class="share-label">Twitter</div>
-          </div>
-          <div class="share-option" id="shareFacebook">
-            <div class="share-icon facebook-icon">
-              <i class="bi bi-facebook"></i>
-            </div>
-            <div class="share-label">Facebook</div>
-          </div>
-          <div class="share-option" id="shareWhatsapp">
-            <div class="share-icon whatsapp-icon">
-              <i class="bi bi-whatsapp"></i>
-            </div>
-            <div class="share-label">WhatsApp</div>
-          </div>
-          <div class="share-option" id="shareTelegram">
-            <div class="share-icon telegram-icon">
-              <i class="bi bi-telegram"></i>
-            </div>
-            <div class="share-label">Telegram</div>
-          </div>
-          <div class="share-option" id="shareEmail">
-            <div class="share-icon email-icon">
-              <i class="bi bi-envelope"></i>
-            </div>
-            <div class="share-label">Email</div>
-          </div>
-          <div class="share-option" id="copyLink">
-            <div class="share-icon copy-icon">
-              <i class="bi bi-link-45deg"></i>
-            </div>
-            <div class="share-label">Copy Link</div>
-          </div>
-        </div>
-        <input
-          type="text"
-          class="share-link-input"
-          id="shareLinkInput"
-          readonly
-        />
-        <button class="copy-link-btn" id="copyLinkBtn">Copy Link</button>
-      </div>
-    </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
       // Current session information
       const CURRENT_SESSION = {
-        utcTime: "2025-07-11 17:29:45", // Updated UTC time
+        utcTime: "2025-08-31 12:59:19", // Updated UTC time
         user: "DanePascual",
         timezone: "UTC"
       };
 
       // Current user ID (normally from auth system)
-      const CURRENT_USER_ID = "user_dane_pascual"; // Fixed user ID for consistency
+      const CURRENT_USER_ID = "user_dane_pascual"; 
       const CURRENT_USER_NAME = CURRENT_SESSION.user;
       const CURRENT_USER_INITIALS = "DP";
+
+      // Track active reply form
+      let activeReplyForm = null;
+      
+      // Track expanded comment threads to maintain state
+      let expandedThreads = new Set();
+      
+      // Track the scroll position
+      let lastScrollPosition = 0;
 
       // Theme management
       function initializeTheme() {
@@ -1758,9 +1180,7 @@
         }
       });
       function goToProfile() {
-        alert(
-          "🔄 Redirecting to Profile page...\n\nThis will be connected once the Profile page is ready!"
-        );
+        window.location.href = "profile.html";
       }
 
       // --- Utility functions ---
@@ -1790,7 +1210,7 @@
         if (diffMin < 60)
           return `${diffMin} min${diffMin !== 1 ? "s" : ""} ago`;
         if (diffHour < 24)
-          return `${diffHour} hour${diffHour !== 1 ? "s" : ""} ago`;
+          return `${diffHour} hr${diffHour !== 1 ? "s" : ""} ago`;
         if (diffDay < 7) return `${diffDay} day${diffDay !== 1 ? "s" : ""} ago`;
 
         // If older than a week, show date
@@ -1807,36 +1227,6 @@
           .join("")
           .toUpperCase()
           .substring(0, 2);
-      }
-
-      // Show notification
-      function showNotification(message, type = "success") {
-        // Remove any existing notification
-        const existingNotification = document.querySelector(".notification");
-        if (existingNotification) existingNotification.remove();
-
-        const notification = document.createElement("div");
-        notification.className = `notification ${
-          type === "error" ? "error" : type === "warning" ? "warning" : ""
-        }`;
-        notification.innerHTML = `
-        <i class="bi bi-${
-          type === "error"
-            ? "exclamation-circle"
-            : type === "warning"
-            ? "exclamation-triangle"
-            : "check-circle"
-        }"></i>
-        ${message}
-      `;
-        document.body.appendChild(notification);
-
-        // Auto remove after 3 seconds
-        setTimeout(() => {
-          notification.style.opacity = "0";
-          notification.style.transform = "translateX(100%)";
-          setTimeout(() => notification.remove(), 300);
-        }, 4000);
       }
 
       // Format text with basic markdown
@@ -1871,8 +1261,23 @@
 
         return formatted;
       }
+      
+      // Get comment path for deep nesting
+      function getCommentPath(comments, commentId) {
+        if (!commentId) return [];
+        
+        const comment = comments.find(c => c.id === commentId);
+        if (!comment) return [];
+        
+        if (!comment.parentId) {
+          return [comment.author];
+        } else {
+          const parentPath = getCommentPath(comments, comment.parentId);
+          return [...parentPath, comment.author];
+        }
+      }
 
-      // --- Backend-ready API simulation ---
+      // --- Backend API simulation ---
 
       // Get topic info for breadcrumbs
       async function getTopic(topicId) {
@@ -1898,7 +1303,7 @@
         return posts.find((p) => p.id == postId);
       }
 
-      // Get all comments (threaded, flat array)
+      // Get all comments
       async function getComments(topicId, postId, sort = "newest") {
         await delay(50);
         let comments = JSON.parse(
@@ -1914,7 +1319,6 @@
             comments.sort((a, b) => new Date(a.created) - new Date(b.created));
             break;
           case "popular":
-            // Sort by likes count if present, otherwise default to newest
             comments.sort((a, b) => (b.likes || 0) - (a.likes || 0));
             break;
         }
@@ -1939,7 +1343,7 @@
           created: now.toISOString(),
           lastEdited: null,
           parentId: parentId || null,
-                    userId: CURRENT_USER_ID,
+          userId: CURRENT_USER_ID,
           likes: 0,
           liked_by: [],
         };
@@ -1960,18 +1364,15 @@
         return comment;
       }
 
-      // Edit a comment
-      async function editComment(topicId, postId, commentId, newContent) {
+      // Update comment content - renamed to avoid naming conflicts
+      async function updateCommentContent(topicId, postId, commentId, newContent) {
         await delay(100);
         const commentsKey = "comments_" + topicId + "_" + postId;
         const comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
         const comment = comments.find((c) => c.id === commentId);
 
         if (!comment) return null;
-        if (comment.userId !== CURRENT_USER_ID) {
-          showNotification("You can only edit your own comments", "error");
-          return null;
-        }
+        if (comment.userId !== CURRENT_USER_ID) return null;
 
         comment.content = newContent;
         comment.lastEdited = new Date().toISOString();
@@ -1979,28 +1380,23 @@
         return comment;
       }
 
-      // Delete a comment
-      async function deleteComment(topicId, postId, commentId) {
+      // Remove comment - renamed to avoid naming conflicts
+      async function removeComment(topicId, postId, commentId) {
         await delay(100);
         const commentsKey = "comments_" + topicId + "_" + postId;
         let comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
         const comment = comments.find((c) => c.id === commentId);
 
         if (!comment) return false;
-        if (comment.userId !== CURRENT_USER_ID) {
-          showNotification("You can only delete your own comments", "error");
-          return false;
-        }
+        if (comment.userId !== CURRENT_USER_ID) return false;
 
         // Check if comment has replies
         const hasReplies = comments.some((c) => c.parentId === commentId);
 
         if (hasReplies) {
-          // Instead of deleting, mark it as deleted but keep the structure
           comment.content = "[Comment deleted]";
           comment.isDeleted = true;
         } else {
-          // If no replies, remove completely
           comments = comments.filter((c) => c.id !== commentId);
 
           // Update comment count in the post
@@ -2036,13 +1432,11 @@
         const alreadyLiked = posts[postIndex].likedBy.includes(CURRENT_USER_ID);
 
         if (alreadyLiked) {
-          // Unlike
           posts[postIndex].likes--;
           posts[postIndex].likedBy = posts[postIndex].likedBy.filter(
             (id) => id !== CURRENT_USER_ID
           );
         } else {
-          // Like
           posts[postIndex].likes++;
           posts[postIndex].likedBy.push(CURRENT_USER_ID);
         }
@@ -2054,56 +1448,10 @@
         };
       }
 
-      // Bookmark a post
-      async function bookmarkPost(topicId, postId) {
-        await delay(50);
-        // Get user bookmarks
-        const bookmarksKey = "user_bookmarks_" + CURRENT_USER_ID;
-        const bookmarks = JSON.parse(
-          localStorage.getItem(bookmarksKey) || "[]"
-        );
-
-        const bookmarkIndex = bookmarks.findIndex(
-          (b) => b.topicId == topicId && b.postId == postId
-        );
-        let isBookmarked;
-
-        if (bookmarkIndex === -1) {
-          // Add bookmark
-          bookmarks.push({
-            topicId,
-            postId,
-            addedAt: new Date().toISOString(),
-          });
-          isBookmarked = true;
-        } else {
-          // Remove bookmark
-          bookmarks.splice(bookmarkIndex, 1);
-          isBookmarked = false;
-        }
-
-        localStorage.setItem(bookmarksKey, JSON.stringify(bookmarks));
-        return isBookmarked;
-      }
-
-      // Check if post is bookmarked
-      async function isPostBookmarked(topicId, postId) {
-        await delay(30);
-        const bookmarksKey = "user_bookmarks_" + CURRENT_USER_ID;
-        const bookmarks = JSON.parse(
-          localStorage.getItem(bookmarksKey) || "[]"
-        );
-
-        return bookmarks.some(
-          (b) => b.topicId == topicId && b.postId == postId
-        );
-      }
-
       // Render post
       async function renderPost(topicId, postId) {
         const post = await getPost(topicId, postId);
         if (!post) {
-          showNotification("Post not found!", "error");
           window.location.href = "topic.html?id=" + topicId;
           return;
         }
@@ -2136,14 +1484,6 @@
           document.getElementById("likeBtn").classList.add("active");
         }
 
-        // Check if post is bookmarked
-        const isBookmarked = await isPostBookmarked(topicId, postId);
-        const bookmarkBtn = document.getElementById("bookmarkBtn");
-        if (isBookmarked) {
-          bookmarkBtn.classList.add("active");
-          document.getElementById("bookmarkText").textContent = "Saved";
-        }
-
         // Update breadcrumbs
         const topic = await getTopic(topicId);
         if (topic) {
@@ -2155,10 +1495,9 @@
         document.getElementById("postBreadcrumb").textContent = post.title;
       }
 
-      // Render comments recursively
-      function renderCommentTree(comments, parentId = null) {
+      // Render comments recursively - improved with better nesting indicators
+      function renderCommentTree(comments, parentId = null, level = 0) {
         let html = "";
-        // Use loose equality for comparing with null and proper string comparison
         const filteredComments = comments.filter((c) => {
           if (parentId === null) return c.parentId == null;
           return c.parentId == parentId;
@@ -2172,9 +1511,21 @@
           const isDeleted = comment.isDeleted;
           const relativeTime = formatRelativeTime(comment.created);
           const commentInitials = getInitials(comment.author);
+          
+          // For deeply nested comments (level > 2), show who they're replying to
+          let replyPathHtml = '';
+          if (level > 2 && comment.parentId) {
+            const parentComment = comments.find(c => c.id === comment.parentId);
+            if (parentComment) {
+              replyPathHtml = `<div class="reply-path">
+                <i class="bi bi-arrow-return-right"></i> 
+                Replying to <strong>@${parentComment.author}</strong>
+              </div>`;
+            }
+          }
 
           html += `
-          <div class="comment" data-comment-id="${comment.id}">
+          <div class="comment" data-comment-id="${comment.id}" data-nesting-level="${level}">
             <div class="comment-header">
               <div class="comment-author-info">
                 <div class="comment-avatar">${commentInitials}</div>
@@ -2190,40 +1541,10 @@
                   </div>
                 </div>
               </div>
-              
-              <div class="comment-options-dropdown">
-                <button class="comment-options-btn" onclick="toggleCommentOptions(event, '${
-                  comment.id
-                }')" aria-label="Comment options">
-                  <i class="bi bi-three-dots-vertical"></i>
-                </button>
-                <div class="comment-dropdown-menu" id="dropdown-${comment.id}">
-                  ${
-                    isOwnComment
-                      ? `
-                    <div class="comment-dropdown-item" onclick="showEditModal('${comment.id}')">
-                      <i class="bi bi-pencil"></i> Edit
-                    </div>
-                    <div class="comment-dropdown-item delete" onclick="confirmDeleteComment('${comment.id}')">
-                      <i class="bi bi-trash"></i> Delete
-                    </div>
-                  `
-                      : `
-                    <div class="comment-dropdown-item report" onclick="reportComment('${comment.id}')">
-                      <i class="bi bi-flag"></i> Report
-                    </div>
-                  `
-                  }
-                  <div class="comment-dropdown-item" onclick="copyCommentLink('${
-                    comment.id
-                  }')">
-                    <i class="bi bi-link-45deg"></i> Copy Link
-                  </div>
-                </div>
-              </div>
             </div>
             
             <div class="comment-body">
+              ${replyPathHtml}
               <div class="comment-content ${
                 isDeleted ? "comment-deleted" : ""
               }">
@@ -2238,11 +1559,24 @@
                 !isDeleted
                   ? `
                 <div class="comment-actions">
-                  <button class="reply-btn" onclick="showReplyModal('${
+                  <button class="reply-btn" onclick="showInlineReplyForm('${
                     comment.id
                   }', '${comment.author.replace(/'/g, "&#39;")}')">
                     <i class="bi bi-reply"></i> Reply
                   </button>
+                  
+                  ${
+                    isOwnComment
+                      ? `
+                    <button class="edit-btn" onclick="editComment('${comment.id}')">
+                      <i class="bi bi-pencil"></i> Edit
+                    </button>
+                    <button class="delete-btn" onclick="deleteComment('${comment.id}')">
+                      <i class="bi bi-trash"></i> Delete
+                    </button>
+                  `
+                      : ""
+                  }
                   
                   ${
                     hasReplies
@@ -2255,6 +1589,22 @@
                       : ""
                   }
                 </div>
+
+                <!-- Inline reply form -->
+                <div class="reply-form" id="replyForm-${comment.id}">
+                  <div class="comment-avatar">${CURRENT_USER_INITIALS}</div>
+                  <div style="flex: 1">
+                    <div class="replying-to">
+                      <i class="bi bi-reply"></i> 
+                      Replying to @${comment.author}
+                    </div>
+                    <textarea class="reply-input" id="replyInput-${comment.id}" placeholder="Write your reply to @${comment.author}..."></textarea>
+                    <div class="reply-btn-group">
+                      <button class="reply-cancel" onclick="cancelReply('${comment.id}')">Cancel</button>
+                      <button class="reply-submit" onclick="submitReply('${comment.id}')">Post Reply</button>
+                    </div>
+                  </div>
+                </div>
               `
                   : ""
               }
@@ -2263,7 +1613,7 @@
                 hasReplies
                   ? `<div class="comment-replies" id="replies-${
                       comment.id
-                    }">${renderCommentTree(comments, comment.id)}</div>`
+                    }">${renderCommentTree(comments, comment.id, level + 1)}</div>`
                   : ""
               }
             </div>
@@ -2274,36 +1624,7 @@
         return html;
       }
 
-      // Toggle comment dropdown menu
-      window.toggleCommentOptions = function (event, commentId) {
-        event.stopPropagation();
-        const dropdown = document.getElementById(`dropdown-${commentId}`);
-
-        // Close all other dropdowns first
-        document
-          .querySelectorAll(".comment-dropdown-menu.show")
-          .forEach((menu) => {
-            if (menu.id !== `dropdown-${commentId}`) {
-              menu.classList.remove("show");
-            }
-          });
-
-        // Toggle current dropdown
-        dropdown.classList.toggle("show");
-      };
-
-      // Close dropdowns when clicking elsewhere
-      document.addEventListener("click", function (event) {
-        if (!event.target.closest(".comment-options-btn")) {
-          document
-            .querySelectorAll(".comment-dropdown-menu.show")
-            .forEach((menu) => {
-              menu.classList.remove("show");
-            });
-        }
-      });
-
-      // Toggle comment replies
+      // Toggle comment replies - updated to track state
       window.toggleReplies = function (commentId) {
         const repliesContainer = document.getElementById(
           `replies-${commentId}`
@@ -2320,54 +1641,103 @@
           toggleIcon.classList.remove("bi-chevron-up");
           toggleIcon.classList.add("bi-chevron-down");
           toggleText.textContent = "Show replies";
+          expandedThreads.delete(commentId); // Remove from expanded threads
         } else {
           toggleIcon.classList.remove("bi-chevron-down");
           toggleIcon.classList.add("bi-chevron-up");
           toggleText.textContent = "Hide replies";
+          expandedThreads.add(commentId); // Add to expanded threads
         }
       };
 
-      // Copy comment link
-      window.copyCommentLink = function (commentId) {
-        const { topicId, postId } = getIdsFromUrl();
-        const commentLink = `${window.location.origin}${window.location.pathname}?topic=${topicId}&post=${postId}&comment=${commentId}`;
+      // Show inline reply form
+      window.showInlineReplyForm = function(commentId, author) {
+        // Hide any active reply form first
+        if (activeReplyForm) {
+          activeReplyForm.classList.remove('active');
+        }
+        
+        // Show the reply form for this comment
+        const replyForm = document.getElementById(`replyForm-${commentId}`);
+        replyForm.classList.add('active');
+        
+        // Focus the textarea
+        const replyInput = document.getElementById(`replyInput-${commentId}`);
+        replyInput.focus();
+        
+        // Update active form tracker
+        activeReplyForm = replyForm;
+      };
 
-        navigator.clipboard
-          .writeText(commentLink)
-          .then(() => {
-            showNotification("Comment link copied to clipboard!");
-          })
-          .catch(() => {
-            showNotification("Failed to copy link. Please try again.", "error");
+      // Cancel reply
+      window.cancelReply = function(commentId) {
+        const replyForm = document.getElementById(`replyForm-${commentId}`);
+        replyForm.classList.remove('active');
+        document.getElementById(`replyInput-${commentId}`).value = '';
+        activeReplyForm = null;
+      };
+
+      // Submit reply - fixed version
+      window.submitReply = async function(commentId) {
+        const replyInput = document.getElementById(`replyInput-${commentId}`);
+        const content = replyInput.value.trim();
+        
+        if (content) {
+          // Save scroll position before any changes
+          lastScrollPosition = window.scrollY;
+          
+          // Remember which threads are expanded
+          document.querySelectorAll('.comment-replies').forEach(thread => {
+            if (thread.style.display !== 'none') {
+              const parentComment = thread.closest('.comment');
+              if (parentComment) {
+                const parentId = parentComment.dataset.commentId;
+                expandedThreads.add(parentId);
+              }
+            }
           });
+          
+          // Always ensure the current thread will be expanded
+          expandedThreads.add(commentId);
+          
+          const { topicId, postId } = getIdsFromUrl();
+          
+          await createComment(topicId, postId, {
+            content: content,
+            author: CURRENT_USER_NAME,
+            parentId: commentId
+          });
+
+          // Clear the reply form
+          replyInput.value = '';
+          document.getElementById(`replyForm-${commentId}`).classList.remove('active');
+          activeReplyForm = null;
+          
+          // Refresh comments
+          await renderComments(topicId, postId);
+          
+          // After rendering, restore scroll position
+          window.scrollTo({
+            top: lastScrollPosition,
+            behavior: 'auto'
+          });
+        }
       };
 
-      // Report comment
-      window.reportComment = function (commentId) {
-        showNotification(
-          "Report submitted. Thank you for helping keep our community safe!"
-        );
-      };
-
-      // This is a global so reply buttons can access
-      window.showReplyModal = function (parentId, author) {
-        document.getElementById("modalBackdrop").classList.add("active");
-        document.getElementById(
-          "modalTitle"
-        ).textContent = `Reply to @${author}`;
-        document.getElementById(
-          "modalSubtitle"
-        ).textContent = `Your reply will be added to the discussion thread.`;
-        document.getElementById("commentParentId").value = parentId;
-        document.getElementById("commentId").value = "";
-        document.getElementById("isEdit").value = "false";
-        document.getElementById("commentContent").value = `@${author} `;
-        document.getElementById("saveCommentBtn").textContent = "Post Reply";
-        document.getElementById("commentContent").focus();
-      };
-
-      // Show edit modal
-      window.showEditModal = function (commentId) {
+      // Edit a comment - fixed version
+      window.editComment = async function (commentId) {
+        // Save scroll position and expanded threads
+        lastScrollPosition = window.scrollY;
+        document.querySelectorAll('.comment-replies').forEach(thread => {
+          if (thread.style.display !== 'none') {
+            const parentComment = thread.closest('.comment');
+            if (parentComment) {
+              const parentId = parentComment.dataset.commentId;
+              expandedThreads.add(parentId);
+            }
+          }
+        });
+        
         const { topicId, postId } = getIdsFromUrl();
         const commentsKey = "comments_" + topicId + "_" + postId;
         const comments = JSON.parse(localStorage.getItem(commentsKey) || "[]");
@@ -2375,113 +1745,53 @@
 
         if (!comment) return;
 
-        document.getElementById("modalBackdrop").classList.add("active");
-        document.getElementById("modalTitle").textContent = "Edit Comment";
-        document.getElementById("modalSubtitle").textContent =
-          "Make changes to your comment.";
-        document.getElementById("commentId").value = commentId;
-        document.getElementById("commentParentId").value =
-          comment.parentId || "";
-        document.getElementById("isEdit").value = "true";
-        document.getElementById("commentContent").value = comment.content;
-        document.getElementById("saveCommentBtn").textContent = "Save Changes";
-        document.getElementById("commentContent").focus();
+        const newContent = prompt("Edit your comment:", comment.content);
+        if (newContent !== null && newContent.trim() !== "") {
+          // Call updateCommentContent instead of editComment to avoid recursion
+          await updateCommentContent(topicId, postId, commentId, newContent.trim());
+          
+          // Refresh comments and restore state
+          await renderComments(topicId, postId);
+          
+          // Restore scroll position
+          window.scrollTo({
+            top: lastScrollPosition,
+            behavior: 'auto'
+          });
+        }
       };
 
-      // Text formatting functions for the editor
-      document.querySelectorAll(".format-btn").forEach((button) => {
-        button.addEventListener("click", function () {
-          const format = this.getAttribute("data-format");
-          this.classList.add("active");
-          setTimeout(() => this.classList.remove("active"), 200);
-          const textarea = document.getElementById("commentContent");
-          const start = textarea.selectionStart;
-          const end = textarea.selectionEnd;
-          const selectedText = textarea.value.substring(start, end);
-          let formattedText = "";
-
-          switch (format) {
-            case "bold":
-              formattedText = `**${selectedText}**`;
-              break;
-            case "italic":
-              formattedText = `_${selectedText}_`;
-              break;
-            case "code":
-              formattedText = `\`${selectedText}\``;
-              break;
-            case "link":
-              if (selectedText) {
-                const url = prompt("Enter URL:", "https://");
-                formattedText = url
-                  ? `[${selectedText}](${url})`
-                  : selectedText;
-              } else {
-                const url = prompt("Enter URL:", "https://");
-                const text = prompt("Enter link text:");
-                formattedText = url && text ? `[${text}](${url})` : "";
-              }
-              break;
-            case "bullet":
-              formattedText = selectedText
-                .split("\n")
-                .map((line) => `- ${line}`)
-                .join("\n");
-              break;
-            case "number":
-              formattedText = selectedText
-                .split("\n")
-                .map((line, i) => `${i + 1}. ${line}`)
-                .join("\n");
-              break;
-          }
-
-          if (formattedText) {
-            textarea.focus();
-            if (format !== "link" || selectedText) {
-              textarea.setRangeText(formattedText, start, end, "select");
-            } else {
-              const cursorPos = textarea.selectionStart;
-              textarea.setRangeText(formattedText, cursorPos, cursorPos, "end");
+      // Delete a comment - fixed version
+      window.deleteComment = async function (commentId) {
+        // Save scroll position and expanded threads
+        lastScrollPosition = window.scrollY;
+        document.querySelectorAll('.comment-replies').forEach(thread => {
+          if (thread.style.display !== 'none') {
+            const parentComment = thread.closest('.comment');
+            if (parentComment) {
+              const parentId = parentComment.dataset.commentId;
+              expandedThreads.add(parentId);
             }
           }
         });
-      });
-
-      // Show delete confirmation
-      window.confirmDeleteComment = function (commentId) {
-        document.getElementById("deleteConfirmationDialog").style.display =
-          "block";
-
-        // Set up button click handlers
-        document.getElementById("cancelDeleteBtn").onclick = function () {
-          document.getElementById("deleteConfirmationDialog").style.display =
-            "none";
-        };
-
-        document.getElementById("confirmDeleteBtn").onclick =
-          async function () {
-            const { topicId, postId } = getIdsFromUrl();
-            const deleted = await deleteComment(topicId, postId, commentId);
-
-            if (deleted) {
-              showNotification("Comment deleted successfully");
-              await renderComments(topicId, postId);
-            }
-
-            document.getElementById("deleteConfirmationDialog").style.display =
-              "none";
-          };
+        
+        const { topicId, postId } = getIdsFromUrl();
+        if (confirm("Are you sure you want to delete this comment?")) {
+          // Call removeComment instead of deleteComment to avoid recursion
+          await removeComment(topicId, postId, commentId);
+          
+          // Refresh comments and restore state
+          await renderComments(topicId, postId);
+          
+          // Restore scroll position
+          window.scrollTo({
+            top: lastScrollPosition,
+            behavior: 'auto'
+          });
+        }
       };
 
       // Quick comment functionality
-      document
-        .getElementById("quickCommentInput")
-        .addEventListener("focus", function () {
-          document.getElementById("createCommentBtn").style.display =
-            "inline-flex";
-        });
-
       document
         .getElementById("quickCommentInput")
         .addEventListener("keydown", function (e) {
@@ -2491,94 +1801,46 @@
           }
         });
 
-      // Main add comment button
+      // Add comment button
       document.getElementById("createCommentBtn").onclick = async function () {
         const quickComment = document
           .getElementById("quickCommentInput")
           .value.trim();
 
         if (quickComment) {
-          // Post the quick comment
+          // Save thread state
+          lastScrollPosition = window.scrollY;
+          document.querySelectorAll('.comment-replies').forEach(thread => {
+            if (thread.style.display !== 'none') {
+              const parentComment = thread.closest('.comment');
+              if (parentComment) {
+                const parentId = parentComment.dataset.commentId;
+                expandedThreads.add(parentId);
+              }
+            }
+          });
+          
           const { topicId, postId } = getIdsFromUrl();
+          
           await createComment(topicId, postId, {
             content: quickComment,
-            author: CURRENT_USER_NAME,
+            author: CURRENT_USER_NAME
           });
 
           document.getElementById("quickCommentInput").value = "";
-          showNotification("Comment posted successfully");
+          
+          // Refresh with state preservation
           await renderComments(topicId, postId);
-        } else {
-          // Open full comment modal if quick comment is empty
-          document.getElementById("modalBackdrop").classList.add("active");
-          document.getElementById("modalTitle").textContent = "Add Comment";
-          document.getElementById("modalSubtitle").textContent =
-            "Share your thoughts on this post.";
-          document.getElementById("commentParentId").value = "";
-          document.getElementById("commentId").value = "";
-          document.getElementById("isEdit").value = "false";
-          document.getElementById("commentContent").value = "";
-          document.getElementById("saveCommentBtn").textContent =
-            "Post Comment";
-          document.getElementById("commentContent").focus();
-        }
-      };
-
-      // Modal logic
-      const modalBackdrop = document.getElementById("modalBackdrop");
-      const closeModalBtn = document.getElementById("closeModalBtn");
-      const cancelModalBtn = document.getElementById("cancelModalBtn");
-      const commentForm = document.getElementById("commentForm");
-
-      closeModalBtn.onclick = cancelModalBtn.onclick = () => {
-        modalBackdrop.classList.remove("active");
-        commentForm.reset();
-      };
-
-      modalBackdrop.onclick = (e) => {
-        if (e.target === modalBackdrop) {
-          modalBackdrop.classList.remove("active");
-          commentForm.reset();
-        }
-      };
-
-      // Comment form submit (for both Create and Edit)
-      commentForm.onsubmit = async function (e) {
-        e.preventDefault();
-        const { topicId, postId } = getIdsFromUrl();
-        const commentContent = document
-          .getElementById("commentContent")
-          .value.trim();
-        const parentId =
-          document.getElementById("commentParentId").value || null;
-        const isEdit = document.getElementById("isEdit").value === "true";
-        const commentId = document.getElementById("commentId").value;
-
-        if (!commentContent) {
-          showNotification("Comment content required!", "warning");
-          return;
-        }
-
-        if (isEdit) {
-          // Edit existing comment
-          await editComment(topicId, postId, commentId, commentContent);
-          showNotification("Comment updated successfully");
-        } else {
-          // Create new comment
-          await createComment(topicId, postId, {
-            content: commentContent,
-            author: CURRENT_USER_NAME,
-            parentId,
+          
+          // Scroll to bottom to see new comment
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
           });
-          showNotification("Comment posted successfully");
         }
-
-        modalBackdrop.classList.remove("active");
-        commentForm.reset();
-        await renderComments(topicId, postId);
       };
 
-      // Render all comments
+      // Render all comments - updated to maintain thread state
       async function renderComments(topicId, postId) {
         const commentsSort = document.getElementById(
           "commentSortDropdown"
@@ -2593,20 +1855,41 @@
         <div class="empty-icon"><i class="bi bi-chat-square"></i></div>
         <div class="empty-text">No comments yet. Be the first to comment!</div>
       </div>
-    `;
+      `;
           commentsCount.textContent = "";
         } else {
           commentsList.innerHTML = renderCommentTree(comments);
           commentsCount.textContent = `(${comments.length})`;
 
-          // Initialize all reply threads to be collapsed if they have many replies
-          const replyThreads = document.querySelectorAll(".comment-replies");
-          replyThreads.forEach((thread) => {
-            const replies = thread.querySelectorAll(".comment");
-            if (replies.length > 2) {
-              thread.style.display = "none";
+          // Set thread visibility based on previously expanded state
+          expandedThreads.forEach(threadId => {
+            const repliesContainer = document.getElementById(`replies-${threadId}`);
+            if (repliesContainer) {
+              repliesContainer.style.display = 'block';
+              
+              // Update the button UI as well
+              const commentElement = repliesContainer.closest('.comment');
+              if (commentElement) {
+                const toggleBtn = commentElement.querySelector('.collapse-btn');
+                                if (toggleBtn) {
+                  const toggleIcon = toggleBtn.querySelector('.toggle-icon');
+                  const toggleText = toggleBtn.querySelector('.toggle-text');
+                  
+                  toggleIcon.classList.remove('bi-chevron-down');
+                  toggleIcon.classList.add('bi-chevron-up');
+                  toggleText.textContent = 'Hide replies';
+                }
+              }
             }
           });
+          
+          // If it's the first load, collapse all threads by default
+          if (expandedThreads.size === 0) {
+            const replyThreads = document.querySelectorAll(".comment-replies");
+            replyThreads.forEach((thread) => {
+              thread.style.display = "none";
+            });
+          }
         }
       }
 
@@ -2614,8 +1897,26 @@
       document
         .getElementById("commentSortDropdown")
         .addEventListener("change", async function () {
+          // Save state before sorting
+          lastScrollPosition = window.scrollY;
+          document.querySelectorAll('.comment-replies').forEach(thread => {
+            if (thread.style.display !== 'none') {
+              const parentComment = thread.closest('.comment');
+              if (parentComment) {
+                const parentId = parentComment.dataset.commentId;
+                expandedThreads.add(parentId);
+              }
+            }
+          });
+          
           const { topicId, postId } = getIdsFromUrl();
           await renderComments(topicId, postId);
+          
+          // Restore scroll position after sorting
+          window.scrollTo({
+            top: lastScrollPosition,
+            behavior: 'auto'
+          });
         });
 
       // Handle likes
@@ -2635,188 +1936,33 @@
           }
         });
 
-      // Handle bookmarks
-      document
-        .getElementById("bookmarkBtn")
-        .addEventListener("click", async function () {
-          const { topicId, postId } = getIdsFromUrl();
-          const isBookmarked = await bookmarkPost(topicId, postId);
-
-          if (isBookmarked) {
-            this.classList.add("active");
-            document.getElementById("bookmarkText").textContent = "Saved";
-            showNotification("Post saved to bookmarks");
-          } else {
-            this.classList.remove("active");
-            document.getElementById("bookmarkText").textContent = "Save";
-            showNotification("Post removed from bookmarks");
-          }
-        });
-
-      // Share functionality
-      const shareModalBackdrop = document.getElementById("shareModalBackdrop");
-      const closeShareModalBtn = document.getElementById("closeShareModalBtn");
-      const copyLinkBtn = document.getElementById("copyLinkBtn");
-
-      document
-        .getElementById("shareBtn")
-        .addEventListener("click", function () {
-          // Set the share link
-          const currentUrl = window.location.href;
-          document.getElementById("shareLinkInput").value = currentUrl;
-
-          // Show the modal
-          shareModalBackdrop.classList.add("active");
-        });
-
-      closeShareModalBtn.onclick = () => {
-        shareModalBackdrop.classList.remove("active");
-      };
-
-      shareModalBackdrop.onclick = (e) => {
-        if (e.target === shareModalBackdrop) {
-          shareModalBackdrop.classList.remove("active");
-        }
-      };
-
-      // Copy link functionality
-      copyLinkBtn.addEventListener("click", function () {
-        const linkInput = document.getElementById("shareLinkInput");
-        linkInput.select();
-        document.execCommand("copy");
-
-        this.textContent = "Copied!";
-        setTimeout(() => {
-          this.textContent = "Copy Link";
-        }, 2000);
-      });
-
-      // Social share buttons
-      document
-        .getElementById("shareTwitter")
-        .addEventListener("click", function () {
-          const url = encodeURIComponent(window.location.href);
-          const title = encodeURIComponent(
-            document.getElementById("postTitle").textContent
-          );
-          window.open(
-            `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
-            "_blank"
-          );
-        });
-
-      document
-        .getElementById("shareFacebook")
-        .addEventListener("click", function () {
-          const url = encodeURIComponent(window.location.href);
-          window.open(
-            `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-            "_blank"
-          );
-        });
-
-      document
-        .getElementById("shareWhatsapp")
-        .addEventListener("click", function () {
-          const url = encodeURIComponent(window.location.href);
-          const title = encodeURIComponent(
-            document.getElementById("postTitle").textContent
-          );
-          window.open(`https://wa.me/?text=${title} ${url}`, "_blank");
-        });
-
-      document
-        .getElementById("shareTelegram")
-        .addEventListener("click", function () {
-          const url = encodeURIComponent(window.location.href);
-          const title = encodeURIComponent(
-            document.getElementById("postTitle").textContent
-          );
-          window.open(
-            `https://t.me/share/url?url=${url}&text=${title}`,
-            "_blank"
-          );
-        });
-
-      document
-        .getElementById("shareEmail")
-        .addEventListener("click", function () {
-          const url = window.location.href;
-          const title = document.getElementById("postTitle").textContent;
-          window.location.href = `mailto:?subject=${title}&body=Check out this post: ${url}`;
-        });
-
-      document
-        .getElementById("copyLink")
-        .addEventListener("click", function () {
-          copyLinkBtn.click();
-        });
-
       // Back to topic link
       document.getElementById("backToTopic").onclick = async function () {
         const { topicId } = getIdsFromUrl();
         window.location.href = "topic.html?id=" + topicId;
       };
 
-      // Helper function - for debugging
-      window.checkComments = function () {
-        const { topicId, postId } = getIdsFromUrl();
-        const comments = JSON.parse(
-          localStorage.getItem("comments_" + topicId + "_" + postId) || "[]"
-        );
-        console.table(comments);
-      };
-
       // Initial page load
       (async function () {
         // Initialize theme system
         initializeTheme();
-      
+
         const { topicId, postId } = getIdsFromUrl();
         if (!topicId || !postId) {
-          showNotification("Invalid URL!", "error");
           window.location.href = "discussion.html";
           return;
         }
 
-        // Set user information in the sidebar and comment form
-        document.getElementById("sidebarUsername").textContent =
-          CURRENT_USER_NAME;
-        document.getElementById("sidebarUserAvatar").textContent =
-          CURRENT_USER_INITIALS;
-        document.getElementById("currentUserAvatar").textContent =
-          CURRENT_USER_INITIALS;
+        // Set user information
+        document.getElementById("sidebarUsername").textContent = CURRENT_USER_NAME;
+        document.getElementById("sidebarUserAvatar").textContent = CURRENT_USER_INITIALS;
+        document.getElementById("currentUserAvatar").textContent = CURRENT_USER_INITIALS;
 
         // Render post content
         await renderPost(topicId, postId);
 
         // Render comments
         await renderComments(topicId, postId);
-
-        // Check if there's a comment ID in the URL to highlight
-        const urlParams = new URLSearchParams(window.location.search);
-        const highlightCommentId = urlParams.get("comment");
-
-        if (highlightCommentId) {
-          setTimeout(() => {
-            const commentElement = document.querySelector(
-              `.comment[data-comment-id="${highlightCommentId}"]`
-            );
-            if (commentElement) {
-              commentElement.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-              });
-              commentElement.style.backgroundColor = "#e8f5e9";
-              setTimeout(() => {
-                commentElement.style.backgroundColor = "";
-                commentElement.style.transition = "background-color 1s ease";
-              }, 100);
-            }
-          }, 500);
-        }
-        
-        console.log(`Post view loaded for ${CURRENT_USER_NAME} at ${CURRENT_SESSION.utcTime}`);
       })();
     </script>
   </body>

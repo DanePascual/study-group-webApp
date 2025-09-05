@@ -234,30 +234,13 @@
       }
 
       .sidebar-item {
-        display: block;
+        display: flex;
+        align-items: center;
         color: white;
         text-decoration: none;
         padding: 15px 20px;
-        transition: var(--transition);
+        transition: all 0.3s ease;
         border-left: 3px solid transparent;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .sidebar-item::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 0;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        transition: width 0.3s ease;
-      }
-
-      .sidebar-item:hover::before,
-      .sidebar-item.active::before {
-        width: 100%;
       }
 
       .sidebar-item:hover,
@@ -265,19 +248,11 @@
         background: rgba(255, 255, 255, 0.1);
         border-left-color: white;
         color: white;
-        transform: translateX(5px);
       }
 
       .sidebar-item i {
         width: 20px;
         margin-right: 10px;
-        position: relative;
-        z-index: 2;
-      }
-
-      .sidebar-item span {
-        position: relative;
-        z-index: 2;
       }
 
       .sidebar-footer {
@@ -889,27 +864,27 @@
       <nav class="sidebar-menu" role="navigation">
         <a href="dashboard.html" class="sidebar-item">
           <i class="bi bi-house"></i>
-          <span>Dashboard</span>
+          Dashboard
         </a>
         <a href="profile.html" class="sidebar-item">
           <i class="bi bi-person"></i>
-          <span>Profile</span>
+          Profile
         </a>
         <a href="study-rooms.html" class="sidebar-item">
           <i class="bi bi-door-open"></i>
-          <span>Study Rooms</span>
+          Study Rooms
         </a>
         <a href="resources.html" class="sidebar-item">
           <i class="bi bi-folder"></i>
-          <span>Resources</span>
+          Resources
         </a>
         <a href="discussion.html" class="sidebar-item">
           <i class="bi bi-chat-dots"></i>
-          <span>Discussion Forum</span>
+          Discussion Forum
         </a>
         <a href="report.html" class="sidebar-item active" aria-current="page">
           <i class="bi bi-flag"></i>
-          <span>Report</span>
+          Report
         </a>
       </nav>
 
@@ -1255,13 +1230,12 @@
         localStorage.setItem('sidebarOpen', sidebar.classList.contains('open'));
       });
 
-      // Load saved sidebar state
+      // Load saved sidebar state - set to open by default
       document.addEventListener('DOMContentLoaded', () => {
-        const sidebarOpen = localStorage.getItem('sidebarOpen') === 'true';
-        if (sidebarOpen && window.innerWidth > 768) {
-          sidebar.classList.add('open');
-          mainContent.classList.add('shifted');
-        }
+        // Always open sidebar by default
+        sidebar.classList.add('open');
+        mainContent.classList.add('shifted');
+        localStorage.setItem('sidebarOpen', 'true');
       });
 
       // Close sidebar when clicking outside on mobile
@@ -1303,13 +1277,17 @@
         }
       });
 
-      // File upload functionality
-      uploadBtn.addEventListener('click', () => {
+      // File upload functionality - FIX FOR DOUBLE CLICK ISSUE
+      uploadBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event from bubbling up to uploadArea
         fileInput.click();
       });
 
-      uploadArea.addEventListener('click', () => {
-        fileInput.click();
+      uploadArea.addEventListener('click', (e) => {
+        // Only trigger fileInput.click() if the click wasn't on the upload button
+        if (!e.target.closest('.upload-btn')) {
+          fileInput.click();
+        }
       });
 
       uploadArea.addEventListener('dragover', (e) => {
@@ -1521,64 +1499,65 @@
 
       // Navigation
       function goToProfile() {
-        showNotification(`👤 Opening ${CURRENT_SESSION.user}'s profile...`, 'info');
-        setTimeout(() => {
-          window.location.href = 'profile.html';
-        }, 1000);
+        window.location.href = 'profile.html';
       }
 
       // Enhanced notification system
       function showNotification(message, type = 'info') {
-        const existingNotifications = document.querySelectorAll('.notification');
-        existingNotifications.forEach(n => n.remove());
-        
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
-          color: white;
-          padding: 15px 20px;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          z-index: 10000;
-          animation: slideInRight 0.3s ease-out;
-          max-width: 350px;
-          font-size: 14px;
-          line-height: 1.4;
-        `;
-        
-        // Create animation styles if not exists
-        if (!document.querySelector('#notification-styles')) {
-          const style = document.createElement('style');
-          style.id = 'notification-styles';
-          style.textContent = `
-            @keyframes slideInRight {
-              from { transform: translateX(100%); opacity: 0; }
-              to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-              from { transform: translateX(0); opacity: 1; }
-              to { transform: translateX(100%); opacity: 0; }
-            }
+        // Only show notifications for form submissions and errors
+        // This skips the welcome notification
+        if (type === 'error' || type === 'success') {
+          const existingNotifications = document.querySelectorAll('.notification');
+          existingNotifications.forEach(n => n.remove());
+          
+          const notification = document.createElement('div');
+          notification.className = `notification notification-${type}`;
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3'};
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease-out;
+            max-width: 350px;
+            font-size: 14px;
+            line-height: 1.4;
           `;
-          document.head.appendChild(style);
-        }
-        
-        notification.textContent = message;
-        document.body.appendChild(notification);
-        
-        // Auto remove after 4 seconds
-        setTimeout(() => {
-          notification.style.animation = 'slideOutRight 0.3s ease-in';
+          
+          // Create animation styles if not exists
+          if (!document.querySelector('#notification-styles')) {
+            const style = document.createElement('style');
+            style.id = 'notification-styles';
+            style.textContent = `
+              @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+              }
+              @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+              }
+            `;
+            document.head.appendChild(style);
+          }
+          
+          notification.textContent = message;
+          document.body.appendChild(notification);
+          
+          // Auto remove after 4 seconds
           setTimeout(() => {
-            if (notification.parentNode) {
-              notification.remove();
-            }
-          }, 300);
-        }, 4000);
+            notification.style.animation = 'slideOutRight 0.3s ease-in';
+            setTimeout(() => {
+              if (notification.parentNode) {
+                notification.remove();
+              }
+            }, 300);
+          }, 4000);
+        }
       }
 
       // User session validation
@@ -1609,14 +1588,11 @@
         // Set default incident time
         setDefaultIncidentTime();
         
-        // Show welcome message for report page (without time display)
-        setTimeout(() => {
-          showNotification(
-            `Welcome to the Report page, ${CURRENT_SESSION.user}! You can now submit violation reports.`, 
-            'info'
-          );
-        }, 1000);
-
+        // Initialize sidebar to be open by default
+        sidebar.classList.add('open');
+        mainContent.classList.add('shifted');
+        localStorage.setItem('sidebarOpen', 'true');
+        
         // Log page initialization
         console.log(`🚩 Report page initialized for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.datetime} UTC`);
         console.log(`👤 User: ${CURRENT_SESSION.user} (${CURRENT_SESSION.userProgram})`);

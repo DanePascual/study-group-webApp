@@ -168,7 +168,7 @@
       }
       
       body.dark-mode .sidebar {
-        background: #2a2a2a;
+        background: linear-gradient(135deg, #2e5d31 0%, #4a7c4f 100%);
       }
 
       .sidebar.open {
@@ -211,9 +211,9 @@
       
       body.dark-mode .sidebar-item:hover,
       body.dark-mode .sidebar-item.active {
-        background: rgba(76, 175, 80, 0.2);
-        border-left-color: var(--primary-color);
-        color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.1);
+        border-left-color: white;
+        color: white;
       }
 
       .sidebar-item i {
@@ -293,6 +293,7 @@
       .nav-right {
         display: flex;
         align-items: center;
+        gap: 15px;
       }
 
       .menu-toggle {
@@ -320,63 +321,50 @@
         color: var(--text-dark);
       }
 
-      .search-container {
+      /* Search bar styles - Updated to match dashboard.html */
+      .search-bar {
         position: relative;
-        display: flex;
-        align-items: center;
       }
 
-      .search-bar-resources {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--primary-lighter);
+      .search-input {
+        width: 300px;
+        padding: 10px 40px 10px 15px;
+        border: 1px solid var(--border-color);
         border-radius: 25px;
-        padding: 7px 14px;
-        border: 1.5px solid #aed581;
-        width: 280px;
+        font-size: 14px;
         transition: var(--transition-normal);
-      }
-      
-      body.dark-mode .search-bar-resources {
-        background: #333;
-        border-color: #444;
+        background: var(--background-color);
+        color: var(--text-dark);
       }
 
-      .search-bar-resources:focus-within {
+      .search-input:focus {
+        outline: none;
         border-color: var(--primary-color);
         box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        width: 350px;
       }
 
-      .search-bar-resources input {
-        border: none;
-        background: transparent;
-        outline: none;
-        padding: 7px 3px;
-        font-size: 1rem;
-        width: 100%;
-        color: var(--text-dark);
-      }
-
-      .search-bar-resources input::placeholder {
+      .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
         color: var(--text-light);
-        opacity: 0.7;
       }
 
-      .clear-search {
-        cursor: pointer;
-        color: #999;
-        transition: var(--transition-normal);
-        font-size: 14px;
-        display: none;
-      }
-
-      .clear-search:hover {
+      body.dark-mode .search-input {
+        background: #333;
+        border-color: #444;
         color: var(--text-dark);
       }
 
-      .clear-search.visible {
-        display: block;
+      body.dark-mode .search-input::placeholder {
+        color: var(--text-light);
+      }
+
+      body.dark-mode .search-input:focus {
+        background: #3a3a3a;
+        border-color: var(--primary-color);
       }
 
       /* Resources content */
@@ -1253,7 +1241,120 @@
         opacity: 1;
       }
 
-      /* Responsive design */
+      /* Responsive Design - UPDATED FOR SEARCH BAR */
+      /* Large screens */
+      @media (min-width: 1200px) {
+        .search-input {
+          width: 300px;
+        }
+        .search-input:focus {
+          width: 350px;
+        }
+      }
+      
+      /* Medium screens */
+      @media (max-width: 1199px) and (min-width: 992px) {
+        .search-input {
+          width: 250px;
+        }
+        .search-input:focus {
+          width: 280px;
+        }
+      }
+      
+      /* Small screens */
+      @media (max-width: 991px) and (min-width: 768px) {
+        .search-input {
+          width: 200px;
+        }
+        .search-input:focus {
+          width: 220px;
+        }
+      }
+      
+      /* Extra small screens */
+      @media (max-width: 767px) {
+        .main-content.shifted {
+          margin-left: 0;
+        }
+        .search-input {
+          width: 150px;
+        }
+        .search-input:focus {
+          width: 170px;
+        }
+        .resources-content {
+          padding: 15px;
+        }
+        .top-nav {
+          padding: 12px 15px;
+        }
+        .page-title {
+          font-size: 20px;
+        }
+      }
+      
+      /* Very small screens */
+      @media (max-width: 480px) {
+        .search-input {
+          width: 120px;
+          padding: 8px 30px 8px 12px;
+          font-size: 13px;
+        }
+        .search-input:focus {
+          width: 140px;
+        }
+        .search-icon {
+          right: 10px;
+        }
+        .page-title {
+          font-size: 18px;
+        }
+        .top-nav {
+          padding: 12px 15px;
+        }
+        .nav-right {
+          gap: 8px;
+        }
+      }
+      
+      /* Extremely small screens */
+      @media (max-width: 360px) {
+        .search-input {
+          width: 100px;
+          padding: 6px 25px 6px 10px;
+          font-size: 12px;
+        }
+        .search-input:focus {
+          width: 110px;
+        }
+        .search-icon {
+          right: 8px;
+          font-size: 12px;
+        }
+        .page-title {
+          font-size: 16px;
+        }
+        .nav-left {
+          gap: 10px;
+        }
+        .menu-toggle {
+          padding: 5px;
+          font-size: 18px;
+        }
+        .top-nav {
+          padding: 10px 12px;
+        }
+        .nav-right {
+          gap: 5px;
+        }
+        .theme-toggle {
+          padding: 5px;
+          font-size: 16px;
+          margin-left: 5px;
+        }
+      }
+
       @media (max-width: 1200px) {
         .resources-content {
           padding: 25px 20px;
@@ -1274,24 +1375,9 @@
           width: 100%;
           justify-content: space-between;
         }
-
-        .search-bar-resources {
-          width: 100%;
-          max-width: none;
-        }
       }
 
       @media (max-width: 768px) {
-        .main-content.shifted {
-          margin-left: 0;
-        }
-        .resources-content {
-          padding: 15px;
-        }
-        .top-nav {
-          padding: 12px 15px;
-        }
-
         .resource-list-item {
           flex-wrap: wrap;
           padding: 15px;
@@ -1449,26 +1535,17 @@
           <button class="theme-toggle" id="themeToggle" title="Toggle theme">
             <i class="bi bi-moon"></i>
           </button>
-          <div class="search-container">
-            <form
-              class="search-bar-resources"
-              style="margin-bottom: 0"
-              onsubmit="event.preventDefault();"
-            >
-              <i class="bi bi-search"></i>
-              <input
-                type="text"
-                id="resourceSearch"
-                placeholder="Search for resources..."
-                autocomplete="off"
-                aria-label="Search resources"
-              />
-              <i
-                class="bi bi-x clear-search"
-                id="clearSearch"
-                aria-label="Clear search"
-              ></i>
-            </form>
+          <!-- UPDATED SEARCH BAR to match dashboard.html -->
+          <div class="search-bar">
+            <input
+              type="text"
+              class="search-input"
+              id="resourceSearch"
+              placeholder="Search resources..."
+              autocomplete="off"
+              aria-label="Search resources"
+            />
+            <i class="bi bi-search search-icon"></i>
           </div>
         </div>
       </div>
@@ -1749,9 +1826,9 @@
         role: "BSIT Student",
       };
       
-      // Current session information
+      // Current session information - UPDATED to match current time
       const CURRENT_SESSION = {
-        utcTime: "2025-07-11 17:47:54", // UTC time
+        utcTime: "2025-08-31 03:48:29", // UTC time from your input
         user: "DanePascual",
         timezone: "UTC"
       };
@@ -1850,6 +1927,7 @@
       const state = {
         currentView: "grid", // 'grid' or 'list'
         currentType: "all", // 'all', 'pdf', 'docx', 'ppt'
+        currentSort: "newest",
         currentSort: "newest", // sorting method
         currentSearch: "", // search term
         tableSort: "newest", // table sorting method
@@ -1883,7 +1961,7 @@
 
       // Format relative time for recent uploads
       function formatRelativeTime(dateString) {
-        const date = new Date(dateString);
+                const date = new Date(dateString);
         const now = new Date();
         const diffMs = now - date;
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -2762,6 +2840,9 @@
       menuToggle.addEventListener("click", function () {
         sidebar.classList.toggle("open");
         mainContent.classList.toggle("shifted");
+        
+        // Save sidebar state to localStorage
+        localStorage.setItem("sidebarOpen", sidebar.classList.contains("open"));
       });
 
       document.addEventListener("click", function (event) {
@@ -2779,29 +2860,14 @@
       function goToProfile() {
         showToast("Redirecting to profile page", "success");
         // In a real app, you would navigate to the profile page
+        window.location.href = "profile.html";
       }
 
-      // Search functionality
+      // Search functionality - UPDATED for new search bar
       const searchInput = document.getElementById("resourceSearch");
-      const clearSearch = document.getElementById("clearSearch");
 
-      searchInput.addEventListener("input", function () {
+      searchInput.addEventListener("input", function() {
         state.currentSearch = this.value.trim().toLowerCase();
-
-        // Show/hide clear button
-        if (state.currentSearch.length > 0) {
-          clearSearch.classList.add("visible");
-        } else {
-          clearSearch.classList.remove("visible");
-        }
-
-        applyFiltersAndSort();
-      });
-
-      clearSearch.addEventListener("click", function () {
-        searchInput.value = "";
-        state.currentSearch = "";
-        this.classList.remove("visible");
         applyFiltersAndSort();
       });
 
@@ -2839,6 +2905,15 @@
         // Initialize theme
         initializeTheme();
         
+        // Open sidebar by default - NEW FEATURE
+        const sidebarOpen = localStorage.getItem("sidebarOpen");
+        // If we're on a larger screen, open the sidebar by default
+        if (window.innerWidth > 768 && sidebarOpen !== "false") {
+          sidebar.classList.add("open");
+          mainContent.classList.add("shifted");
+          localStorage.setItem("sidebarOpen", "true");
+        }
+        
         loadUserData();
         applyFiltersAndSort();
         renderFilesTable();
@@ -2855,6 +2930,22 @@
           el.textContent = formattedDate;
         });
 
+        // Update search placeholder based on screen size
+        function updateSearchPlaceholder() {
+          const width = window.innerWidth;
+          if (width <= 360) {
+            searchInput.placeholder = "Search...";
+          } else if (width <= 480) {
+            searchInput.placeholder = "Search...";
+          } else {
+            searchInput.placeholder = "Search resources...";
+          }
+        }
+
+        // Call it once and add resize listener
+        updateSearchPlaceholder();
+        window.addEventListener('resize', updateSearchPlaceholder);
+
         // Show welcome notification if this is first visit
         if (!localStorage.getItem("resource_page_visited")) {
           setTimeout(() => {
@@ -2868,6 +2959,7 @@
         
         console.log(`Resources page loaded for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.utcTime} UTC`);
       });
-    </script>
+      </script>
   </body>
 </html>
+        

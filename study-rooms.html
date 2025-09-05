@@ -191,6 +191,31 @@
         background: #3a3a3a;
       }
 
+      /* FIXED: Make sure all text in dark mode is properly colored */
+      body.dark-mode .text-center.text-muted,
+      body.dark-mode .small,
+      body.dark-mode .stat-number,
+      body.dark-mode .stat-label,
+      body.dark-mode .stat-change,
+      body.dark-mode .stat-timestamp,
+      body.dark-mode p,
+      body.dark-mode h3,
+      body.dark-mode .empty-state h3,
+      body.dark-mode .empty-state p,
+      body.dark-mode .rec-subtext,
+      body.dark-mode .section-title,
+      body.dark-mode .page-title,
+      body.dark-mode .room-title,
+      body.dark-mode .room-description,
+      body.dark-mode .toast-title,
+      body.dark-mode .toast-message {
+        color: #e0e0e0;
+      }
+
+      body.dark-mode .page-title {
+        color: #e0e0e0;
+      }
+
       /* Sidebar Styles */
       .sidebar {
         position: fixed;
@@ -829,8 +854,39 @@
         margin-top: 20px;
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
+      /* Responsive Design - IMPROVED FOR SEARCH BAR */
+      /* Large screens */
+      @media (min-width: 1200px) {
+        .search-input {
+          width: 300px;
+        }
+        .search-input:focus {
+          width: 350px;
+        }
+      }
+      
+      /* Medium screens */
+      @media (max-width: 1199px) and (min-width: 992px) {
+        .search-input {
+          width: 250px;
+        }
+        .search-input:focus {
+          width: 280px;
+        }
+      }
+      
+      /* Small screens */
+      @media (max-width: 991px) and (min-width: 768px) {
+        .search-input {
+          width: 200px;
+        }
+        .search-input:focus {
+          width: 220px;
+        }
+      }
+      
+      /* Extra small screens */
+      @media (max-width: 767px) {
         .main-content.shifted {
           margin-left: 0;
         }
@@ -838,7 +894,10 @@
           flex-direction: column;
         }
         .search-input {
-          width: 200px;
+          width: 150px;
+        }
+        .search-input:focus {
+          width: 170px;
         }
         .room-grid {
           grid-template-columns: 1fr;
@@ -852,6 +911,73 @@
         .recommended-list {
           max-width: 100%;
           padding: 18px 5px;
+        }
+        .page-title {
+          font-size: 20px;
+        }
+      }
+      
+      /* Very small screens */
+      @media (max-width: 480px) {
+        .search-input {
+          width: 120px;
+          padding: 8px 30px 8px 12px;
+          font-size: 13px;
+        }
+        .search-input:focus {
+          width: 140px;
+        }
+        .search-icon {
+          right: 10px;
+        }
+        .page-title {
+          font-size: 18px;
+        }
+        .top-nav {
+          padding: 12px 15px;
+        }
+        .nav-right {
+          gap: 8px;
+        }
+      }
+      
+      /* Extremely small screens - enhance mobile view */
+      @media (max-width: 360px) {
+        .search-input {
+          width: 100px;
+          padding: 6px 25px 6px 10px;
+          font-size: 12px;
+        }
+        .search-input:focus {
+          width: 110px;
+        }
+        .search-icon {
+          right: 8px;
+          font-size: 12px;
+        }
+        .page-title {
+          font-size: 16px;
+        }
+        .nav-left {
+          gap: 10px;
+        }
+        .menu-toggle {
+          padding: 5px;
+          font-size: 18px;
+        }
+        .top-nav {
+          padding: 10px 12px;
+        }
+        .nav-right {
+          gap: 5px;
+        }
+        .theme-toggle {
+          padding: 5px;
+          font-size: 16px;
+          margin-left: 5px;
+        }
+        .study-rooms-page-content {
+          padding: 15px 10px;
         }
       }
     </style>
@@ -894,17 +1020,16 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div
-          class="user-info"
-          onclick="goToProfile()"
-          style="cursor: pointer; transition: all 0.3s ease"
-        >
-          <div class="user-avatar">DP</div>
-          <div>
-            <div style="font-weight: bold; font-size: 14px">DanePascual</div>
-            <div style="font-size: 12px; opacity: 0.8">BSIT</div>
+        <!-- FIXED: replaced onclick with href for better navigation -->
+        <a href="profile.html" style="text-decoration: none; display: block; width: 100%;">
+          <div class="user-info" style="cursor: pointer; transition: all 0.3s ease">
+            <div class="user-avatar">DP</div>
+            <div>
+              <div style="font-weight: bold; font-size: 14px">DanePascual</div>
+              <div style="font-size: 12px; opacity: 0.8">BSIT</div>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
 
@@ -924,7 +1049,7 @@
               type="text"
               class="search-input"
               id="searchInput"
-              placeholder="Search Study Groups..."
+              placeholder="Search..."
               autocomplete="off"
             />
             <i class="bi bi-search search-icon"></i>
@@ -942,7 +1067,7 @@
             <div class="stat-number" id="activeRoomsCount">0</div>
             <div class="stat-label">Active Study Rooms</div>
             <div class="stat-change">Create your first room!</div>
-            <div class="stat-timestamp" id="currentTime">2025-07-05 23:51:12 Philippines</div>
+            <div class="stat-timestamp" id="currentTime">2025-08-29 16:10:26 Philippines</div>
           </div>
           <div class="stat-card">
             <div class="stat-number" id="yourRoomsCount">0</div>
@@ -1145,10 +1270,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     
     <script>
-      // Current Session Info - 2025-07-05 23:51:12 Philippines Time (UTC+8)
+      // Current Session Info - Updated to current date from user input
       const CURRENT_SESSION = {
-        utcTime: "2025-07-05 15:51:12", // UTC time
-        philippinesTime: "2025-07-05 23:51:12", // Philippines time (UTC+8)
+        utcTime: "2025-08-29 16:10:26", // UTC time
+        philippinesTime: "2025-08-30 00:10:26", // Philippines time (UTC+8)
         user: "DanePascual",
         timezone: "Asia/Manila"
       };
@@ -1206,6 +1331,21 @@
         setTimeout(() => {
           showToast(`Welcome, ${currentUser}! Create your first study room to get started.`, 'info');
         }, 1000);
+        
+        // Update search placeholder for mobile
+        function updateSearchPlaceholder() {
+          const width = window.innerWidth;
+          const searchInput = document.getElementById('searchInput');
+          if (width <= 480) {
+            searchInput.placeholder = "Search...";
+          } else {
+            searchInput.placeholder = "Search study rooms...";
+          }
+        }
+        
+        // Initial call and setup resize listener
+        updateSearchPlaceholder();
+        window.addEventListener('resize', updateSearchPlaceholder);
       });
 
       function initializeEventListeners() {
@@ -1400,7 +1540,7 @@
         document.querySelector('.stat-card:nth-child(1) .stat-change').textContent = 
           roomCounter === 1 ? 'Your first room is active!' : `${roomCounter} active rooms`;
         document.querySelector('.stat-card:nth-child(2) .stat-change').textContent = 
-          `Created on July 5, 2025 (Philippines)`;
+          `Created on August 29, 2025 (Philippines)`;
       }
       
       function resetCreateRoomForm() {
@@ -1537,7 +1677,8 @@
         }, 1000);
       }
       
-      function goToProfile() {
+      // FIXED: Use direct navigation instead of a function
+      window.goToProfile = function() {
         window.location.href = "profile.html";
       }
 
@@ -1563,7 +1704,6 @@
         showToast,
         closeToast,
         enterRoom,
-        goToProfile,
         openCreateRoomModal,
         currentUser: CURRENT_SESSION.user,
         currentSession: CURRENT_SESSION.philippinesTime
@@ -1573,7 +1713,6 @@
       window.showToast = showToast;
       window.closeToast = closeToast;
       window.enterRoom = enterRoom;
-      window.goToProfile = goToProfile;
 
       // Final initialization log
       console.log(`🎉 Study Rooms page ready for ${CURRENT_SESSION.user} at ${CURRENT_SESSION.philippinesTime} Philippines Time`);

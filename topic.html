@@ -47,8 +47,9 @@
       color: var(--dark-text);
     }
 
+    /* Updated dark mode sidebar styles to match dashboard.html */
     body.dark-mode .sidebar {
-      background: #2a2a2a;
+      background: linear-gradient(135deg, #2e5d31 0%, #4a7c4f 100%);
     }
 
     body.dark-mode .top-nav {
@@ -166,9 +167,10 @@
       background: #333;
     }
     
-    /* User info section in dark mode */
+    /* User info section in dark mode - updated to match dashboard */
     body.dark-mode .user-info {
       background: rgba(255, 255, 255, 0.1);
+      color: white;
     }
     
     /* Fix form inputs in dark mode */
@@ -222,14 +224,14 @@
       color: var(--dark-text);
     }
     
-    /* Rest of your styles */
+    /* Updated sidebar styles to match dashboard */
     .sidebar {
       position: fixed;
       left: -280px;
       top: 0;
       width: 280px;
       height: 100vh;
-      background: white;
+      background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
       transition: left 0.3s ease;
       z-index: 1000;
       box-shadow: 2px 0 10px rgba(0,0,0,0.1);
@@ -240,7 +242,7 @@
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .sidebar-brand {
-      color: var(--primary-color);
+      color: white;
       font-size: 18px;
       font-weight: bold;
       display: flex;
@@ -250,7 +252,7 @@
     .sidebar-menu { padding: 20px 0;}
     .sidebar-item {
       display: block;
-      color: var(--dark-text);
+      color: white;
       text-decoration: none;
       padding: 15px 20px;
       transition: all 0.3s ease;
@@ -258,9 +260,9 @@
     }
     .sidebar-item:hover,
     .sidebar-item.active {
-      background: rgba(76, 175, 80, 0.1);
-      border-left-color: var(--primary-color);
-      color: var(--primary-color);
+      background: rgba(255, 255, 255, 0.1);
+      border-left-color: white;
+      color: white;
     }
     .sidebar-item i {
       width: 20px;
@@ -276,15 +278,15 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--dark-text);
-      background: rgba(0,0,0,0.05);
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
       padding: 15px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
     }
     .user-info:hover {
-      background: rgba(76, 175, 80, 0.15);
+      background: rgba(255, 255, 255, 0.2);
       transform: translateY(-1px);
     }
     .user-avatar {
@@ -854,7 +856,7 @@
         <div class="user-avatar">DP</div>
         <div>
           <div style="font-weight:bold; font-size:14px">DanePascual</div>
-          <div style="font-size:12px; opacity:0.8">Active</div>
+          <div style="font-size:12px; opacity:0.8">BSIT</div>
         </div>
       </div>
     </div>
@@ -959,7 +961,7 @@
   <script>
     // Current user and time information
     const CURRENT_SESSION = {
-      utcTime: "2025-07-11 11:57:32", // Updated UTC time
+      utcTime: "2025-08-31 10:00:16", // Updated UTC time
       user: "DanePascual",
       timezone: "UTC"
     };
